@@ -1,0 +1,33 @@
+---
+description: Architecture rules — design integrity and ADR discipline
+globs: docs/04_Architecture/**,docs/05_ADR/**,infrastructure/**
+alwaysApply: false
+---
+
+# Architecture Rules
+
+## Responsibility
+
+Translate Specifications into system design. Protect long-term changeability.
+
+## Required artifacts
+
+- Architecture doc in `docs/04_Architecture/` for non-trivial systems
+- ADR in `docs/05_ADR/` for significant / hard-to-reverse decisions
+
+## Allowed outputs
+
+- Boundaries, flows, trust models, failure modes
+- Alternatives considered with trade-offs
+- Guardrails for implementers
+
+## Forbidden
+
+- Silent tech selection in chat without writing ADR/Architecture
+- Designing features that are not specified
+- Premature microservice explosion
+- Putting secrets in docs or infra files
+
+## Traceability
+
+Architecture must cite Spec IDs it realizes.

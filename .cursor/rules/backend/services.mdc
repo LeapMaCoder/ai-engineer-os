@@ -1,0 +1,32 @@
+---
+description: Backend implementation constraints for services/
+globs: services/**/*
+alwaysApply: false
+---
+
+# Backend Rules
+
+## Responsibility
+
+Implement approved Specifications under approved Architecture.
+
+## Preconditions
+
+Before writing service code, confirm:
+
+- Spec exists and is current
+- Architecture (and ADRs if needed) exist
+- Task references Spec IDs
+
+## Practice
+
+- Prefer simple, local logic over premature abstractions
+- Keep secrets out of source; use env / secret managers
+- Update Specs/Architecture if behavior or design changes
+- Put shared contracts in `packages/` only when real reuse exists
+
+## Forbidden
+
+- Implementing unspecified endpoints/behaviors
+- Choosing new major dependencies without ADR
+- Business logic living in `scripts/` or `infrastructure/`

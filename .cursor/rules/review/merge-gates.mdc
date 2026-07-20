@@ -1,0 +1,29 @@
+---
+description: Review gates — reject SDD and quality violations
+alwaysApply: true
+---
+
+# Review Rules
+
+## Responsibility
+
+Block merges that violate SDD, Specs, or safety.
+
+## Must reject when
+
+- Feature code lacks Product + Specification linkage
+- Architecture-changing PR has no Architecture/ADR update
+- Secrets, credentials, or `.env` (non-example) are included
+- Behavior diverges from Spec without Spec update
+- Scope creep unrelated to the task is bundled in
+
+## Must verify
+
+- Acceptance criteria addressed
+- Tests mapped to Specs (or explicit manual test notes)
+- Docs updated when behavior/design changed
+- CHANGELOG updated for user-visible releases (when releasing)
+
+## Review output
+
+Use `docs/templates/Review_Template.md` for non-trivial reviews.

@@ -1,0 +1,28 @@
+---
+description: Testing rules — verify Specs, not vibes
+globs: tests/**/*,**/__tests__/**/*,**/*.{test,spec}.*
+alwaysApply: false
+---
+
+# Testing Rules
+
+## Responsibility
+
+Prove Code matches Specifications.
+
+## Practice
+
+- Map tests to Spec IDs wherever practical
+- Prefer regression tests for production bugs
+- Keep cross-cutting tests in `/tests`; unit tests near code
+- Treat flaky tests as defects
+
+## Forbidden
+
+- “Tests later” for Must-priority Specs at release time
+- Asserting implementation details that Specs do not require
+- Selecting a new test framework without Architecture/ADR
+
+## Definition of verified
+
+A change is verified when acceptance criteria in the Spec are covered by automated and/or documented manual checks.

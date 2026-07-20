@@ -1,0 +1,29 @@
+---
+description: AI mentor/agent system constraints for LeapMa
+globs: services/**/*,docs/03_Specifications/**/*,docs/04_Architecture/**
+alwaysApply: false
+---
+
+# AI System Rules
+
+## Responsibility
+
+Ensure AI mentor / agent behavior is specified, bounded, and evaluable.
+
+## Preconditions
+
+AI features need explicit AI behavior requirements in Specifications (allowed / forbidden / evaluation).
+
+## Practice
+
+- Prefer deterministic evaluation hooks for critical teaching claims
+- Separate product behavior specs from prompt/config implementation details
+- Log/eval strategy must respect privacy constraints in Specs
+- Document model/provider choices via ADR when selected
+
+## Forbidden
+
+- Unbounded autonomous actions without Spec guardrails
+- Inventing pedagogical claims not backed by Product/Spec
+- Exfiltrating user data into prompts without privacy review
+- Treating prompt files as a substitute for Specifications

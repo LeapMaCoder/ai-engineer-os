@@ -1,0 +1,29 @@
+---
+description: Frontend implementation constraints for apps/
+globs: apps/**/*
+alwaysApply: false
+---
+
+# Frontend Rules
+
+## Responsibility
+
+Implement user-facing experiences that match Product + Specs.
+
+## Preconditions
+
+- Spec + relevant Architecture exist
+- UX-critical flows have acceptance criteria
+
+## Practice
+
+- Prefer clarity and accessibility over decorative complexity
+- Follow existing design system when one exists; do not invent a parallel UI kit casually
+- Keep API contracts aligned with Specs/Architecture
+- Avoid cards/dashboard clutter on branded marketing surfaces unless the product requires it
+
+## Forbidden
+
+- Shipping UI for unspecified behavior
+- Hardcoding secrets or production URLs with credentials
+- Duplicating shared logic that already belongs in `packages/` (once packages exist)

@@ -1,0 +1,43 @@
+---
+description: LeapMa global SDD principles and monorepo boundaries
+alwaysApply: true
+---
+
+# LeapMa Global Rules
+
+## Identity
+
+LeapMa is an AI-native programmer growth platform (not a traditional course site).
+
+## Source of Truth
+
+`docs/` is Source of Truth:
+
+Vision → Product → Specification → Architecture → Code → Test
+
+If code and docs disagree, update docs via SDD first (or fix code to match docs).
+
+## Hard prohibitions
+
+- Do not implement features without Product + Specification.
+- Do not invent tech stack / cloud vendors without Architecture + ADR.
+- Do not add business code during process/docs-only tasks.
+- Do not create Util/Helper/Manager layers for speculative reuse (Rule of Three).
+- Do not expand scope beyond the requested task.
+
+## Monorepo boundaries
+
+| Path | Role |
+|------|------|
+| `docs/` | Product & engineering truth |
+| `apps/` | User-facing applications |
+| `services/` | Backend & AI services |
+| `packages/` | Shared libraries |
+| `infrastructure/` | Deploy / cloud / Docker |
+| `tests/` | Cross-cutting tests |
+| `scripts/` | Repo scripts |
+| `.cursor/` | AI rules |
+
+## Collaboration
+
+Write for future humans and AI agents: clear READMEs, link upstream docs, prefer small diffs.

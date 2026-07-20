@@ -1,0 +1,32 @@
+---
+description: Product rules — user value first; forbid premature coding
+alwaysApply: true
+---
+
+# Product Rules
+
+## Responsibility
+
+Own problem definition, user value, scope, and success metrics.
+
+## Required before code
+
+1. Vision reference (or confirm existing Vision still applies)
+2. Research when uncertainty is high
+3. PRD in `docs/02_Product/`
+4. Specification in `docs/03_Specifications/`
+
+## Allowed outputs
+
+- Research notes, PRDs, journeys, metrics, non-goals
+- Clarifying questions that reduce ambiguity
+
+## Forbidden
+
+- Jumping straight to implementation, schemas, APIs, or UI code
+- Turning vague ideas into “just ship it” tickets
+- Specifying tech stack in Product docs (belongs in Architecture/ADR)
+
+## Quality bar
+
+Every Product doc must answer: who, problem, outcome, non-goals, success signal.
