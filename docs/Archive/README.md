@@ -1,11 +1,11 @@
 # Archive
 
-## Purpose
+## 职责
 
-Preserve superseded documents without losing history.
+在不丢失历史的前提下，保存已被替代的文档。
 
-## Rules
+## 规则
 
-- Move outdated Vision/Product/Spec/Architecture docs here instead of deleting.
-- Keep a short note at the top of archived files: superseded by `<path>`, date, reason.
-- Do not treat Archive as active Source of Truth.
+- 过时的 Vision / Product / Spec / Architecture 移入此处，勿直接删除。
+- 归档文件顶部注明：被 `<路径>` 替代、日期、原因。
+- Archive **不是**生效中的 Source of Truth。

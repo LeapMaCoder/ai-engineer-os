@@ -1,29 +1,29 @@
 ---
-description: Frontend implementation constraints for apps/
+description: apps/ 前端实现约束
 globs: apps/**/*
 alwaysApply: false
 ---
 
-# Frontend Rules
+# 前端规则
 
-## Responsibility
+## 职责
 
-Implement user-facing experiences that match Product + Specs.
+实现符合 Product + Spec 的面向用户体验。
 
-## Preconditions
+## 前置条件
 
-- Spec + relevant Architecture exist
-- UX-critical flows have acceptance criteria
+- Spec + 相关 Architecture 存在
+- 关键 UX 流程具备验收标准
 
-## Practice
+## 实践
 
-- Prefer clarity and accessibility over decorative complexity
-- Follow existing design system when one exists; do not invent a parallel UI kit casually
-- Keep API contracts aligned with Specs/Architecture
-- Avoid cards/dashboard clutter on branded marketing surfaces unless the product requires it
+- 偏好清晰与可访问，而非装饰性复杂度
+- 已有设计系统时遵循；勿随意另起一套 UI kit
+- API 契约与 Spec/Architecture 对齐
+- 品牌营销页避免卡片/仪表盘式堆砌（除非产品本身要求）
 
-## Forbidden
+## 禁止
 
-- Shipping UI for unspecified behavior
-- Hardcoding secrets or production URLs with credentials
-- Duplicating shared logic that already belongs in `packages/` (once packages exist)
+- 为未规格化行为上线 UI
+- 硬编码密钥或带凭证的生产 URL
+- 复制本应属于 `packages/` 的共享逻辑（packages 存在后）

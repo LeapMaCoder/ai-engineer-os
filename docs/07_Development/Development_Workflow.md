@@ -1,5 +1,5 @@
 ---
-title: Development Workflow
+title: 开发流程
 type: development
 status: active
 created: 2026-07-20
@@ -11,150 +11,151 @@ tags:
   - leapma
 ---
 
-# Development Workflow
+# 开发流程
 
-LeapMa uses **Specification Driven Development (SDD)**.
+LeapMa 采用 **Specification Driven Development（SDD，规格驱动开发）**。
 
-Source of Truth chain:
+Source of Truth 链路：
 
-**Vision → Product → Specification → Architecture → Code → Test**
+**Vision → Product → Specification → Architecture → Code → Test**  
+（愿景 → 产品 → 规格 → 架构 → 代码 → 测试）
 
-This document describes the full path from idea to release.
+本文描述从想法到发布的完整路径。
 
-## End-to-end flow
+## 端到端流程
 
 ```mermaid
 flowchart TD
-  A[Idea] --> B[Research]
-  B --> C[Product Definition / PRD]
-  C --> D[Specification]
-  D --> E[Architecture]
-  E --> F{Significant decision?}
-  F -->|Yes| G[ADR]
-  F -->|No| H[Task Breakdown]
+  A[想法 Idea] --> B[调研 Research]
+  B --> C[产品定义 / PRD]
+  C --> D[规格 Specification]
+  D --> E[架构 Architecture]
+  E --> F{重大决策?}
+  F -->|是| G[ADR]
+  F -->|否| H[任务拆解]
   G --> H
-  H --> I[Implementation]
-  I --> J[Code Review]
-  J --> K[Testing]
-  K --> L{Quality gates pass?}
-  L -->|No| I
-  L -->|Yes| M[Release]
-  M --> N[Retrospective]
+  H --> I[实现 Implementation]
+  I --> J[代码评审 Code Review]
+  J --> K[测试 Testing]
+  K --> L{质量门禁通过?}
+  L -->|否| I
+  L -->|是| M[发布 Release]
+  M --> N[复盘 Retrospective]
   N --> A
 ```
 
-## Phase details
+## 各阶段说明
 
-### 1. Idea
+### 1. 想法（Idea）
 
-- Capture the problem, not a solution lock-in.
-- Owner: AI CEO / AI Product Manager (with human).
-- Output: short problem statement linked to Vision.
+- 先抓住问题，不要锁死方案。
+- 负责人：AI CEO / AI 产品经理（在人类监督下）。
+- 产出：与 Vision 关联的简短问题陈述。
 
-### 2. Research
+### 2. 调研（Research）
 
-- Location: `docs/01_Research/`
-- Template: `docs/templates/Research_Template.md`
-- Goal: reduce uncertainty with evidence.
-- Research alone does **not** authorize code.
+- 位置：`docs/01_Research/`
+- 模板：`docs/templates/Research_Template.md`
+- 目标：用证据降低不确定性。
+- 仅有 Research **不**授权写代码。
 
-### 3. Product Definition
+### 3. 产品定义（Product Definition）
 
-- Location: `docs/02_Product/`
-- Template: `docs/templates/PRD_Template.md`
-- Must include users, goals, non-goals, success signals.
-- Must cite Vision (and Research when used).
+- 位置：`docs/02_Product/`
+- 模板：`docs/templates/PRD_Template.md`
+- 必须包含用户、目标、非目标、成功信号。
+- 必须引用 Vision（使用了 Research 时一并引用）。
 
-### 4. Specification
+### 4. 规格（Specification）
 
-- Location: `docs/03_Specifications/`
-- Template: `docs/templates/Specification_Template.md`
-- Requirements must be testable (IDs + acceptance criteria).
-- Ambiguity is fixed in Specs, not in code comments.
+- 位置：`docs/03_Specifications/`
+- 模板：`docs/templates/Specification_Template.md`
+- 需求必须可测试（ID + 验收标准）。
+- 模糊在 Spec 中消除，不靠代码注释。
 
-### 5. Architecture
+### 5. 架构（Architecture）
 
-- Location: `docs/04_Architecture/`
-- Template: `docs/templates/Architecture_Template.md`
-- Designs how Specs are realized across `apps/`, `services/`, `packages/`, `infrastructure/`.
-- Significant choices → ADR in `docs/05_ADR/`.
+- 位置：`docs/04_Architecture/`
+- 模板：`docs/templates/Architecture_Template.md`
+- 描述 Spec 如何在 `apps/`、`services/`、`packages/`、`infrastructure/` 中落地。
+- 重大选型 → `docs/05_ADR/` 写 ADR。
 
-### 6. Task Breakdown
+### 6. 任务拆解（Task Breakdown）
 
-- Location: `docs/06_Sprint/` (or linked tracker + Task template)
-- Every task cites Spec IDs (and Architecture when relevant).
-- No orphan implementation tasks.
+- 位置：`docs/06_Sprint/`（或外部追踪器 + Task 模板）
+- 每个任务引用 Spec ID（必要时引用 Architecture）。
+- 禁止无文档依据的孤儿实现任务。
 
-### 7. Implementation
+### 7. 实现（Implementation）
 
-- Code lands in `apps/`, `services/`, `packages/`, or `infrastructure/` as designed.
-- Follow Cursor rules for the relevant domain.
-- If Spec/Architecture is wrong, **stop and update docs** before continuing.
+- 代码按设计落入 `apps/`、`services/`、`packages/` 或 `infrastructure/`。
+- 遵守对应域的 Cursor Rules。
+- 若 Spec/Architecture 有误，**先停下来改文档**，再继续写代码。
 
-### 8. Code Review
+### 8. 代码评审（Code Review）
 
-- Use `docs/templates/Review_Template.md` for non-trivial changes.
-- AI Reviewer enforces merge gates in `.cursor/rules/review/`.
-- Reject SDD violations even if the code “works”.
+- 非琐碎变更使用 `docs/templates/Review_Template.md`。
+- AI 评审员执行 `.cursor/rules/review/` 中的合并门禁。
+- 即使代码「能跑」，违反 SDD 也要拒绝。
 
-### 9. Testing
+### 9. 测试（Testing）
 
-- Strategy in `docs/08_Testing/`; suites in `/tests` and near code.
-- Tests assert Specs.
-- Failures map back to Spec IDs or produce Spec defect reports.
+- 策略在 `docs/08_Testing/`；套件在 `/tests` 与代码旁。
+- 测试断言 Spec。
+- 失败映射回 Spec ID，或产出 Spec 缺陷报告。
 
-### 10. Release
+### 10. 发布（Release）
 
-- Notes in `docs/09_Release/` via Release Note template.
-- Update `CHANGELOG.md`.
-- Rollout/rollback plan required for risky changes.
+- 说明放在 `docs/09_Release/`，使用 Release Note 模板。
+- 更新 `CHANGELOG.md`。
+- 高风险变更须有放量/回滚计划。
 
-### 11. Retrospective
+### 11. 复盘（Retrospective）
 
-- Capture what to change in process/docs/rules.
-- Feed improvements into Vision/Product/Workflow — not only “try harder”.
+- 沉淀流程/文档/规则的改进点。
+- 改进回流到 Vision/Product/Workflow，而不是只「下次更努力」。
 
-## Gate checklist (must pass)
+## 门禁清单（必须通过）
 
 ```mermaid
 flowchart LR
-  G1[Vision cited] --> G2[PRD approved]
-  G2 --> G3[Spec testable]
-  G3 --> G4[Architecture ready]
-  G4 --> G5[ADR if needed]
-  G5 --> G6[Tasks linked]
-  G6 --> G7[Review approved]
-  G7 --> G8[Tests verify Specs]
-  G8 --> G9[Release notes]
+  G1[已引用 Vision] --> G2[PRD 已批准]
+  G2 --> G3[Spec 可测试]
+  G3 --> G4[Architecture 就绪]
+  G4 --> G5[必要时已有 ADR]
+  G5 --> G6[任务已关联]
+  G6 --> G7[评审已通过]
+  G7 --> G8[测试验证 Spec]
+  G8 --> G9[发布说明]
 ```
 
-| Gate | Fail condition |
-|------|----------------|
-| Product | No PRD / no user outcome |
-| Spec | Untestable or missing acceptance criteria |
-| Architecture | Design missing for non-trivial work |
-| ADR | Significant irreversible choice undocumented |
-| Review | Secrets, scope creep, doc drift |
-| Test | Must-priority acceptance criteria unverified |
+| 门禁 | 失败条件 |
+|------|----------|
+| Product | 无 PRD / 无用户结果 |
+| Spec | 不可测试或缺少验收标准 |
+| Architecture | 非琐碎工作缺少设计 |
+| ADR | 重大难回退选型未文档化 |
+| Review | 密钥、范围蔓延、文档漂移 |
+| Test | Must 级验收标准未验证 |
 
-## Role ownership by phase
+## 各阶段角色归属
 
-| Phase | Primary role | Supporting |
-|-------|--------------|------------|
-| Idea | AI CEO | Product |
-| Research | Product | Architect |
-| Product | AI Product Manager | CEO |
-| Spec | Product + Architect | Engineers |
-| Architecture | AI Architect | Backend / Frontend / AI Engineer |
-| Implementation | Backend / Frontend / AI Engineer | Architect |
-| Review | AI Reviewer | All authors |
-| Testing | AI QA Engineer | Engineers |
-| Release | CEO / Product + Engineers | QA / Ops |
-| Retro | All | CEO |
+| 阶段 | 主责 | 协作 |
+|------|------|------|
+| 想法 | AI CEO | 产品 |
+| 调研 | 产品 | 架构 |
+| 产品 | AI 产品经理 | CEO |
+| Spec | 产品 + 架构 | 工程师 |
+| Architecture | AI 架构师 | 后端 / 前端 / AI 工程师 |
+| 实现 | 后端 / 前端 / AI 工程师 | 架构 |
+| 评审 | AI 评审员 | 全体作者 |
+| 测试 | AI QA 工程师 | 工程师 |
+| 发布 | CEO / 产品 + 工程师 | QA / 运维 |
+| 复盘 | 全体 | CEO |
 
-## Working agreements
+## 工作约定
 
-1. Prefer updating docs over clever code that hides undecided behavior.
-2. Prefer small vertical slices that still honor the full gate chain.
-3. Prefer ADRs over tribal knowledge.
-4. Prefer refusing premature implementation over “temporary” hacks that become permanent.
+1. 宁可先改文档，也不要用聪明代码掩盖未决行为。
+2. 宁可做仍遵守完整门禁链的小垂直切片。
+3. 宁可写 ADR，也不靠口口相传。
+4. 宁可拒绝过早实现，也不要让「临时方案」变永久。

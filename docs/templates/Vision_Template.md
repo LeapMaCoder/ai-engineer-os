@@ -10,54 +10,54 @@ tags:
   - leapma
 ---
 
-# Vision — {{title}}
+# 愿景 — {{title}}
 
-## 1. North Star
+## 1. 北极星
 
-> One sentence: what LeapMa makes true for programmers.
+> 一句话：LeapMa 要让程序员世界变成什么样。
 
-## 2. Problem Space
+## 2. 问题空间
 
-- Who suffers today?
-- What fails in existing learning products?
-- Why now?
+- 今天谁在受苦？
+- 现有学习产品哪里失败了？
+- 为什么是现在？
 
-## 3. Product Thesis
+## 3. 产品命题
 
-LeapMa is **not** a traditional course platform. It is:
+LeapMa **不是**传统课程平台，而是：
 
-- AI mentor-driven growth
-- Dynamic learning paths
-- Knowledge graph
-- Gamified progression
+- AI 导师驱动成长
+- 动态学习路径
+- 知识图谱
+- 游戏化进阶
 
-## 4. Principles
+## 4. 原则
 
 1.
 2.
 3.
 
-## 5. Target Users
+## 5. 目标用户
 
-- University students
-- Career switchers / professionals learning new languages
-- Working programmers leveling up
+- 大学生
+- 学习新语言的职场人 / 转行者
+- 想持续提升的程序员
 
-## 6. Long-term Outcomes (12–36 months)
+## 6. 长期结果（12–36 个月）
 
-| Outcome | Signal of success |
-|---------|-------------------|
+| 结果 | 成功信号 |
+|------|----------|
 | | |
 
-## 7. Non-Goals (Vision-level)
+## 7. 非目标（愿景层）
 
 -
 
-## 8. Open Questions
+## 8. 未决问题
 
 -
 
-## 9. Downstream Links
+## 9. 下游链接
 
-- Product docs derived from this vision:
-- Research that informed this vision:
+- 由本愿景派生的产品文档：
+- 支撑本愿景的调研：

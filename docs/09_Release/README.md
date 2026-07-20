@@ -1,21 +1,21 @@
 # 09_Release
 
-## Purpose
+## 职责
 
-Document how changes ship to users safely.
+记录如何安全地把变更交付给用户。
 
-## Contains
+## 包含
 
-- Release notes
-- Release checklists
-- Rollout / rollback plans
-- Versioning notes
+- 发布说明
+- 发布检查清单
+- 放量 / 回滚计划
+- 版本说明
 
-## Rules
+## 规则
 
-- Releases must map to completed Specs and passing quality gates.
-- Breaking changes require explicit callouts and usually an ADR.
+- 发布必须对应已完成的 Spec，并通过质量门禁。
+- Breaking Change 须明确标注，通常需要 ADR。
 
-## Templates
+## 模板
 
-Use `docs/templates/Release_Note_Template.md`.
+使用 `docs/templates/Release_Note_Template.md`。

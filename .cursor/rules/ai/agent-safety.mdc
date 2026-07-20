@@ -1,29 +1,29 @@
 ---
-description: AI mentor/agent system constraints for LeapMa
+description: LeapMa AI 导师/Agent 系统约束
 globs: services/**/*,docs/03_Specifications/**/*,docs/04_Architecture/**
 alwaysApply: false
 ---
 
-# AI System Rules
+# AI 系统规则
 
-## Responsibility
+## 职责
 
-Ensure AI mentor / agent behavior is specified, bounded, and evaluable.
+确保 AI 导师 / Agent 行为被规格化、有边界、可评估。
 
-## Preconditions
+## 前置条件
 
-AI features need explicit AI behavior requirements in Specifications (allowed / forbidden / evaluation).
+AI 功能须在 Specification 中写明 AI 行为需求（允许 / 禁止 / 评估）。
 
-## Practice
+## 实践
 
-- Prefer deterministic evaluation hooks for critical teaching claims
-- Separate product behavior specs from prompt/config implementation details
-- Log/eval strategy must respect privacy constraints in Specs
-- Document model/provider choices via ADR when selected
+- 关键教学主张优先有确定性评估钩子
+- 区分产品行为 Spec 与提示词/配置实现细节
+- 日志/评估策略须遵守 Spec 中的隐私约束
+- 选定模型/服务商时通过 ADR 记录
 
-## Forbidden
+## 禁止
 
-- Unbounded autonomous actions without Spec guardrails
-- Inventing pedagogical claims not backed by Product/Spec
-- Exfiltrating user data into prompts without privacy review
-- Treating prompt files as a substitute for Specifications
+- 无 Spec 护栏的无界自主行动
+- 发明未被 Product/Spec 支撑的教学主张
+- 未经隐私审查把用户数据塞进提示词
+- 用提示词文件替代 Specification

@@ -1,5 +1,5 @@
 ---
-title: "Release {{version}} — {{title}}"
+title: "发布 {{version}} — {{title}}"
 type: release_note
 status: draft
 owner: ""
@@ -12,29 +12,29 @@ version: ""
 date: "{{date}}"
 ---
 
-# Release {{version}} — {{title}}
+# 发布 {{version}} — {{title}}
 
-## Summary
+## 摘要
 
-What users gain from this release (1–3 sentences).
+用户从本次发布获得什么（1–3 句）。
 
-## Added
-
--
-
-## Changed
+## 新增
 
 -
 
-## Fixed
+## 变更
 
 -
 
-## Deprecated
+## 修复
 
 -
 
-## Removed
+## 废弃
+
+-
+
+## 移除
 
 -
 
@@ -42,22 +42,22 @@ What users gain from this release (1–3 sentences).
 
 -
 
-## Specs / ADRs Included
+## 包含的 Spec / ADR
 
-| Doc | Notes |
-|-----|-------|
+| 文档 | 备注 |
+|------|------|
 | | |
 
-## Rollout
+## 放量
 
-- Strategy:
-- Feature flags (if any):
-- Monitoring checks:
+- 策略：
+- 功能开关（如有）：
+- 监控检查：
 
-## Rollback
+## 回滚
 
 -
 
-## Known Issues
+## 已知问题
 
 -

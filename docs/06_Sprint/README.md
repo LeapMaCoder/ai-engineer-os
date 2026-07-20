@@ -1,21 +1,21 @@
 # 06_Sprint
 
-## Purpose
+## 职责
 
-Plan and track time-boxed delivery without replacing Product/Spec docs.
+规划与跟踪限时交付，但不替代 Product / Spec 文档。
 
-## Contains
+## 包含
 
-- Sprint goals
-- Scope commitments
-- Risks / blockers
-- Demo notes and carry-over
+- Sprint 目标
+- 范围承诺
+- 风险 / 阻塞
+- Demo 纪要与结转
 
-## Rules
+## 规则
 
-- Sprint docs reference Specs / Tasks; they do not invent requirements.
-- Scope cuts must update Product/Spec if behavior changes.
+- Sprint 文档引用 Spec / Task；不发明需求。
+- 砍范围若改变行为，必须同步更新 Product / Spec。
 
-## Templates
+## 模板
 
-Use `docs/templates/Sprint_Template.md` and `docs/templates/Task_Template.md`.
+使用 `docs/templates/Sprint_Template.md` 与 `docs/templates/Task_Template.md`。

@@ -11,36 +11,36 @@ tags:
 related_vision: ""
 ---
 
-# Research — {{title}}
+# 调研 — {{title}}
 
-## 1. Question
+## 1. 问题
 
-What decision does this research inform?
+本调研要支撑哪个决策？
 
-## 2. Method
+## 2. 方法
 
-- Sources:
-- Interviews / experiments:
-- Time box:
+- 来源：
+- 访谈 / 实验：
+- 时间盒：
 
-## 3. Findings
+## 3. 发现
 
-### Facts
-
--
-
-### Hypotheses
+### 事实
 
 -
 
-### Recommendations
+### 假设
 
 -
 
-## 4. Competitor / Market Notes (if applicable)
+### 建议
 
-| Player | Strength | Weakness | LeapMa implication |
-|--------|----------|----------|--------------------|
+-
+
+## 4. 竞品 / 市场笔记（如适用）
+
+| 产品 | 优势 | 劣势 | 对 LeapMa 的启示 |
+|------|------|------|------------------|
 | Boot.dev | | | |
 | Duolingo | | | |
 | Codecademy | | | |
@@ -48,18 +48,18 @@ What decision does this research inform?
 | DataCamp | | | |
 | Mimo | | | |
 
-## 5. Risks & Biases
+## 5. 风险与偏见
 
 -
 
-## 6. Decision Impact
+## 6. 决策影响
 
-- Product impact:
-- Spec impact:
-- Architecture impact:
+- 对产品的影响：
+- 对 Spec 的影响：
+- 对架构的影响：
 
-## 7. Links
+## 7. 链接
 
-- Related Vision:
-- Related PRDs:
-- Supersedes:
+- 相关 Vision：
+- 相关 PRD：
+- 替代文档：

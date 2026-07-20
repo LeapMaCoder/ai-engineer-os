@@ -1,18 +1,18 @@
 # packages/
 
-Shared libraries and contracts for the monorepo.
+Monorepo 的共享库与契约。
 
-## Purpose
+## 职责
 
-- Reusable code shared by `apps/` and `services/` (types, UI primitives, utilities, clients).
-- Reduce duplication once multiple consumers exist.
+- 供 `apps/` 与 `services/` 复用的代码（类型、UI 原语、工具、客户端等）。
+- 在真实出现多处消费者后再抽取，降低重复。
 
-## Rules
+## 规则
 
-- Follow Rule of Three: do not extract a package until reuse is real.
-- Do not invent package layout or tech stack in Phase 0.
-- Packages must not depend on `apps/` or `services/` (dependency arrow points inward to packages).
+- 遵循三次原则（Rule of Three）：没有真实复用前不要抽包。
+- Phase 0 不定包结构与技术栈。
+- 包不得依赖 `apps/` 或 `services/`（依赖方向指向 packages）。
 
-## Status
+## 状态
 
-Phase 0 placeholder. No packages created yet.
+Phase 0 占位。尚未创建任何包。

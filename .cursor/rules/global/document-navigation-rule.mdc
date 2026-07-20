@@ -1,0 +1,46 @@
+---
+description: 重要文档变更必须同步 Dashboard、Project Map 与 INDEX
+alwaysApply: true
+---
+
+# 文档导航同步规则
+
+## 问题
+
+AI 开发过程中文档易漂移，导致阶段、风险与入口不可见。
+
+## 强制规则
+
+当发生以下**重要文档变化**时，必须在同一次任务内同步更新：
+
+1. `docs/00_Project/Project_Dashboard.md`
+2. `docs/00_Project/Project_Map.md`（若影响目录结构或文档关系）
+3. `docs/INDEX.md`
+
+并检查根 `README.md` 的「当前阶段」是否与 Dashboard 一致。
+
+## 何谓「重要文档变化」
+
+- 新增/废止/移动阶段级文档（Vision、Research、Product、Spec、Arch、ADR、治理文档）
+- 项目阶段推进或目标变更
+- 核心假设状态批量更新（如访谈后）
+- ICP / PRD / 重大决策落地
+- 未决问题关闭或新增 P0 问题
+
+## 非必须同步的情况
+
+- 纯错别字、格式微调
+- 模板正文未改变索引关系
+- 单场访谈记录新增（但应提醒更新 Hypothesis 台账；满节点再改 Dashboard）
+
+## 同步时 Dashboard 至少更新
+
+- 当前阶段
+- 进行中 / 下一步
+- 风险（若变化）
+- 最后更新日期
+
+## 禁止
+
+- 只改专题文档、不改导航入口，导致 AI 下一会话读到过期状态
+- 在 README / Dashboard / INDEX 写互相矛盾的阶段名

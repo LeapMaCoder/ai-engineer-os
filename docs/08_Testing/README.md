@@ -1,26 +1,26 @@
 # 08_Testing
 
-## Purpose
+## 职责
 
-Define how we prove Code matches Specifications.
+定义如何证明 Code 符合 Specification。
 
-In the Source of Truth chain, Test is the last verification layer:
+在 Source of Truth 链路中，Test 是最后的验证层：
 
 Vision → Product → Specification → Architecture → Code → **Test**
 
-## Contains
+## 包含
 
-- Test strategy
-- Quality gates
-- Coverage expectations (once stack exists)
-- Bug triage conventions
+- 测试策略
+- 质量门禁
+- 覆盖率预期（技术栈确定后）
+- Bug 分流约定
 
-## Rules
+## 规则
 
-- Acceptance criteria come from Specifications, not from tickets alone.
-- Flaky tests are treated as defects.
-- Do not choose test frameworks here without Architecture / ADR.
+- 验收标准来自 Specification，而非仅来自工单。
+- 不稳定测试按缺陷处理。
+- 未经过 Architecture / ADR，不在此选定测试框架。
 
-## Related
+## 相关
 
-Cross-cutting suites live in `/tests`. Unit tests live next to code.
+跨切面套件放在 `/tests`。单元测试靠近代码。

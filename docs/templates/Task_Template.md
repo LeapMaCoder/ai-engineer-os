@@ -1,5 +1,5 @@
 ---
-title: "Task — {{title}}"
+title: "任务 — {{title}}"
 type: task
 status: todo
 owner: ""
@@ -14,43 +14,43 @@ sprint: ""
 estimate: ""
 ---
 
-# Task — {{title}}
+# 任务 — {{title}}
 
-## 1. Why
+## 1. 为什么
 
-Link to Spec / PRD. No orphan tasks.
+链接 Spec / PRD。禁止孤儿任务。
 
-## 2. Outcome
+## 2. 结果
 
-What “done” looks like in user/system terms.
+用用户/系统语言描述「完成」长什么样。
 
-## 3. Scope
+## 3. 范围
 
-### Do
-
--
-
-### Do not
+### 做
 
 -
 
-## 4. Implementation Notes (optional)
-
-Only after Spec + Architecture exist. Keep short; do not replace Architecture docs.
+### 不做
 
 -
 
-## 5. Acceptance Checklist
+## 4. 实现备注（可选）
 
-- [ ] Matches Spec IDs:
-- [ ] Tests added/updated
-- [ ] Docs updated if needed
-- [ ] Review completed
-
-## 6. Dependencies
+仅在 Spec + Architecture 存在后填写。保持简短；勿替代 Architecture 文档。
 
 -
 
-## 7. Risks
+## 5. 验收清单
+
+- [ ] 符合 Spec ID：
+- [ ] 已补充/更新测试
+- [ ] 如需已更新文档
+- [ ] 评审已完成
+
+## 6. 依赖
+
+-
+
+## 7. 风险
 
 -

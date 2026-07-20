@@ -12,76 +12,76 @@ related_specs: []
 related_adrs: []
 ---
 
-# Architecture — {{title}}
+# 架构 — {{title}}
 
-## 1. Traceability
+## 1. 可追溯性
 
-- Specifications covered:
-- ADRs:
+- 覆盖的 Specification：
+- ADR：
 
-## 2. Context
+## 2. 上下文
 
-What problem in the specs does this design solve?
+本设计要解决 Spec 中的什么问题？
 
-## 3. Goals & Non-Goals
+## 3. 目标与非目标
 
-### Goals
-
--
-
-### Non-Goals
+### 目标
 
 -
 
-## 4. System Overview
+### 非目标
+
+-
+
+## 4. 系统概览
 
 ```mermaid
 flowchart TB
-  User[User] --> App[App]
+  User[用户] --> App[应用]
   App --> API[API]
-  API --> AI[AI Services]
-  API --> Data[(Data)]
+  API --> AI[AI 服务]
+  API --> Data[(数据)]
 ```
 
-## 5. Containers / Boundaries
+## 5. 容器 / 边界
 
-| Component | Responsibility | Owns data? | Notes |
-|-----------|----------------|------------|-------|
+| 组件 | 职责 | 是否拥有数据 | 备注 |
+|------|------|--------------|------|
 | | | | |
 
-## 6. Key Flows
+## 6. 关键流程
 
-### Flow A
+### 流程 A
 
 ```mermaid
 sequenceDiagram
-  participant U as User
-  participant A as App
-  participant S as Service
-  U->>A: action
-  A->>S: request
-  S-->>A: response
-  A-->>U: result
+  participant U as 用户
+  participant A as 应用
+  participant S as 服务
+  U->>A: 操作
+  A->>S: 请求
+  S-->>A: 响应
+  A-->>U: 结果
 ```
 
-## 7. Cross-Cutting Concerns
+## 7. 横切关注点
 
-- Authn / Authz:
-- Observability:
-- Failure modes:
-- Security / privacy:
+- 认证 / 授权：
+- 可观测性：
+- 失败模式：
+- 安全 / 隐私：
 
-## 8. Alternatives Considered
+## 8. 备选方案
 
-| Option | Pros | Cons | Decision |
-|--------|------|------|----------|
+| 方案 | 优点 | 缺点 | 结论 |
+|------|------|------|------|
 | | | | |
 
-## 9. Open Questions
+## 9. 未决问题
 
 -
 
-## 10. Implementation Guardrails
+## 10. 实现护栏
 
-What Code **must / must not** do when implementing this design:
+实现本设计时，代码**必须 / 禁止**做什么：
 -

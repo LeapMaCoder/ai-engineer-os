@@ -15,70 +15,70 @@ related_research: []
 
 # PRD — {{title}}
 
-## 1. Summary
+## 1. 摘要
 
-One paragraph: problem, user, outcome.
+一段话：问题、用户、结果。
 
-## 2. Background
+## 2. 背景
 
-- Vision link:
-- Research links:
-- Why this now?
+- Vision 链接：
+- Research 链接：
+- 为什么现在做？
 
-## 3. Goals
+## 3. 目标
 
-| Goal | Metric / signal |
-|------|-----------------|
+| 目标 | 指标 / 信号 |
+|------|-------------|
 | | |
 
-## 4. Non-Goals
+## 4. 非目标
 
 -
 
-## 5. Users & Jobs
+## 5. 用户与工作
 
-| Persona | Job to be done | Current pain |
-|---------|----------------|--------------|
+| 画像 | 要完成的工作 | 当前痛点 |
+|------|--------------|----------|
 | | | |
 
-## 6. User Journey (problem-level)
+## 6. 用户旅程（问题层）
 
 1.
 2.
 3.
 
-## 7. Scope
+## 7. 范围
 
-### In scope
-
--
-
-### Out of scope
+### 范围内
 
 -
 
-## 8. Experience Principles
+### 范围外
 
 -
 
-## 9. Success Criteria
+## 8. 体验原则
 
 -
 
-## 10. Risks & Open Questions
+## 9. 成功标准
 
 -
 
-## 11. Downstream Specs
-
-List Specification docs that will implement this PRD:
+## 10. 风险与未决问题
 
 -
 
-## 12. Approval
+## 11. 下游 Spec
 
-| Role | Name | Date | Decision |
-|------|------|------|----------|
-| Product | | | |
-| Architecture | | | |
-| Engineering | | | |
+列出将实现本 PRD 的 Specification 文档：
+
+-
+
+## 12. 批准
+
+| 角色 | 姓名 | 日期 | 决定 |
+|------|------|------|------|
+| 产品 | | | |
+| 架构 | | | |
+| 工程 | | | |

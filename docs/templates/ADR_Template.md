@@ -14,40 +14,40 @@ superseded_by: ""
 
 # ADR-XXXX: {{title}}
 
-## Status
+## 状态
 
-Proposed | Accepted | Deprecated | Superseded
+Proposed（提议）| Accepted（已接受）| Deprecated（废弃）| Superseded（被替代）
 
-## Context
+## 上下文
 
-What forces require a decision?
+哪些力量迫使我们做决策？
 
-## Decision
+## 决策
 
-What did we choose?
+我们选择了什么？
 
-## Consequences
+## 后果
 
-### Positive
-
--
-
-### Negative
+### 正面
 
 -
 
-### Neutral
+### 负面
 
 -
 
-## Alternatives Considered
+### 中性
 
-| Alternative | Why not |
-|-------------|---------|
+-
+
+## 备选方案
+
+| 备选 | 未选原因 |
+|------|----------|
 | | |
 
-## Links
+## 链接
 
-- Architecture:
-- Specs:
-- Related ADRs:
+- Architecture：
+- Spec：
+- 相关 ADR：

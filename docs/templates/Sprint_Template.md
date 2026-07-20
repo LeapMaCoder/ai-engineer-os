@@ -14,42 +14,42 @@ end: ""
 
 # Sprint {{sprint_id}} — {{title}}
 
-## 1. Goal
+## 1. 目标
 
-One clear outcome for the sprint.
+本 Sprint 的一个清晰结果。
 
-## 2. Upstream Docs
+## 2. 上游文档
 
-- PRDs:
-- Specs:
-- Architecture:
+- PRD：
+- Spec：
+- Architecture：
 
-## 3. Committed Scope
+## 3. 承诺范围
 
-| Task | Spec ID | Owner | Status |
-|------|---------|-------|--------|
+| 任务 | Spec ID | 负责人 | 状态 |
+|------|---------|--------|------|
 | | | | |
 
-## 4. Explicitly Not Doing
+## 4. 明确不做
 
 -
 
-## 5. Risks & Blockers
+## 5. 风险与阻塞
 
 -
 
-## 6. Definition of Done (sprint)
+## 6. Sprint 完成定义
 
-- [ ] Specs updated if behavior changed
-- [ ] Architecture/ADR updated if design changed
-- [ ] Tests mapped to acceptance criteria
-- [ ] Review completed
-- [ ] Release notes drafted (if shipping)
+- [ ] 行为变更已更新 Spec
+- [ ] 设计变更已更新 Architecture / ADR
+- [ ] 测试已映射验收标准
+- [ ] 评审已完成
+- [ ] 若发布，发布说明已起草
 
-## 7. Demo Notes
+## 7. Demo 纪要
 
 -
 
-## 8. Retrospective Link
+## 8. 复盘链接
 
 -

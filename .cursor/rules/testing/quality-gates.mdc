@@ -1,28 +1,28 @@
 ---
-description: Testing rules — verify Specs, not vibes
+description: 测试规则 — 验证 Spec，而非感觉
 globs: tests/**/*,**/__tests__/**/*,**/*.{test,spec}.*
 alwaysApply: false
 ---
 
-# Testing Rules
+# 测试规则
 
-## Responsibility
+## 职责
 
-Prove Code matches Specifications.
+证明 Code 符合 Specification。
 
-## Practice
+## 实践
 
-- Map tests to Spec IDs wherever practical
-- Prefer regression tests for production bugs
-- Keep cross-cutting tests in `/tests`; unit tests near code
-- Treat flaky tests as defects
+- 尽量把测试映射到 Spec ID
+- 生产缺陷优先补回归测试
+- 跨切面测试放 `/tests`；单元测试靠近代码
+- 不稳定测试按缺陷处理
 
-## Forbidden
+## 禁止
 
-- “Tests later” for Must-priority Specs at release time
-- Asserting implementation details that Specs do not require
-- Selecting a new test framework without Architecture/ADR
+- 发布时对 Must 级 Spec「以后再测」
+- 断言 Spec 未要求的实现细节
+- 无 Architecture/ADR 选定新测试框架
 
-## Definition of verified
+## 已验证的定义
 
-A change is verified when acceptance criteria in the Spec are covered by automated and/or documented manual checks.
+当 Spec 中的验收标准被自动化和/或文档化的手工检查覆盖时，变更视为已验证。

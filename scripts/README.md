@@ -1,18 +1,18 @@
 # scripts/
 
-Repository-level helper scripts.
+仓库级辅助脚本。
 
-## Purpose
+## 职责
 
-- Local bootstrap helpers, doc checks, release helpers, and automation glue.
-- Keep one-off operational scripts out of application packages.
+- 本地引导、文档校验、发布辅助、自动化胶水。
+- 避免把一次性运维脚本塞进应用包。
 
-## Rules
+## 规则
 
-- Scripts must be documented (what / when / how).
-- Prefer idempotent, non-destructive defaults.
-- Do not hide product logic in scripts — product behavior belongs in apps/services with specs.
+- 脚本必须写清：做什么 / 何时用 / 怎么用。
+- 默认幂等、非破坏性。
+- 产品逻辑不藏在脚本里 — 产品行为属于 apps/services，并须有 Spec。
 
-## Status
+## 状态
 
-Phase 0 placeholder. No scripts yet.
+Phase 0 占位。尚无脚本。

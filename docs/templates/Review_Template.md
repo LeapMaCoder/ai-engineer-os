@@ -1,5 +1,5 @@
 ---
-title: "Review — {{title}}"
+title: "评审 — {{title}}"
 type: review
 status: open
 owner: ""
@@ -12,53 +12,53 @@ related_spec: ""
 related_pr: ""
 ---
 
-# Review — {{title}}
+# 评审 — {{title}}
 
-## 1. Subject
+## 1. 对象
 
-- PR / change set:
-- Specs covered:
-- Architecture / ADR touched:
+- PR / 变更集：
+- 覆盖的 Spec：
+- 涉及的 Architecture / ADR：
 
-## 2. Checklist
+## 2. 检查清单
 
-### SDD compliance
+### SDD 合规
 
-- [ ] Spec exists and is current
-- [ ] Architecture updated if design changed
-- [ ] ADR created/updated for significant decisions
-- [ ] No unexplained scope creep
+- [ ] Spec 存在且为最新
+- [ ] 设计变更已更新 Architecture
+- [ ] 重大决策已创建/更新 ADR
+- [ ] 无无法解释的范围蔓延
 
-### Correctness
+### 正确性
 
-- [ ] Behavior matches Spec acceptance criteria
-- [ ] Edge cases handled as specified
-- [ ] Error paths considered
+- [ ] 行为符合 Spec 验收标准
+- [ ] 边界情况按规格处理
+- [ ] 错误路径已考虑
 
-### Quality
+### 质量
 
-- [ ] Tests map to Spec IDs
-- [ ] No secrets committed
-- [ ] Naming / structure follows repo conventions
+- [ ] 测试映射到 Spec ID
+- [ ] 未提交密钥
+- [ ] 命名 / 结构符合仓库约定
 
-### AI / Product (if applicable)
+### AI / 产品（如适用）
 
-- [ ] AI behavior matches AI Spec constraints
-- [ ] Forbidden behaviors not introduced
+- [ ] AI 行为符合 AI Spec 约束
+- [ ] 未引入禁止行为
 
-## 3. Findings
+## 3. 发现项
 
-| Severity | Finding | Action |
-|----------|---------|--------|
+| 严重级别 | 发现 | 动作 |
+|----------|------|------|
 | Blocker | | |
 | Major | | |
 | Minor | | |
 | Nit | | |
 
-## 4. Decision
+## 4. 决定
 
-Approve | Request changes | Reject
+批准 | 要求修改 | 拒绝
 
-## 5. Notes
+## 5. 备注
 
 -

@@ -1,27 +1,27 @@
 # 03_Specifications
 
-## Purpose
+## 职责
 
-Specify **exact behavior** that engineering will implement and QA will verify.
+规定工程将实现、QA 将验证的**精确行为**。
 
-Specifications are the contract between Product and Code:
+Specification 是产品与代码之间的契约：
 
 Vision → Product → **Specification** → Architecture → Code → Test
 
-## Contains
+## 包含
 
-- Functional specifications
-- Non-functional requirements (performance, security, reliability)
-- AI behavior specs (prompts/policies at product-behavior level)
-- Edge cases and acceptance criteria
+- 功能规格
+- 非功能需求（性能、安全、可靠性）
+- AI 行为规格（产品行为层的提示词/策略约束）
+- 边界情况与验收标准
 
-## Rules
+## 规则
 
-- Specs must be testable.
-- Specs must reference a Product doc.
-- Ambiguity is a defect in the spec, not something to “figure out in code”.
-- Changing behavior requires updating the spec first (SDD).
+- 规格必须可测试。
+- 规格必须引用产品文档。
+- 模糊是规格缺陷，不是“写代码时再想”。
+- 变更行为须先改规格（SDD）。
 
-## Templates
+## 模板
 
-Use `docs/templates/Specification_Template.md`.
+使用 `docs/templates/Specification_Template.md`。

@@ -1,32 +1,32 @@
 ---
-description: Backend implementation constraints for services/
+description: services/ 后端实现约束
 globs: services/**/*
 alwaysApply: false
 ---
 
-# Backend Rules
+# 后端规则
 
-## Responsibility
+## 职责
 
-Implement approved Specifications under approved Architecture.
+在已批准的 Architecture 下实现已批准的 Specification。
 
-## Preconditions
+## 前置条件
 
-Before writing service code, confirm:
+写服务代码前确认：
 
-- Spec exists and is current
-- Architecture (and ADRs if needed) exist
-- Task references Spec IDs
+- Spec 存在且为最新
+- Architecture（必要时含 ADR）存在
+- Task 引用 Spec ID
 
-## Practice
+## 实践
 
-- Prefer simple, local logic over premature abstractions
-- Keep secrets out of source; use env / secret managers
-- Update Specs/Architecture if behavior or design changes
-- Put shared contracts in `packages/` only when real reuse exists
+- 偏好简单局部逻辑，避免过早抽象
+- 密钥不进源码；使用环境变量 / 密钥管理
+- 行为或设计变更时更新 Spec/Architecture
+- 仅在真实复用出现时，把共享契约放入 `packages/`
 
-## Forbidden
+## 禁止
 
-- Implementing unspecified endpoints/behaviors
-- Choosing new major dependencies without ADR
-- Business logic living in `scripts/` or `infrastructure/`
+- 实现未规格化的接口/行为
+- 无 ADR 引入新的重大依赖
+- 业务逻辑放在 `scripts/` 或 `infrastructure/`

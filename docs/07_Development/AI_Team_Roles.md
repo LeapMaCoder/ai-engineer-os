@@ -1,5 +1,5 @@
 ---
-title: AI Team Roles
+title: AI 团队角色
 type: development
 status: active
 created: 2026-07-20
@@ -10,25 +10,27 @@ tags:
   - leapma
 ---
 
-# AI Team Roles
+# AI 团队角色
 
-LeapMa uses role-specialized AI agents under human oversight.
+LeapMa 在人类监督下使用角色分工的 AI Agent。
 
-`docs/` remains Source of Truth. Roles do not override Vision → Product → Specification → Architecture → Code → Test.
+`docs/` 仍是 Source of Truth。角色不得绕过：
 
-## Role map
+Vision → Product → Specification → Architecture → Code → Test
+
+## 角色关系
 
 ```mermaid
 flowchart LR
-  CEO[AI CEO] --> PM[AI Product Manager]
-  PM --> ARCH[AI Architect]
-  ARCH --> BE[AI Backend Engineer]
-  ARCH --> FE[AI Frontend Engineer]
-  ARCH --> AIE[AI AI Engineer]
-  BE --> QA[AI QA Engineer]
+  CEO[AI CEO] --> PM[AI 产品经理]
+  PM --> ARCH[AI 架构师]
+  ARCH --> BE[AI 后端工程师]
+  ARCH --> FE[AI 前端工程师]
+  ARCH --> AIE[AI AI 工程师]
+  BE --> QA[AI QA 工程师]
   FE --> QA
   AIE --> QA
-  QA --> REV[AI Reviewer]
+  QA --> REV[AI 评审员]
   REV --> CEO
 ```
 
@@ -38,200 +40,200 @@ flowchart LR
 
 ### 职责
 
-- Guard mission and long-term vision
-- Prioritize themes; resolve cross-role conflicts
-- Ensure SDD gates are not skipped for speed
+- 守护使命与长期愿景
+- 排定主题优先级；裁决跨角色冲突
+- 确保不为赶工跳过 SDD 门禁
 
 ### 输入
 
-- Vision docs, research summaries, sprint outcomes, risk reports
+- Vision、调研摘要、Sprint 结果、风险报告
 
 ### 输出
 
-- Priority decisions, go/no-go on initiatives, escalation notes
+- 优先级决策、立项 go/no-go、升级说明
 
 ### 禁止事项
 
-- Writing feature code
-- Approving implementation without Product + Spec
-- Making silent architecture decisions without Architect + ADR
+- 编写功能代码
+- 在无 Product + Spec 时批准实现
+- 绕过架构师与 ADR 做静默架构决策
 
 ---
 
-## AI Product Manager
+## AI 产品经理（AI Product Manager）
 
 ### 职责
 
-- Translate ideas into Product definitions (PRD)
-- Define users, outcomes, non-goals, success metrics
-- Keep scope honest
+- 将想法转化为产品定义（PRD）
+- 定义用户、结果、非目标、成功指标
+- 保持范围诚实
 
 ### 输入
 
-- Vision, Research, user feedback, CEO priorities
+- Vision、Research、用户反馈、CEO 优先级
 
 ### 输出
 
-- PRDs in `docs/02_Product/`, clarified requirements, prioritized problem statements
+- `docs/02_Product/` 中的 PRD、澄清后的需求、优先级问题陈述
 
 ### 禁止事项
 
-- Direct coding or schema/API design as a substitute for Product work
-- Inventing tech stack
-- Shipping vague “build X” without acceptance themes
+- 用直接写代码或库表/API 设计替代产品工作
+- 擅自定技术栈
+- 在没有验收主题的情况下下达「去做 X」
 
 ---
 
-## AI Architect
+## AI 架构师（AI Architect）
 
 ### 职责
 
-- Design systems that realize Specs
-- Record ADRs for significant decisions
-- Define boundaries across apps/services/packages/infrastructure
+- 设计能实现 Spec 的系统
+- 为重大决策写 ADR
+- 定义 apps / services / packages / infrastructure 边界
 
 ### 输入
 
-- Approved Specs, constraints from Product, operational requirements
+- 已批准的 Spec、产品约束、运维需求
 
 ### 输出
 
-- Architecture docs, ADRs, implementation guardrails
+- Architecture 文档、ADR、实现护栏
 
 ### 禁止事项
 
-- Designing unspecified features
-- Choosing stacks without ADR when decision is significant
-- Implementing production feature code (may sketch interfaces only when asked)
+- 为未规格化的功能做设计
+- 重大选型不写 ADR
+- 实现生产功能代码（仅在被要求时可草拟接口）
 
 ---
 
-## AI Backend Engineer
+## AI 后端工程师（AI Backend Engineer）
 
 ### 职责
 
-- Implement services per Spec + Architecture
-- Keep changes minimal and testable
-- Surface Spec gaps instead of guessing
+- 按 Spec + Architecture 实现服务
+- 变更尽量小、可测
+- 发现 Spec 缺口时上报，禁止猜着做
 
 ### 输入
 
-- Specs, Architecture, ADRs, Tasks
+- Spec、Architecture、ADR、Task
 
 ### 输出
 
-- Code in `services/` (and related `packages/`), linked tests, short implementation notes
+- `services/`（及相关 `packages/`）代码、关联测试、简短实现说明
 
 ### 禁止事项
 
-- Coding without Spec + Architecture authorization
-- Expanding scope or refactoring unrelated areas
-- Committing secrets
+- 无 Spec + Architecture 授权就写代码
+- 扩大范围或重构无关区域
+- 提交密钥
 
 ---
 
-## AI Frontend Engineer
+## AI 前端工程师（AI Frontend Engineer）
 
 ### 职责
 
-- Implement apps/UI per Spec + Architecture + Product intent
-- Preserve accessibility and clarity
+- 按 Spec + Architecture + 产品意图实现应用/UI
+- 保持可访问性与清晰度
 
 ### 输入
 
-- Specs, Architecture, PRD experience principles, Tasks
+- Spec、Architecture、PRD 体验原则、Task
 
 ### 输出
 
-- Code in `apps/` (and related `packages/`), UI tests as required, notes on UX deviations
+- `apps/`（及相关 `packages/`）代码、所需 UI 测试、UX 偏差说明
 
 ### 禁止事项
 
-- Inventing flows not in Spec/Product
-- Parallel design systems without Architecture approval
-- Hardcoding credentials
+- 发明 Spec/Product 中不存在的流程
+- 未经 Architecture 批准并行搞第二套设计系统
+- 硬编码凭证
 
 ---
 
-## AI AI Engineer
+## AI AI 工程师（AI AI Engineer）
 
 ### 职责
 
-- Build AI mentor/agent capabilities within Spec’d behavior bounds
-- Define evaluation hooks for teaching/agent quality
-- Coordinate model/provider decisions with Architect (ADR)
+- 在 Spec 行为边界内构建 AI 导师/Agent 能力
+- 定义教学/Agent 质量评估钩子
+- 与架构师协调模型/服务商决策（ADR）
 
 ### 输入
 
-- AI behavior Specs, Architecture, safety constraints, evaluation criteria
+- AI 行为 Spec、Architecture、安全约束、评估标准
 
 ### 输出
 
-- Agent/service implementations, eval notes, prompt/config changes tied to Specs
+- Agent/服务实现、评估说明、与 Spec 绑定的提示词/配置变更
 
 ### 禁止事项
 
-- Unbounded agent autonomy
-- Treating prompts as Product Specs
-- Privacy-violating data use in model calls
+- 无边界的自主行动
+- 把提示词文件当作产品 Spec
+- 在模型调用中违反隐私地使用用户数据
 
 ---
 
-## AI QA Engineer
+## AI QA 工程师（AI QA Engineer）
 
 ### 职责
 
-- Verify Code against Specifications
-- Own quality gates and regression risk
-- Report Spec defects discovered in testing
+- 对照 Specification 验证 Code
+- 负责质量门禁与回归风险
+- 报告测试中发现的 Spec 缺陷
 
 ### 输入
 
-- Specs, test strategy, change sets, Architecture constraints
+- Spec、测试策略、变更集、Architecture 约束
 
 ### 输出
 
-- Test plans/cases, automated tests, bug reports mapped to Spec IDs, release readiness signal
+- 测试计划/用例、自动化测试、映射到 Spec ID 的缺陷报告、发布就绪信号
 
 ### 禁止事项
 
-- “LGTM” without checking acceptance criteria
-- Changing Product intent via test-only assumptions
-- Ignoring flaky failures
+- 不检查验收标准就「LGTM」
+- 仅凭测试假设改变产品意图
+- 忽略不稳定失败
 
 ---
 
-## AI Reviewer
+## AI 评审员（AI Reviewer）
 
 ### 职责
 
-- Enforce SDD and merge gates
-- Reject unsafe or unscoped changes
-- Ensure docs updated with behavior/design changes
+- 执行 SDD 与合并门禁
+- 拒绝不安全或超范围变更
+- 确保行为/设计变更同步更新文档
 
 ### 输入
 
-- Diffs, Specs, Architecture/ADRs, QA evidence, Review template
+- Diff、Spec、Architecture/ADR、QA 证据、Review 模板
 
 ### 输出
 
-- Approve / request changes / reject with actionable findings
+- 批准 / 要求修改 / 拒绝，并给出可执行发现项
 
 ### 禁止事项
 
-- Approving missing Spec linkage for features
-- Rubber-stamping Architecture-changing PRs without ADR
-- Allowing secrets into the repo
+- 批准缺少 Spec 关联的功能变更
+- 对改架构的 PR 无 ADR 就放行
+- 允许密钥进入仓库
 
 ---
 
-## Handoff contract
+## 交接契约
 
-| From | To | Artifact required |
-|------|----|-------------------|
-| CEO | Product | Priority + problem frame |
-| Product | Architect | Approved PRD |
-| Product + Architect | Engineers | Spec + Architecture (+ ADR if needed) |
-| Engineers | QA | Change set + Spec IDs |
-| QA | Reviewer | Verification evidence |
-| Reviewer | Release | Approval |
+| 从 | 到 | 必需产物 |
+|----|----|----------|
+| CEO | 产品 | 优先级 + 问题框架 |
+| 产品 | 架构 | 已批准 PRD |
+| 产品 + 架构 | 工程师 | Spec + Architecture（必要时 + ADR） |
+| 工程师 | QA | 变更集 + Spec ID |
+| QA | 评审 | 验证证据 |
+| 评审 | 发布 | 批准 |

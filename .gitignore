@@ -1,22 +1,22 @@
-# OS
+# 操作系统
 .DS_Store
 Thumbs.db
 Desktop.ini
 
-# Editors / IDE
+# 编辑器 / IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# Environment & secrets
+# 环境变量与密钥
 .env
 .env.local
 .env.*.local
 !.env.example
 
-# Dependencies & build (placeholders — stack TBD)
+# 依赖与构建产物（占位 — 技术栈待定）
 node_modules/
 dist/
 build/
@@ -28,7 +28,7 @@ coverage/
 .target/
 vendor/
 
-# Python (placeholders — stack TBD)
+# Python（占位 — 技术栈待定）
 __pycache__/
 *.py[cod]
 .venv/
@@ -36,16 +36,16 @@ venv/
 .pytest_cache/
 .mypy_cache/
 
-# Logs & temp
+# 日志与临时文件
 *.log
 logs/
 tmp/
 temp/
 .cache/
 
-# Test artifacts
+# 测试产物
 playwright-report/
 test-results/
 
-# Local overrides
+# 本地覆盖配置
 *.local

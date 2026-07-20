@@ -1,28 +1,28 @@
 # 04_Architecture
 
-## Purpose
+## 职责
 
-Describe **how** the system realizes approved Specifications.
+描述系统**如何**实现已批准的 Specification。
 
-Architecture sits between Spec and Code:
+Architecture 位于 Spec 与 Code 之间：
 
 Vision → Product → Specification → **Architecture** → Code → Test
 
-## Contains
+## 包含
 
-- System context and container diagrams
-- Service / app boundaries
-- Data flow and trust boundaries
-- AI agent topology (when relevant)
-- Cross-cutting concerns (authn/z, observability, tenancy) at design level
+- 系统上下文与容器图
+- 服务 / 应用边界
+- 数据流与信任边界
+- AI Agent 拓扑（相关时）
+- 横切关注点（认证授权、可观测性、多租户等）的设计层描述
 
-## Rules
+## 规则
 
-- Architecture must map to Specifications (traceability).
-- Significant choices require an ADR in `05_ADR/`.
-- Do not select stacks casually in chat — record them here + ADR.
-- No “architecture by PR” without docs update.
+- Architecture 必须映射到 Specification（可追溯）。
+- 重大选型须在 `05_ADR/` 写 ADR。
+- 不要在聊天里随口定栈 — 记入本文档 + ADR。
+- 禁止无文档更新的「靠 PR 长出架构」。
 
-## Templates
+## 模板
 
-Use `docs/templates/Architecture_Template.md`.
+使用 `docs/templates/Architecture_Template.md`。

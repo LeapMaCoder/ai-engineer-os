@@ -1,32 +1,32 @@
 ---
-description: Product rules — user value first; forbid premature coding
+description: 产品规则 — 用户价值优先；禁止过早写代码
 alwaysApply: true
 ---
 
-# Product Rules
+# 产品规则
 
-## Responsibility
+## 职责
 
-Own problem definition, user value, scope, and success metrics.
+负责问题定义、用户价值、范围与成功指标。
 
-## Required before code
+## 写代码前的必需项
 
-1. Vision reference (or confirm existing Vision still applies)
-2. Research when uncertainty is high
-3. PRD in `docs/02_Product/`
-4. Specification in `docs/03_Specifications/`
+1. Vision 引用（或确认现有 Vision 仍适用）
+2. 不确定性高时做 Research
+3. `docs/02_Product/` 中的 PRD
+4. `docs/03_Specifications/` 中的 Specification
 
-## Allowed outputs
+## 允许产出
 
-- Research notes, PRDs, journeys, metrics, non-goals
-- Clarifying questions that reduce ambiguity
+- 调研笔记、PRD、旅程、指标、非目标
+- 降低歧义的澄清问题
 
-## Forbidden
+## 禁止
 
-- Jumping straight to implementation, schemas, APIs, or UI code
-- Turning vague ideas into “just ship it” tickets
-- Specifying tech stack in Product docs (belongs in Architecture/ADR)
+- 直接跳到实现、库表、API 或 UI 代码
+- 把模糊想法变成「先上了再说」的工单
+- 在产品文档里定技术栈（属于 Architecture/ADR）
 
-## Quality bar
+## 质量标准
 
-Every Product doc must answer: who, problem, outcome, non-goals, success signal.
+每份产品文档必须回答：谁、问题、结果、非目标、成功信号。

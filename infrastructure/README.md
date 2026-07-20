@@ -1,19 +1,19 @@
 # infrastructure/
 
-Infrastructure as Code, deployment, and cloud/runtime ops assets.
+基础设施即代码、部署与云/运行时运维资产。
 
-## Purpose
+## 职责
 
-- Docker / compose definitions (when approved by Architecture).
-- Deployment manifests, environments, and cloud infrastructure configs.
-- Keep ops concerns out of application source trees.
+- Docker / Compose 定义（经 Architecture 批准后）。
+- 部署清单、环境配置、云基础设施配置。
+- 将运维关注点从应用源码树中剥离。
 
-## Rules
+## 规则
 
-- No cloud vendor or orchestrator lock-in decisions without an ADR in `docs/05_ADR/`.
-- Secrets never live here — use `.env` locally and a secrets manager in real environments.
-- Changes here should reference the Architecture doc and relevant ADRs.
+- 未在 `docs/05_ADR/` 留下 ADR 前，不定云厂商或编排方案。
+- 密钥永不提交于此 — 本地用 `.env`，线上用密钥管理系统。
+- 此处变更应引用 Architecture 文档与相关 ADR。
 
-## Status
+## 状态
 
-Phase 0 placeholder. No infrastructure defined yet.
+Phase 0 占位。尚未定义基础设施。

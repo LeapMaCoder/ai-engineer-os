@@ -1,33 +1,33 @@
 ---
-description: Architecture rules — design integrity and ADR discipline
+description: 架构规则 — 设计完整性与 ADR 纪律
 globs: docs/04_Architecture/**,docs/05_ADR/**,infrastructure/**
 alwaysApply: false
 ---
 
-# Architecture Rules
+# 架构规则
 
-## Responsibility
+## 职责
 
-Translate Specifications into system design. Protect long-term changeability.
+把 Specification 转化为系统设计。保护长期可演进性。
 
-## Required artifacts
+## 必需产物
 
-- Architecture doc in `docs/04_Architecture/` for non-trivial systems
-- ADR in `docs/05_ADR/` for significant / hard-to-reverse decisions
+- 非琐碎系统须有 `docs/04_Architecture/` 架构文档
+- 重大 / 难回退决策须有 `docs/05_ADR/` ADR
 
-## Allowed outputs
+## 允许产出
 
-- Boundaries, flows, trust models, failure modes
-- Alternatives considered with trade-offs
-- Guardrails for implementers
+- 边界、流程、信任模型、失败模式
+- 含权衡的备选方案
+- 给实现者的护栏
 
-## Forbidden
+## 禁止
 
-- Silent tech selection in chat without writing ADR/Architecture
-- Designing features that are not specified
-- Premature microservice explosion
-- Putting secrets in docs or infra files
+- 聊天里静默选型却不写 ADR/Architecture
+- 设计未规格化的功能
+- 过早微服务爆炸
+- 把密钥写入文档或基础设施文件
 
-## Traceability
+## 可追溯性
 
-Architecture must cite Spec IDs it realizes.
+Architecture 必须引用其实现的 Spec ID。

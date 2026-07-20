@@ -1,26 +1,33 @@
 # Cursor Rules — LeapMa
 
-Rules guide Cursor agents. They do **not** replace `docs/` Source of Truth.
+规则用于引导 Cursor Agent。它们**不**替代 `docs/` Source of Truth。
 
-## Rule domains
+## 规则域
 
-| Domain | Responsibility |
-|--------|----------------|
-| `global/` | SDD principles, monorepo boundaries, collaboration defaults |
-| `product/` | Demand clarity & user value; forbid jumping to code |
-| `architecture/` | Design integrity, ADR requirement, no silent stack choices |
-| `backend/` | Service implementation constraints (when coding is authorized) |
-| `frontend/` | App/UI implementation constraints (when coding is authorized) |
-| `ai/` | AI mentor/agent behavior and safety constraints |
-| `testing/` | Spec-linked quality gates |
-| `review/` | What to check before merge |
+| 域 | 职责 |
+|----|------|
+| `global/` | SDD 原则、Monorepo 边界、**文档导航同步** |
+| `product/` | 需求清晰度与用户价值；禁止跳过文档直接写代码 |
+| `architecture/` | 设计完整性、ADR 要求、禁止静默选型 |
+| `backend/` | 服务实现约束（已授权写代码时） |
+| `frontend/` | 应用/UI 实现约束（已授权写代码时） |
+| `ai/` | AI 导师/Agent 行为与安全约束 |
+| `testing/` | 与 Spec 挂钩的质量门禁 |
+| `review/` | 合并前必须检查什么 |
 
-## Activation model
+### global 规则文件
 
-- Prefer narrow rules for scoped work.
-- Global rules always apply.
-- Product/Architecture rules apply before any implementation rule.
+| 文件 | 说明 |
+|------|------|
+| `sdd-core.mdc` | SDD 与仓库边界 |
+| `document-navigation-rule.mdc` | 重要文档变更同步 Dashboard / Map / INDEX |
 
-## Authority
+## 生效模型
 
-If a rule conflicts with an accepted doc in `docs/`, **update the rule** — docs remain Source of Truth.
+- 具体工作优先匹配窄规则。
+- Global 规则始终生效。
+- 任何实现规则生效前，先满足 Product / Architecture 规则。
+
+## 权威
+
+若规则与 `docs/` 中已接受文档冲突，**改规则** — 文档仍是 Source of Truth。

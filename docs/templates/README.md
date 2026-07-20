@@ -1,18 +1,18 @@
 # templates/
 
-Obsidian-friendly Markdown templates for Specification Driven Development (SDD).
+适配 Obsidian 的 Markdown 模板，用于 Specification Driven Development（SDD）。
 
-## Usage
+## 用法
 
-1. Copy a template into the matching `docs/0x_*` folder.
-2. Fill YAML frontmatter (Obsidian properties).
-3. Link upstream documents (Vision → Product → Spec → Architecture).
-4. Only then create implementation tasks.
+1. 复制模板到对应的 `docs/0x_*` 目录。
+2. 填写 YAML frontmatter（Obsidian 属性）。
+3. 链接上游文档（Vision → Product → Spec → Architecture）。
+4. 然后才创建实现任务。
 
-## Templates
+## 模板列表
 
-| Template | Target folder |
-|----------|---------------|
+| 模板 | 目标目录 |
+|------|----------|
 | `Vision_Template.md` | `00_Vision/` |
 | `Research_Template.md` | `01_Research/` |
 | `PRD_Template.md` | `02_Product/` |
@@ -20,6 +20,6 @@ Obsidian-friendly Markdown templates for Specification Driven Development (SDD).
 | `Architecture_Template.md` | `04_Architecture/` |
 | `ADR_Template.md` | `05_ADR/` |
 | `Sprint_Template.md` | `06_Sprint/` |
-| `Task_Template.md` | `06_Sprint/` or task trackers |
-| `Review_Template.md` | `07_Development/` or PR notes |
+| `Task_Template.md` | `06_Sprint/` 或任务追踪器 |
+| `Review_Template.md` | `07_Development/` 或 PR 说明 |
 | `Release_Note_Template.md` | `09_Release/` |

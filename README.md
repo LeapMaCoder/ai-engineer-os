@@ -1,104 +1,71 @@
 # LeapMa
 
-AI-native programmer growth platform.
+AI Native 程序员成长平台。
 
-LeapMa is **not** a traditional course marketplace. It helps programmers grow continuously through:
+LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品，核心能力包括：
 
-- AI mentors
-- Dynamic learning paths
-- Knowledge graphs
-- Gamified progression
+- AI 导师
+- 动态学习路径
+- 知识图谱
+- 游戏化成长系统
 
-Inspired by the best traits of Boot.dev, Duolingo, Codecademy, LeetCode, DataCamp, and Mimo — rebuilt around long-term skill growth.
+## 从这里开始
 
-## Current stage
+| 角色 | 入口 |
+|------|------|
+| 任何人 / AI Agent | **[项目仪表盘](docs/00_Project/Project_Dashboard.md)** |
+| 找文档 | **[文档索引](docs/INDEX.md)** |
+| 看阶段 | [路线图](docs/00_Project/Roadmap.md) |
+| 看未决 | [未决问题](docs/00_Project/Open_Questions.md) |
 
-**Phase 0 — Project initialization & engineering system**
+## 当前阶段
 
-This repository currently contains:
+**Phase 1.7 — Project Governance ✅**（治理就绪）  
+**主航道仍在 Phase 1.6：** 待执行 10 场用户访谈 → 选定首发 ICP
 
-- Monorepo skeleton
-- Documentation system (`docs/` as Source of Truth)
-- SDD templates
-- Cursor rules
-- AI team roles & development workflow
+已完成：Phase 0 体系 · Phase 1 愿景 · Phase 1.5 桌面调研 · Phase 1.6 访谈体系 · Phase 1.7 导航治理  
 
-There is **no product feature code** yet.
+**禁止：** 功能设计 / 页面 / 技术方案 / 业务编码（直至 Spec + Arch 门禁）。
 
-## Development method
+详情：[Current_State](docs/00_Project/Current_State.md)
 
-LeapMa uses **Specification Driven Development (SDD)**.
+## 开发方式
 
-Source of Truth chain:
+LeapMa 采用 **Specification Driven Development（SDD）**。
 
 ```text
 Vision → Product → Specification → Architecture → Code → Test
 ```
 
-Process:
+流程见 [Development_Workflow](docs/07_Development/Development_Workflow.md)。
 
-```text
-Idea → Research → Product → Spec → Architecture → Tasks
-  → Implementation → Review → Testing → Release → Retro
-```
-
-See:
-
-- [`docs/README.md`](docs/README.md)
-- [`docs/07_Development/Development_Workflow.md`](docs/07_Development/Development_Workflow.md)
-- [`docs/07_Development/AI_Team_Roles.md`](docs/07_Development/AI_Team_Roles.md)
-
-## Repository layout
+## 仓库目录
 
 ```text
 LeapMa/
-├── docs/              # Source of Truth (product + engineering docs)
-├── apps/              # User-facing applications (future)
-├── services/          # Backend & AI services (future)
-├── packages/          # Shared libraries (future)
-├── infrastructure/    # Docker / deploy / cloud (future)
-├── tests/             # Cross-cutting tests (future)
-├── scripts/           # Repo-level scripts (future)
-├── .cursor/           # Cursor rules for AI-native development
-├── .github/           # GitHub collaboration / CI (future)
-├── .env.example       # Env var template (no secrets)
-├── CHANGELOG.md
-└── README.md
+├── docs/
+│   ├── 00_Project/      # 导航与状态（先读 Dashboard）
+│   ├── 00_Vision/
+│   ├── 01_Research/
+│   ├── 02_Product/
+│   ├── INDEX.md         # 文档索引
+│   └── ...
+├── apps/ services/ packages/ infrastructure/ tests/ scripts/
+├── .cursor/             # AI Rules（含文档导航同步）
+├── README.md
+└── CHANGELOG.md
 ```
 
-## Docs map (quick)
+完整关系图：[Project_Map](docs/00_Project/Project_Map.md)
 
-| Path | Role |
-|------|------|
-| `docs/00_Vision` | Why LeapMa exists |
-| `docs/01_Research` | Evidence & competitor learning |
-| `docs/02_Product` | PRDs / user value |
-| `docs/03_Specifications` | Testable behavior contracts |
-| `docs/04_Architecture` | System design |
-| `docs/05_ADR` | Architecture decisions |
-| `docs/06_Sprint` | Sprint planning |
-| `docs/07_Development` | Workflow & AI roles |
-| `docs/08_Testing` | Quality strategy |
-| `docs/09_Release` | Shipping |
-| `docs/10_Operations` | Run / operate |
-| `docs/templates` | SDD templates (Obsidian-friendly) |
+## 协作约定
 
-## Roadmap (high level)
-
-1. **Phase 0 (now):** engineering system & docs foundation
-2. **Phase 1:** Vision + Research + core Product definition
-3. **Phase 2:** Foundational Specifications & Architecture (with ADRs)
-4. **Phase 3:** First vertical slice implementation (mentor / path / progress — TBD by Specs)
-5. **Phase 4+:** Expand graph, gamification, multi-surface clients, operations maturity
-
-## Contributing (process)
-
-1. Do not start with code.
-2. Use templates under `docs/templates/`.
-3. Link upstream docs.
-4. Follow Cursor rules under `.cursor/rules/`.
-5. Record significant decisions as ADRs.
+1. 不要从写代码开始。
+2. 先读 Dashboard，再改文档。
+3. 重要文档变更同步 Dashboard + Map + INDEX。
+4. 使用 `docs/templates/`。
+5. 重要技术决策写 ADR（Phase 2+）。
 
 ## License
 
-TBD
+待定

@@ -1,29 +1,29 @@
 ---
-description: Review gates — reject SDD and quality violations
+description: 评审门禁 — 拒绝违反 SDD 与质量的变更
 alwaysApply: true
 ---
 
-# Review Rules
+# 评审规则
 
-## Responsibility
+## 职责
 
-Block merges that violate SDD, Specs, or safety.
+阻止违反 SDD、Spec 或安全的合并。
 
-## Must reject when
+## 必须拒绝的情况
 
-- Feature code lacks Product + Specification linkage
-- Architecture-changing PR has no Architecture/ADR update
-- Secrets, credentials, or `.env` (non-example) are included
-- Behavior diverges from Spec without Spec update
-- Scope creep unrelated to the task is bundled in
+- 功能代码缺少 Product + Specification 关联
+- 改架构的 PR 未更新 Architecture/ADR
+- 包含密钥、凭证或非 example 的 `.env`
+- 行为偏离 Spec 却未改 Spec
+- 捆入与任务无关的范围蔓延
 
-## Must verify
+## 必须核实
 
-- Acceptance criteria addressed
-- Tests mapped to Specs (or explicit manual test notes)
-- Docs updated when behavior/design changed
-- CHANGELOG updated for user-visible releases (when releasing)
+- 验收标准已覆盖
+- 测试映射到 Spec（或有明确手工测试说明）
+- 行为/设计变更已更新文档
+- 用户可见发布时已更新 CHANGELOG（发布时）
 
-## Review output
+## 评审产出
 
-Use `docs/templates/Review_Template.md` for non-trivial reviews.
+非琐碎评审使用 `docs/templates/Review_Template.md`。

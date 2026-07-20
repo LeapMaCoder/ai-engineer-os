@@ -12,62 +12,62 @@ related_prd: ""
 related_architecture: ""
 ---
 
-# Specification — {{title}}
+# 规格 — {{title}}
 
-## 1. Traceability
+## 1. 可追溯性
 
-- PRD:
-- Vision:
-- Related Specs:
+- PRD：
+- Vision：
+- 相关 Spec：
 
-## 2. Problem Restatement (from Product)
+## 2. 问题复述（来自产品）
 
-## 3. Actors
+## 3. 参与者
 
 -
 
-## 4. Functional Requirements
+## 4. 功能需求
 
-| ID | Requirement | Priority | Acceptance criteria |
-|----|-------------|----------|---------------------|
+| ID | 需求 | 优先级 | 验收标准 |
+|----|------|--------|----------|
 | F-001 | | Must | |
 
-## 5. Non-Functional Requirements
+## 5. 非功能需求
 
-| ID | Requirement | Target | Measurement |
-|----|-------------|--------|-------------|
+| ID | 需求 | 目标 | 度量方式 |
+|----|------|------|----------|
 | NF-001 | | | |
 
-## 6. AI Behavior Requirements (if any)
+## 6. AI 行为需求（如有）
 
-| ID | Behavior | Allowed | Forbidden | Evaluation |
-|----|----------|---------|-----------|------------|
+| ID | 行为 | 允许 | 禁止 | 评估方式 |
+|----|------|------|------|----------|
 | AI-001 | | | | |
 
-## 7. Edge Cases
+## 7. 边界情况
 
 -
 
-## 8. Data & Privacy Constraints (product-level)
+## 8. 数据与隐私约束（产品层）
 
 -
 
-## 9. Out of Scope
+## 9. 范围外
 
 -
 
-## 10. Test Mapping
+## 10. 测试映射
 
-| Spec ID | Test type | Location (future) |
-|---------|-----------|-------------------|
+| Spec ID | 测试类型 | 位置（未来） |
+|---------|----------|--------------|
 | | | |
 
-## 11. Open Questions
+## 11. 未决问题
 
 -
 
-## 12. Change Log
+## 12. 变更记录
 
-| Date | Change | Author |
-|------|--------|--------|
+| 日期 | 变更 | 作者 |
+|------|------|------|
 | | | |

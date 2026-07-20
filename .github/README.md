@@ -1,17 +1,17 @@
 # .github/
 
-GitHub collaboration and CI/CD configuration.
+GitHub 协作与 CI/CD 配置。
 
-## Purpose
+## 职责
 
-- Pull request / issue templates.
-- Future GitHub Actions workflows (CI, checks, release) after Architecture decisions.
+- Pull Request / Issue 模板。
+- 未来的 GitHub Actions（CI、检查、发布）— 待 Architecture 决策后引入。
 
-## Rules
+## 规则
 
-- Do not add CI toolchains or deploy pipelines without ADR + Architecture alignment.
-- Keep secrets in GitHub Secrets / environment config, never in this repo.
+- 未对齐 ADR + Architecture 前，不引入 CI 工具链或部署流水线。
+- 密钥放在 GitHub Secrets / 环境配置中，永不写入本仓库。
 
-## Status
+## 状态
 
-Phase 0 placeholder. Templates and workflows TBD.
+Phase 0 占位。模板与流水线待定。

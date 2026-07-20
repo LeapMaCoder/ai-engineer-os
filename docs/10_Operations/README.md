@@ -1,17 +1,17 @@
 # 10_Operations
 
-## Purpose
+## 职责
 
-Keep LeapMa running after release: operate, observe, respond.
+发布后让 LeapMa 持续运行：运维、观测、响应。
 
-## Contains
+## 包含
 
-- Runbooks
-- Monitoring / alerting conventions (once stack exists)
-- Incident response notes
-- On-call / ownership maps (when team grows)
+- Runbook
+- 监控 / 告警约定（技术栈确定后）
+- 事故响应笔记
+- On-call / 归属图（团队扩大后）
 
-## Rules
+## 规则
 
-- Ops changes that affect architecture need Architecture/ADR updates.
-- Secrets and production credentials never belong in docs as plaintext values.
+- 影响架构的运维变更须同步更新 Architecture / ADR。
+- 密钥与生产凭证不得以明文写入文档。
