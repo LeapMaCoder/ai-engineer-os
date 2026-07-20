@@ -16,7 +16,8 @@ tags:
 > **AI 与人类的默认入口。** 会话开始先读本页，再按需下钻。  
 > 重要文档变更后必须同步本页（见 `.cursor/rules/global/document-navigation-rule.mdc`）。
 
-最后更新：`2026-07-20`
+最后更新：`2026-07-20`  
+本地 Git 根目录：`LeapMa/ai-engineer-os/` → [GitHub](https://github.com/LeapMaCoder/ai-engineer-os)
 
 ---
 

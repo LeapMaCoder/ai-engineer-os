@@ -17,8 +17,11 @@ tags:
 
 ## 1. 仓库顶层
 
+产品名：**LeapMa**  
+Git 仓库目录名 / GitHub：`ai-engineer-os`（本地位于 `LeapMa/ai-engineer-os/`）
+
 ```text
-LeapMa/
+ai-engineer-os/           # Git 仓库根（与 GitHub 同名）
 ├── docs/                 # Source of Truth
 ├── apps/                 # 应用（空）
 ├── services/             # 服务（空）

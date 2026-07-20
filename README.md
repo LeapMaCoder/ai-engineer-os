@@ -41,8 +41,10 @@ Vision → Product → Specification → Architecture → Code → Test
 
 ## 仓库目录
 
+产品名 LeapMa；本仓库目录 / GitHub 名为 `ai-engineer-os`。
+
 ```text
-LeapMa/
+ai-engineer-os/
 ├── docs/
 │   ├── 00_Project/      # 导航与状态（先读 Dashboard）
 │   ├── 00_Vision/
