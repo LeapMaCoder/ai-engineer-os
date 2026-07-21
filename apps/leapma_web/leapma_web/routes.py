@@ -1,4 +1,4 @@
-"""HTTP routes — SSR pages for GL-1…8 minimal path."""
+"""HTTP routes — SSR pages for GL-1…8 minimal path (coach-first, 方案 1)."""
 
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ from flask import (
 from leapma_web import db
 from leapma_web.entitlement import ensure_core_allowed
 from leapma_web.llm import get_provider
+from leapma_web.orientation import is_extremely_vague_goal
 from leapma_web.validation import validate_feedback, validate_progress_note
 
 bp = Blueprint("growth", __name__)
@@ -38,13 +39,46 @@ def _require_gs():
     return db.get_session(sid)
 
 
+def _apply_orientation(gs_id: str, goal: str) -> str:
+    """Persist orientation; return next endpoint endpoint name: probe | next_step."""
+    provider = get_provider(current_app.config["LEAPMA_LLM_PROVIDER"])
+    assist = provider.assist_orientation(goal)
+    vague = is_extremely_vague_goal(goal)
+    db.update_session(
+        gs_id,
+        goal_intent=goal,
+        position_hint=assist.position_hint,
+        probe_question=assist.probe_question if vague else None,
+        next_step=assist.next_step,
+        exercise_prompt=assist.exercise_prompt,
+        stage="probe" if vague else "next_step",
+    )
+    return "growth.probe" if vague else "growth.next_step"
+
+
 @bp.get("/")
 def home():
     return render_template("home.html")
 
 
+@bp.post("/begin")
+def begin():
+    """Single coach entry: one goal input → NextStep (probe only if extremely vague)."""
+    ensure_core_allowed("orientation", is_paid=db.user_is_paid(_uid()))
+    goal = (request.form.get("goal_intent") or "").strip()
+    if len(goal) < 2:
+        flash("先用一句话告诉我：你想提升什么？")
+        return render_template("home.html")
+    uid = _uid()
+    sid = db.create_session(uid)
+    session["growth_session_id"] = sid
+    nxt = _apply_orientation(sid, goal)
+    return redirect(url_for(nxt))
+
+
 @bp.post("/start")
 def start():
+    """Legacy entry without goal — send to coach home input."""
     ensure_core_allowed("orientation", is_paid=db.user_is_paid(_uid()))
     uid = _uid()
     sid = db.create_session(uid)
@@ -61,20 +95,10 @@ def orient():
     if request.method == "POST":
         goal = (request.form.get("goal_intent") or "").strip()
         if len(goal) < 2:
-            flash("请用一句话说明你的学习方向 / 目标意图。")
+            flash("先用一句话告诉我：你想提升什么？")
             return render_template("orient.html", gs=gs)
-        provider = get_provider(current_app.config["LEAPMA_LLM_PROVIDER"])
-        assist = provider.assist_orientation(goal)
-        db.update_session(
-            gs.id,
-            goal_intent=goal,
-            position_hint=assist.position_hint,
-            probe_question=assist.probe_question,
-            next_step=assist.next_step,
-            exercise_prompt=assist.exercise_prompt,
-            stage="probe",
-        )
-        return redirect(url_for("growth.probe"))
+        nxt = _apply_orientation(gs.id, goal)
+        return redirect(url_for(nxt))
     return render_template("orient.html", gs=gs)
 
 
@@ -83,16 +107,20 @@ def probe():
     ensure_core_allowed("orientation", is_paid=db.user_is_paid(_uid()))
     gs = _require_gs()
     if not gs or not gs.goal_intent:
-        return redirect(url_for("growth.orient"))
+        return redirect(url_for("growth.home"))
+    # If we landed here without a suggested probe, skip straight to next step
+    if not gs.probe_question and request.method == "GET":
+        db.update_session(gs.id, stage="next_step")
+        return redirect(url_for("growth.next_step"))
     if request.method == "POST":
-        action = request.form.get("action")
+        action = request.form.get("action") or "skip"
         if action == "skip":
             db.update_session(gs.id, probe_answer=None, stage="next_step")
         else:
             ans = (request.form.get("probe_answer") or "").strip()
             hint = gs.position_hint or ""
             if ans:
-                hint = f"{hint}\n探针回答：{ans}"
+                hint = f"{hint}\n你补充：{ans}"
             db.update_session(
                 gs.id, probe_answer=ans or None, position_hint=hint, stage="next_step"
             )
@@ -105,7 +133,7 @@ def next_step():
     ensure_core_allowed("orientation", is_paid=db.user_is_paid(_uid()))
     gs = _require_gs()
     if not gs or not gs.next_step:
-        return redirect(url_for("growth.orient"))
+        return redirect(url_for("growth.home"))
     return render_template("next_step.html", gs=gs)
 
 
@@ -114,13 +142,13 @@ def exercise():
     ensure_core_allowed("action", is_paid=db.user_is_paid(_uid()))
     gs = _require_gs()
     if not gs or not gs.exercise_prompt:
-        return redirect(url_for("growth.orient"))
+        return redirect(url_for("growth.home"))
     if request.method == "POST":
         ensure_core_allowed("feedback", is_paid=db.user_is_paid(_uid()))
         attempt = (request.form.get("attempt_text") or "").strip()
         force_uncertain = request.form.get("force_uncertain") == "1"
         if not attempt:
-            flash("请提交一次短练习作答（单次会话内可结束）。")
+            flash("写一小段就行——我们马上给你反馈。")
             return render_template("exercise.html", gs=gs)
         provider = get_provider(current_app.config["LEAPMA_LLM_PROVIDER"])
         raw = provider.feedback_on_attempt(
@@ -165,7 +193,7 @@ def progress():
             flash(note)
             return render_template("progress.html", gs=gs)
         if len(next_intent) < 4:
-            flash("请说明下次回来要继续的方向（下一小步或下一目标）。")
+            flash("下次回来你想继续哪一小步？写一句就行。")
             return render_template("progress.html", gs=gs)
         db.update_session(
             gs.id,

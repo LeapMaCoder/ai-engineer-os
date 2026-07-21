@@ -1,12 +1,16 @@
 {% extends "base.html" %}
-{% block title %}LeapMa · First Growth Experience{% endblock %}
+{% block title %}LeapMa · 成长教练{% endblock %}
 {% block body %}
-<section>
-  <h1>First Growth Experience</h1>
-  <p>走完最小闭环：定向 → 短练习 → 可信反馈 → 进展可见 → 为何再来。未付费即可完成（AC-04）。</p>
-  <form method="post" action="{{ url_for('growth.start') }}">
-    <button type="submit">开始（匿名免费会话）</button>
+<section class="coach">
+  <p class="coach-label">教练</p>
+  <h1>你好。我们直接找下一步。</h1>
+  <p class="coach-line">不用填问卷。用一句话告诉我——你想提升什么？我会马上给你一个能动手的下一步。</p>
+  <form method="post" action="{{ url_for('growth.begin') }}">
+    <label for="goal_intent">你想提升什么？</label>
+    <textarea id="goal_intent" name="goal_intent" rows="3" required autofocus
+      placeholder="例：补 Python，能独立写小脚本"></textarea>
+    <button type="submit">给我下一步</button>
   </form>
-  <p class="muted">GL-1…8 最小路径 · Mock LLM 默认可跑通</p>
+  <p class="muted">免费可跑通整环 · 不是测评 · 不是课超市</p>
 </section>
 {% endblock %}

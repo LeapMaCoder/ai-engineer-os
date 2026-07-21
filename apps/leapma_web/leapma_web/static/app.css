@@ -75,4 +75,13 @@ button.secondary { background: #5c574e; margin-left: 0.5rem; }
   font-size: 0.8rem;
   text-align: center;
 }
-pre.box { font-family: inherit; }
+.coach-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+.coach-line { font-size: 1.05rem; line-height: 1.55; }
+.box.soft { background: #faf8f4; color: #5c574e; font-size: 0.95rem; }

@@ -34,9 +34,9 @@ flowchart LR
 
 ## 2. 当前目标
 
-1. 跑通 / 验收 `apps/leapma_web` First Growth Experience  
-2. Continuous Validation 并行  
-3. **不自动 commit**（Founder 手动）  
+1. 验收去问卷化后的首体验（方案 1 / D-040）  
+2. 跑通 AC-01…04（探针非默认路径）  
+3. **不自动 commit**  
 
 ---
 
@@ -44,9 +44,9 @@ flowchart LR
 
 | 项 | 入口 |
 |----|------|
-| Spec / Arch / ADR-0001/0002 | Approved / Accepted |
-| ADR-0003 | Flask SSR **Accepted** |
-| 垂直切片代码 | [`apps/leapma_web`](../../apps/leapma_web/README.md) |
+| Spec / Arch / ADR | Approved / Accepted |
+| 垂直切片 | `apps/leapma_web` |
+| **D-040 去问卷化** | 首屏单输入教练对话；探针仅极度模糊且可跳过 |
 
 ---
 

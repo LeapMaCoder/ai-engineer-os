@@ -1,13 +1,15 @@
 {% extends "base.html" %}
-{% block title %}定向 · GL-1{% endblock %}
+{% block title %}聊聊目标{% endblock %}
 {% block body %}
-<section>
-  <h1>目标意图（GL-1）</h1>
-  <p>用一句话说清你想提升什么、何为成功。不必完整职业规划。</p>
+<section class="coach">
+  <p class="coach-label">教练</p>
+  <h1>先说一句就好</h1>
+  <p class="coach-line">你想提升什么？不必完整规划——我据此给你下一步短练习。</p>
   <form method="post">
-    <label for="goal_intent">目标意图</label>
-    <textarea id="goal_intent" name="goal_intent" rows="3" required placeholder="例：补 Python 基础，能独立写小脚本"></textarea>
-    <button type="submit">继续（推断位置感）</button>
+    <label for="goal_intent">你想提升什么？</label>
+    <textarea id="goal_intent" name="goal_intent" rows="3" required autofocus
+      placeholder="例：补后端基础，能看懂简单接口"></textarea>
+    <button type="submit">给我下一步</button>
   </form>
 </section>
 {% endblock %}

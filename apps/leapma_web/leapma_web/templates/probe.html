@@ -1,17 +1,20 @@
 {% extends "base.html" %}
-{% block title %}轻量位置感 · GL-2{% endblock %}
+{% block title %}多说一句？{% endblock %}
 {% block body %}
-<section>
-  <h1>轻量位置感（GL-2）</h1>
-  <p class="box">{{ gs.position_hint }}</p>
-  <p>可选 1 道探针题（可跳过）：</p>
-  <p><strong>{{ gs.probe_question }}</strong></p>
+<section class="coach">
+  <p class="coach-label">教练</p>
+  <h1>你的方向有点宽</h1>
+  <p class="coach-line">我已经能给下一步了。若愿意，多说一句能帮我对准一点——<strong>随时可跳过</strong>，不是测评题。</p>
+  {% if gs.position_hint %}
+  <p class="box soft">{{ gs.position_hint }}</p>
+  {% endif %}
+  <p>{{ gs.probe_question }}</p>
   <form method="post">
-    <label for="probe_answer">你的回答（可选）</label>
-    <textarea id="probe_answer" name="probe_answer" rows="3"></textarea>
+    <label for="probe_answer">可选补充（可留空）</label>
+    <textarea id="probe_answer" name="probe_answer" rows="2" placeholder="不想填就点「跳过，看下一步」"></textarea>
     <div class="row">
-      <button type="submit" name="action" value="answer">提交探针</button>
-      <button type="submit" name="action" value="skip" class="secondary">跳过探针</button>
+      <button type="submit" name="action" value="skip">跳过，看下一步</button>
+      <button type="submit" name="action" value="answer" class="secondary">补充一句</button>
     </div>
   </form>
 </section>
