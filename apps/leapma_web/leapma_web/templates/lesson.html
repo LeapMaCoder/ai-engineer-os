@@ -4,8 +4,11 @@
 <section class="panel">
   <p class="coach-label">{{ chapter.title }}</p>
   <h1>{{ lesson.title }}</h1>
+  {% if lesson.type %}
+  <p class="badge soft-type">题型 · {{ {'mcq':'单选','fill':'填空','short':'简答','code':'代码'}.get(lesson.type, lesson.type) }}</p>
+  {% endif %}
   <p class="coach-line">{{ lesson.coach }}</p>
-  <p class="box soft">{{ lesson.prompt }}</p>
+  <pre class="box code-block prompt-block">{{ lesson.prompt }}</pre>
   {% if lesson.hint %}<p class="muted">提示：{{ lesson.hint }}</p>{% endif %}
 
   {% if grade %}
@@ -23,15 +26,38 @@
   {% endif %}
 
   {% if not lesson.locked %}
-  <form method="post">
+  <form method="post" class="lesson-form">
+    {% if lesson.type == 'mcq' and lesson.options %}
+    <fieldset class="mcq-set">
+      <legend>选择一项</legend>
+      {% for opt in lesson.options %}
+      <label class="mcq-option">
+        <input type="radio" name="attempt_text" value="{{ opt.id }}"
+          {% if attempt_text == opt.id %}checked{% endif %} required>
+        <span><strong>{{ opt.id }}.</strong> {{ opt.text }}</span>
+      </label>
+      {% endfor %}
+    </fieldset>
+    {% elif lesson.type == 'fill' %}
+    <label for="attempt_text">填空作答</label>
+    <input id="attempt_text" type="text" name="attempt_text" class="fill-input"
+      value="{{ attempt_text or '' }}" placeholder="在此填写空白处…" required>
+    {% elif lesson.type == 'short' %}
+    <label for="attempt_text">简答（关键词判定）</label>
+    <textarea id="attempt_text" class="code" name="attempt_text" rows="5"
+      placeholder="用一两句话写要点…">{{ attempt_text or '' }}</textarea>
+    {% else %}
     <label for="attempt_text">你的代码 / 作答</label>
     <textarea id="attempt_text" class="code" name="attempt_text" rows="8"
       placeholder="在此写下本课要求的代码…">{{ attempt_text or '' }}</textarea>
+    {% endif %}
     <div class="btn-row">
       <button type="submit" name="action" value="submit">Submit · 提交判定</button>
+      {% if lesson.type == 'code' or not lesson.type %}
       <button type="submit" name="action" value="run" class="ghost">Run · 即将支持</button>
+      {% endif %}
     </div>
-    <p class="run-note">Run 为占位，不启动 IDE / 容器。Submit 走现有规则判定。</p>
+    <p class="run-note">判定以规则反馈为主。Run 为占位，不启动沙箱。</p>
   </form>
   {% endif %}
   <p style="margin-top:1rem"><a href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">← 本章目录</a>

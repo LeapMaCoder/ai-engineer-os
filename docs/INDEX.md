@@ -75,7 +75,7 @@ tags:
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
 | [[MVP/README]] | MVP 包（Phase 2 定稿） |
-| [[Python_Track_Outline]] | 初期 Python 赛道前三章大纲（D-042/044） |
+| [[Python_Track_Outline]] | Python 15 章骨架 + 前三章 ready（D-042/044/047） |
 | [[PRD/README]] | **Phase 3 MVP PRD Complete**（`946235b`） |
 
 ## 4. 规格 `04_Specifications/`

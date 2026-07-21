@@ -29,6 +29,7 @@ tags:
 
 | 日期 | 变化 |
 |------|------|
-| 2026-07-21 | **Multitask C**：Dashboard 对齐 Boot.dev IA（继续学习 CTA / N·M 能力文案 / Tip）+ 轻量登录注册；游客仍可进；**未 commit** |
+| 2026-07-21 | **D-048**：全站暗色终端风（design tokens）；无复杂游戏经济 UI；**未 commit** |
+| 2026-07-21 | **Multitask C**：Dashboard 对齐 Boot.dev IA + 轻量登录注册；**未 commit** |
 | 2026-07-21 | **D-045**：视觉重做 + 游客 Dashboard Demo；**未 commit** |
 | 2026-07-21 | D-042/043/044；Python 第 1 章可玩 + MySQL；**未 commit** |

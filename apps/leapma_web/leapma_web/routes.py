@@ -31,16 +31,28 @@ bp = Blueprint("growth", __name__)
 _PYTHON_GOAL_RE = re.compile(r"python|蟒蛇|\bpy\b|学\s*py", re.I)
 
 PYTHON_CHIPS = [
-    "学 Python 基础：会用 print",
-    "Python：写几个小脚本输出",
+    "学 Python 基础：变量与类型",
+    "Python：函数与作用域入门",
     "职场补 Python 入门",
 ]
 
 # 章级能力短标签（进度文案用，非问卷）
 CHAPTER_CAPABILITY = {
-    "py-01": "会用 print",
-    "py-02": "会用变量",
-    "py-03": "会用 if",
+    "py-01": "会用变量与类型",
+    "py-02": "会写函数",
+    "py-03": "懂作用域",
+    "py-04": "导论",
+    "py-05": "测试调试",
+    "py-06": "计算",
+    "py-07": "比较",
+    "py-08": "循环",
+    "py-09": "列表",
+    "py-10": "字典",
+    "py-11": "集合",
+    "py-12": "错误处理",
+    "py-13": "类型提示",
+    "py-14": "综合练习",
+    "py-15": "章末测验",
 }
 
 COACH_TIPS = [
@@ -289,6 +301,13 @@ def _chapter_progress(user_id: str, chapter_id: str, status: str) -> tuple[int, 
     return n_pass, len(lessons)
 
 
+def _chapter_num(chapter_id: str) -> str:
+    try:
+        return str(int(str(chapter_id).split("-", 1)[1]))
+    except (IndexError, ValueError):
+        return chapter_id
+
+
 def _continue_target(user_id: str) -> tuple[str, str, str | None]:
     """Return (url, cta_label, lesson_title) for continue CTA.
 
@@ -304,8 +323,7 @@ def _continue_target(user_id: str) -> tuple[str, str, str | None]:
                 continue
             cap = CHAPTER_CAPABILITY.get(meta["id"], "")
             n, total = _chapter_progress(user_id, meta["id"], meta["status"])
-            # chapter index from id suffix when possible
-            label = f"继续学习 · 第{meta['id'].replace('py-0', '')}章 {n}/{total}"
+            label = f"继续学习 · 第{_chapter_num(meta['id'])}章 {n}/{total}"
             if cap:
                 label = f"{label} · {cap}"
             return (
@@ -329,27 +347,33 @@ def _continue_target(user_id: str) -> tuple[str, str, str | None]:
         )
     return (
         url_for("growth.chapter_view", chapter_id="py-01"),
-        "开始学习 · 第1章 0/3 · 会用 print",
+        "开始学习 · 第1章 0/5 · 会用变量与类型",
         None,
     )
 
 
 def _current_status_line(user_id: str) -> str:
     """一行状态：能力语言 + N/M。"""
+    last_ready = None
     for meta in content.list_chapters():
         if meta["status"] != "ready":
             continue
+        last_ready = meta
         n, total = _chapter_progress(user_id, meta["id"], meta["status"])
         cap = CHAPTER_CAPABILITY.get(meta["id"], "")
-        ch_num = meta["id"].replace("py-0", "").replace("py-", "")
+        ch_num = _chapter_num(meta["id"])
         if n < total:
             base = f"第{ch_num}章 {n}/{total}"
             return f"{base} · {cap}" if cap else base
-    # all ready chapters complete (or none)
-    n, total = _chapter_progress(user_id, "py-01", "ready")
-    if total and n >= total:
-        return f"第1章 {n}/{total} · 会用 print（本章已过）"
-    return "第1章 0/3 · 会用 print（尚未开始）"
+    if last_ready:
+        n, total = _chapter_progress(user_id, last_ready["id"], "ready")
+        cap = CHAPTER_CAPABILITY.get(last_ready["id"], "")
+        ch_num = _chapter_num(last_ready["id"])
+        base = f"第{ch_num}章 {n}/{total}"
+        if cap:
+            return f"{base} · {cap}（已开放章已过）"
+        return f"{base}（已开放章已过）"
+    return "第1章 0/5 · 会用变量与类型（尚未开始）"
 
 
 @bp.get("/dashboard")
@@ -503,7 +527,7 @@ def track_home():
         session["growth_session_id"] = sid
         db.update_session(
             sid,
-            goal_intent="学 Python 基础：会用 print",
+            goal_intent="学 Python 基础：变量与类型",
             next_step="进入 Python 第 1 章",
             stage="track",
         )
@@ -554,7 +578,7 @@ def lesson_play(chapter_id: str, lesson_id: str):
             flash("Run 为 Demo 占位：真沙箱执行即将支持。请先用 Submit 做判定反馈。")
         else:
             if not attempt:
-                flash("提交判定前请先写下代码。")
+                flash("提交判定前请先作答。")
             else:
                 grade = grade_lesson(lesson, attempt)
                 db.upsert_lesson_progress(
@@ -580,19 +604,27 @@ def lesson_play(chapter_id: str, lesson_id: str):
                     )
                 if grade and grade.passed:
                     nxt = content.next_lesson(chapter_id, lesson_id)
-                    if lesson_id == "py-01-l3":
-                        return redirect(url_for("growth.progress"))
                     if nxt:
                         nch, nl = nxt
                         nlesson = content.get_lesson(nch, nl)
-                        if nlesson and nlesson.get("locked"):
-                            flash("下一章仍是骨架占位；你可回顾进展或重练第 1 章。")
-                            return redirect(
-                                url_for("growth.chapter_view", chapter_id=chapter_id)
+                        nmeta = next(
+                            (c for c in content.list_chapters() if c["id"] == nch),
+                            None,
+                        )
+                        locked_next = bool(nlesson and nlesson.get("locked"))
+                        skeleton_next = bool(
+                            nmeta and nmeta.get("status") != "ready"
+                        )
+                        if locked_next or skeleton_next:
+                            flash(
+                                "已开放章节的练习已打穿；第 4～15 章仍是骨架占位。"
+                                "可回顾进展或重练第 1～3 章。"
                             )
+                            return redirect(url_for("growth.progress"))
                         return redirect(
                             url_for("growth.lesson_play", chapter_id=nch, lesson_id=nl)
                         )
+                    return redirect(url_for("growth.progress"))
 
     return render_template(
         "lesson.html",

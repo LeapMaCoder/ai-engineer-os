@@ -1,20 +1,100 @@
 {
   "id": "py-02",
   "track_id": "python",
-  "title": "第 2 章 · 记住东西：变量与赋值",
-  "goal": "能用变量保存值并再次使用（骨架：下一批交付完整练习）。",
-  "status": "skeleton",
+  "title": "第 2 章 · 函数",
+  "goal": "会写 def、区分参数与实参，理解 return 把结果交回调用方（print 只负责显示）。",
+  "status": "ready",
   "lessons": [
     {
       "id": "py-02-l1",
-      "title": "（占位）给值起个名字",
-      "coach": "本章练习即将上线。你可先回到第 1 章巩固 print。",
-      "prompt": "占位：本章尚未开放提交。",
-      "hint": "",
+      "type": "mcq",
+      "title": "选择：def 做了什么",
+      "coach": "函数像菜谱：先写好，点名时才真正做菜。",
+      "prompt": "关于 def，哪一句最准确？",
+      "hint": "定义 ≠ 立刻执行函数体。",
+      "options": [
+        {"id": "A", "text": "一写完 def，函数体就会立刻跑一遍"},
+        {"id": "B", "text": "def 只是登记可复用代码块；调用 name(...) 时才执行函数体"},
+        {"id": "C", "text": "def 与调用必须写在同一行"},
+        {"id": "D", "text": "没有 return 的函数不能用 def 定义"}
+      ],
+      "answers": ["B"],
       "checks": [],
-      "pass_feedback": "",
-      "fail_prefix": "",
-      "locked": true
+      "pass_feedback": "对：def 是登记；调用带括号才会执行。",
+      "fail_prefix": "再选一次："
+    },
+    {
+      "id": "py-02-l2",
+      "type": "mcq",
+      "title": "选择：参数还是实参",
+      "coach": "定义时的空位叫参数；调用时塞进去的值叫实参。",
+      "prompt": "在 def add(a, b): 与调用 add(3, 4) 中，说法正确的是？",
+      "hint": "a、b 是定义时的名字；3、4 是调用时的值。",
+      "options": [
+        {"id": "A", "text": "a、b 是实参；3、4 是参数"},
+        {"id": "B", "text": "a、b 是参数；3、4 是实参"},
+        {"id": "C", "text": "四个都是参数"},
+        {"id": "D", "text": "四个都是实参"}
+      ],
+      "answers": ["B"],
+      "checks": [],
+      "pass_feedback": "参数是空位标签，实参是塞进去的具体值。",
+      "fail_prefix": "对调一下术语再想："
+    },
+    {
+      "id": "py-02-l3",
+      "type": "fill",
+      "title": "填空：平方要 return",
+      "coach": "想让调用方拿到结果，靠 return，不是只 print。",
+      "prompt": "补全 return 后面的表达式，使 square(3) 得到 9：\ndef square(n):\n    return ___\nprint(square(3))",
+      "hint": "n * n 或 n ** 2。",
+      "options": [],
+      "answers": ["n * n", "n*n", "n ** 2", "n**2"],
+      "checks": [],
+      "pass_feedback": "调用方拿到了 9——这是 return 的功劳。",
+      "fail_prefix": "return 后应是能算出 n 的平方的表达式："
+    },
+    {
+      "id": "py-02-l4",
+      "type": "short",
+      "title": "简答：return 与 print",
+      "coach": "一个交回给调用方，一个只在屏幕上留痕迹。",
+      "prompt": "用一两句话写出 return 与 print 的关键差别（可举例）。",
+      "hint": "提到「调用方能否接收」或 None。",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {
+          "type": "keywords_any",
+          "values": ["return", "返回", "交回", "交给", "传回"],
+          "message": "请提到 return / 返回给调用方。"
+        },
+        {
+          "type": "keywords_any",
+          "values": ["print", "打印", "屏幕", "显示", "输出"],
+          "message": "请提到 print / 显示到屏幕。"
+        }
+      ],
+      "pass_feedback": "分清职责：return 给程序用，print 给人看。",
+      "fail_prefix": "两边都要点到："
+    },
+    {
+      "id": "py-02-l5",
+      "type": "code",
+      "title": "代码：写一个打招呼函数",
+      "coach": "小函数：一个参数，拼接后 return。",
+      "prompt": "定义函数 greeting(name)，返回字符串 \"hi \" 与 name 的拼接（中间有一个空格）。例如 greeting(\"Ada\") 得到 hi Ada。",
+      "hint": "def greeting(name): return \"hi \" + name",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {"type": "regex", "pattern": "def\\s+greeting\\s*\\(", "message": "需要 def greeting(...)。"},
+        {"type": "contains", "value": "return", "message": "需要 return 把结果交回。"},
+        {"type": "regex", "pattern": "hi\\s", "message": "返回内容应含 hi 与空格（再拼 name）。"},
+        {"type": "contains", "value": "name", "message": "要用到参数 name。"}
+      ],
+      "pass_feedback": "第 2 章核心练完：你会定义、调用，并分清 return / print。下一章看作用域。",
+      "fail_prefix": "检查函数骨架："
     }
   ]
 }

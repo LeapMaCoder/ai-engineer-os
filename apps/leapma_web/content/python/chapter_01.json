@@ -1,51 +1,103 @@
 {
   "id": "py-01",
   "track_id": "python",
-  "title": "第 1 章 · 开口说话：print 与字符串",
-  "goal": "能用 print 输出字符串，并理解引号的作用。",
+  "title": "第 1 章 · 变量与类型",
+  "goal": "理解名字绑定到值；分清 int / float / str / bool；能写简单赋值与 print。",
   "status": "ready",
   "lessons": [
     {
       "id": "py-01-l1",
-      "title": "练习 1：打个招呼",
-      "coach": "我们不考试。写一行代码，让屏幕打出一句招呼。",
-      "prompt": "写出一行 Python，使用 print 输出：Hello LeapMa",
-      "hint": "形如：print(\"...\")",
+      "type": "code",
+      "title": "热身：让屏幕开口",
+      "coach": "先用一行 print 确认环境会回话。真正主线是后面的变量与类型。",
+      "prompt": "写一行 Python：用 print 输出恰好 Hello LeapMa（含空格与大小写）。",
+      "hint": "形如 print(\"Hello LeapMa\")",
+      "options": [],
+      "answers": [],
       "checks": [
         {"type": "contains", "value": "print", "message": "需要用到 print。"},
-        {"type": "contains_any", "values": ["Hello LeapMa", "Hello LeapMa"], "message": "输出内容需包含 Hello LeapMa。"},
+        {"type": "contains", "value": "Hello LeapMa", "message": "输出内容需包含 Hello LeapMa。"},
         {"type": "regex", "pattern": "print\\s*\\(", "message": "print 后面要有括号调用。"}
       ],
-      "pass_feedback": "对了：你完成了一次可见输出。下一步我们练字符串边界。",
+      "pass_feedback": "好，屏幕会说话了。下面进入本章主线：名字与值。",
       "fail_prefix": "还差一点："
     },
     {
       "id": "py-01-l2",
-      "title": "练习 2：引号包住文字",
-      "coach": "字符串要用引号包起来，否则 Python 会当成名字去找。",
-      "prompt": "用 print 输出恰好这三个词（含空格）：I write Python",
-      "hint": "单引号或双引号都可以。",
-      "checks": [
-        {"type": "contains", "value": "print", "message": "需要用到 print。"},
-        {"type": "contains", "value": "I write Python", "message": "请原样包含：I write Python"},
-        {"type": "regex", "pattern": "['\"].*I write Python.*['\"]", "message": "文字需要放在引号里。"}
+      "type": "mcq",
+      "title": "选择：赋值究竟在做什么",
+      "coach": "把变量想成贴在值上的标签，而不是「装东西的盒子」。",
+      "prompt": "在 Python 里，写出 score = 100 时，等号 = 最准确的含义是？",
+      "hint": "不是数学上的「等于」。",
+      "options": [
+        {"id": "A", "text": "判断 score 是否等于 100"},
+        {"id": "B", "text": "把名字 score 绑定（贴标签）到值 100 上"},
+        {"id": "C", "text": "创建一个永远不能再改的常量"},
+        {"id": "D", "text": "把 100 永久复制进名叫 score 的盒子里且无法换绑"}
       ],
-      "pass_feedback": "很好：引号把文字变成了字符串。",
-      "fail_prefix": "再看看："
+      "answers": ["B"],
+      "checks": [],
+      "pass_feedback": "对：= 是绑定/贴标签。之后 score = 101 是把标签挪到新值上。",
+      "fail_prefix": "再想一想："
     },
     {
       "id": "py-01-l3",
-      "title": "练习 3：两行输出",
-      "coach": "一次练习写两行 print，确认你能连续动手。",
-      "prompt": "写两行代码：第一行 print 输出 Go；第二行 print 输出 Learn。",
-      "hint": "两行各一个 print。",
+      "type": "fill",
+      "title": "填空：凑出整数 8",
+      "coach": "左边是名字，右边是值。类型要一致才能做整数加法。",
+      "prompt": "补全空白，使 total 打印为 8（不要用字符串）：\nleft = 3\nright = ___\ntotal = left + right\nprint(total)",
+      "hint": "填一个整数，让 3 + right == 8。",
+      "options": [],
+      "answers": ["5", "right = 5", "right=5"],
+      "checks": [],
+      "pass_feedback": "很好：right 绑到整数 5，加法得到 8。",
+      "fail_prefix": "空白处应是能让 3+right 等于 8 的整数："
+    },
+    {
+      "id": "py-01-l4",
+      "type": "short",
+      "title": "简答：加号的两种面孔",
+      "coach": "同一符号 +，遇到不同类型含义不同。",
+      "prompt": "用一两句话说明：\"2\" + \"2\" 的结果与 2 + 2 的结果分别是什么？为什么不同？",
+      "hint": "一个是字符串拼接，一个是整数加法。",
+      "options": [],
+      "answers": [],
       "checks": [
-        {"type": "regex", "pattern": "print\\s*\\([^\\n]*Go[^\\n]*\\)", "message": "需要有一行输出 Go。"},
-        {"type": "regex", "pattern": "print\\s*\\([^\\n]*Learn[^\\n]*\\)", "message": "需要有一行输出 Learn。"},
-        {"type": "min_print_calls", "value": 2, "message": "请至少写两个 print 调用。"}
+        {
+          "type": "keywords_any",
+          "values": ["22", "\"22\"", "'22'"],
+          "message": "请提到字符串结果是 22（拼接）。"
+        },
+        {
+          "type": "keywords_any",
+          "values": ["4"],
+          "message": "请提到整数相加得到 4。"
+        },
+        {
+          "type": "keywords_any",
+          "values": ["拼接", "拼", "连接", "字符串", "str", "文字"],
+          "message": "请点出字符串一侧是拼接/连接。"
+        }
       ],
-      "pass_feedback": "第 1 章核心练完：你会用 print 做可见输出。可以进入第 2 章骨架或回顾进展。",
-      "fail_prefix": "检查两行："
+      "pass_feedback": "抓住了：类型决定 + 是加法还是拼接。",
+      "fail_prefix": "再补全要点："
+    },
+    {
+      "id": "py-01-l5",
+      "type": "code",
+      "title": "代码：标签挪位后打印谁",
+      "coach": "b = a 时，b 贴的是当时的值；之后改 a 不会拖着旧标签一起走。",
+      "prompt": "根据下面逻辑，写出两行 print，依次输出最终的 n 与 m（应看到 15 和 10）：\nn = 10\nm = n\nn = n + 5\n# 在此写两行 print",
+      "hint": "print(n) 然后 print(m)；或一行里两次也可以，但需能看出 15 与 10。",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {"type": "regex", "pattern": "print\\s*\\(\\s*n\\s*\\)", "message": "需要 print(n)。"},
+        {"type": "regex", "pattern": "print\\s*\\(\\s*m\\s*\\)", "message": "需要 print(m)。"},
+        {"type": "min_print_calls", "value": 2, "message": "请至少写两个 print。"}
+      ],
+      "pass_feedback": "第 1 章核心练完：你会绑定名字、区分类型，也理解了重新贴标签。可以进入第 2 章函数。",
+      "fail_prefix": "检查打印："
     }
   ]
 }

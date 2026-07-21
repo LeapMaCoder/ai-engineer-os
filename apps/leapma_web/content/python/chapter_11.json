@@ -1,0 +1,24 @@
+{
+  "id": "py-11",
+  "track_id": "python",
+  "title": "第 11 章 · 集合",
+  "goal": "理解去重与集合运算（骨架）。",
+  "status": "skeleton",
+  "theme": "Sets",
+  "lessons": [
+    {
+      "id": "py-11-l1",
+      "type": "code",
+      "title": "（占位）本章练习即将上线",
+      "coach": "Dashboard 会诚实显示「未开放」。请先打穿第 1～3 章。",
+      "prompt": "占位：本章尚未开放提交。",
+      "hint": "",
+      "options": [],
+      "answers": [],
+      "checks": [],
+      "pass_feedback": "",
+      "fail_prefix": "",
+      "locked": true
+    }
+  ]
+}

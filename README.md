@@ -20,7 +20,7 @@ LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品
 
 ## 当前阶段
 
-**Phase 5 — Python 赛道垂直切片**（第 1 章可玩；规则反馈；MySQL）
+**Phase 5 — Python 15 章骨架**（第 1～3 章可玩；4～15 skeleton；规则反馈）
 
 详情：[leapma_web README](apps/leapma_web/README.md) · [Python_Track_Outline](docs/03_Product/MVP/Python_Track_Outline.md)
 

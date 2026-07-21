@@ -76,6 +76,8 @@ tags:
 | D-044 | 2026-07-21 | **Boot.dev 式章节动手路径**（窄路径、章内练习→可见对错）；初期 Python **前三章**，可一章一章交付；**禁止抄袭**竞品文本/习题。 | Accepted | Founder |
 | D-045 | 2026-07-21 | **成长可见门面**：自有视觉风格 + 游客个人中心 / Dashboard Demo（路线+进度，无强制注册、无复杂游戏化）；Run 沙箱可滞后。 | Accepted | Founder |
 | D-046 | 2026-07-21 | **可选账号（非门槛）**：Dashboard 保持游客可用；轻量 username+password 哈希存库；登录后绑定进度/显示名；禁止注册墙。 | Accepted | Founder |
+| D-047 | 2026-07-21 | **Python 15 章主题骨架 + 先打穿 1～3 章**：主题序含 Introduction→…→Quiz；ready 对齐 Obsidian ch01 变量 / ch02 函数 / ch03 作用域；题源=Engineer OS 笔记**改编**（禁抄 Boot.dev 官网）；题型 mcq/fill/short/code；规则判定为主；4～15 skeleton 诚实未开放。 | Accepted | Founder |
+| D-048 | 2026-07-21 | **视觉迁暗色终端风**：采用 Boot.dev-inspired design tokens（primary `#00FF88` 等）；弱化/不做 XP·商店·排行榜·成就墙；金仅作进度点缀；禁止问卷墙与注册门槛不变。 | Accepted | Founder |
 
 ---
 

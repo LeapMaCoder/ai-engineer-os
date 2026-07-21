@@ -10,27 +10,48 @@ tags:
   - leapma
 ---
 
-# Python 赛道大纲（原创 · 前三章）
+# Python 赛道大纲（15 章骨架 · 前三章可玩）
 
-> **不是** Boot.dev / 其它竞品的文本复制。仅借鉴「窄路径 + 章内动手练习」形态。  
-> 决策：D-042 / D-043 / D-044。原则：禁止问卷墙、Growth Before Monetization。
+> **原创声明**：课文与习题由 LeapMa **改写**自 Founder 的 Engineer OS Obsidian 笔记（`02 - Learning/Boot.dev/...` Concepts / Drills / Review，以及 Training-Grounds Quiz），**不是** Boot.dev 官网原文粘贴，也不是整份 Markdown 当页面。  
+> 决策：D-042 / D-043 / D-044 / **D-047**。原则：禁止问卷墙、Growth Before Monetization、规则判定为主。
 
-## 进度
+## 进度总览
 
-| 章 | 标题 | 状态 |
+| 章 | 主题 | 状态 |
 |----|------|------|
-| py-01 | 开口说话：print 与字符串 | **ready**（3 练可判定） |
-| py-02 | 记住东西：变量与赋值 | skeleton |
-| py-03 | 做个决定：if 分支入门 | skeleton |
+| py-01 | 变量与类型（含极短 print 热身） | **ready**（5 课可判定） |
+| py-02 | 函数 | **ready**（5 课） |
+| py-03 | 作用域 | **ready**（5 课） |
+| py-04 | 导论与路径（Introduction） | skeleton |
+| py-05 | 测试与调试 | skeleton |
+| py-06 | 计算 | skeleton |
+| py-07 | 比较 | skeleton |
+| py-08 | 循环 | skeleton |
+| py-09 | 列表 | skeleton |
+| py-10 | 字典 | skeleton |
+| py-11 | 集合 | skeleton |
+| py-12 | 错误处理 | skeleton |
+| py-13 | 类型提示 | skeleton |
+| py-14 | 综合练习 | skeleton |
+| py-15 | 章末测验 | skeleton |
 
-内容文件：`apps/leapma_web/content/python/`
+内容目录：`apps/leapma_web/content/python/`
 
-## 章目标（摘要）
+## 题源对齐（Obsidian → LeapMa）
 
-1. **第 1 章**：会用 `print` 输出字符串，理解引号。  
-2. **第 2 章**：变量保存与再次使用（待交付练习）。  
-3. **第 3 章**：最简 `if`（待交付练习）。
+| LeapMa | Obsidian 主源 | 题型混合 |
+|--------|---------------|----------|
+| py-01 | ch01-variables + drill + review + quiz | mcq / fill / short / code |
+| py-02 | ch02-functions + drill + review + quiz | mcq / fill / short / code |
+| py-03 | ch03-scope + drill + review | mcq / fill / short / code |
 
 ## 反馈策略
 
-主路径：**规则判定**（`rules_feedback`）。LLM Provider 保留，默认 mock，**不**作为能跑通前提（D-043）。
+主路径：**规则判定**（`rules_feedback`，支持 `type: mcq|fill|short|code`）。LLM Provider 保留，默认 mock，**不**作为能跑通前提（D-043）。
+
+## 非目标（本批）
+
+- 不写满第 4～15 章习题  
+- 不做真沙箱 Run  
+- 不强制注册才能学  
+- 不把 Obsidian md 原样挂成页面  

@@ -1,0 +1,83 @@
+{
+  "name": "LeapMa Design System",
+  "version": "1.0",
+  "inspiration": "Developer Learning RPG / boot.dev-inspired tokens",
+  "weakened": [
+    "No XP number economy",
+    "No level-up animations",
+    "No pixel achievement wall / game map",
+    "No shop / gems / league / leaderboard UI",
+    "Gold used only as sparse current-progress accent, never as currency",
+    "No mandatory 8-bit illustrations"
+  ],
+  "never_use": [
+    "White corporate brochure sites",
+    "Purple gradient AI templates",
+    "Glassmorphism everywhere"
+  ],
+  "color": {
+    "bg_primary": "#0D1117",
+    "bg_secondary": "#161B22",
+    "bg_surface": "#1C2128",
+    "bg_elevated": "#21262D",
+    "bg_code": "#010409",
+    "primary": "#00FF88",
+    "secondary": "#58A6FF",
+    "danger": "#FF5C57",
+    "gold_accent": "#D4A017",
+    "text_primary": "#E6EDF3",
+    "text_secondary": "#8B949E",
+    "text_muted": "#6E7681",
+    "border": "#30363D",
+    "border_hover": "#58A6FF"
+  },
+  "typography": {
+    "heading_code": "JetBrains Mono, ui-monospace, monospace",
+    "body": "Inter, system-ui, sans-serif",
+    "code": "JetBrains Mono, ui-monospace, monospace"
+  },
+  "spacing": {
+    "xs": "0.25rem",
+    "sm": "0.5rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2rem"
+  },
+  "radius": {
+    "sm": "4px",
+    "md": "6px",
+    "lg": "8px"
+  },
+  "shadow": {
+    "card": "0 8px 24px rgba(1, 4, 9, 0.45)",
+    "glow_primary": "0 0 16px rgba(0, 255, 136, 0.25)"
+  },
+  "button": {
+    "primary_bg": "#00FF88",
+    "primary_text": "#0D1117",
+    "hover": "translateY(-1px) + light glow"
+  },
+  "card": {
+    "bg": "#1C2128",
+    "border": "#30363D",
+    "hover_border": "#58A6FF"
+  },
+  "code_block": {
+    "bg": "#010409",
+    "border": "#30363D",
+    "text": "#E6EDF3"
+  },
+  "progress": {
+    "track": "#21262D",
+    "fill": "#00FF88"
+  },
+  "nav": {
+    "sticky": true,
+    "bg": "#161B22",
+    "active": "#00FF88"
+  },
+  "layout": {
+    "container_max": "1200px",
+    "home_narrow_max": "640px"
+  }
+}

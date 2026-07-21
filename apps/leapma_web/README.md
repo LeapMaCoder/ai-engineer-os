@@ -1,14 +1,17 @@
 # LeapMa Web — First Growth Experience + Python 赛道
 
-Python **Flask + Jinja SSR**。初期赛道：**Python**（D-042）。反馈：**规则判定**为主（D-043）。章节路径：D-044。
+Python **Flask + Jinja SSR**。初期赛道：**Python**（D-042 / D-047）。反馈：**规则判定**为主（D-043）。视觉：**暗色终端风**（D-048 · `design_system.json`）。
 
 ## 进度
 
 | 章 | 状态 |
 |----|------|
-| 第 1 章 print 与字符串 | **可玩**（3 练） |
-| 第 2 章 变量 | 骨架 |
-| 第 3 章 if | 骨架 |
+| 第 1 章 变量与类型 | **可玩**（5 练 · mcq/fill/short/code） |
+| 第 2 章 函数 | **可玩**（5 练） |
+| 第 3 章 作用域 | **可玩**（5 练） |
+| 第 4～15 章 | 骨架 · Dashboard 显示「未开放」 |
+
+题源：Founder Engineer OS Obsidian 笔记**改编**（非竞品官网原文）。详见 `docs/03_Product/MVP/Python_Track_Outline.md`。
 
 ## 入口 URL
 
@@ -44,19 +47,28 @@ uv run flask --app wsgi run --debug --port 5000
 
 打开 http://127.0.0.1:5000/
 
-## 第 1 章手工验收
+## 冒烟（Flask test client）
 
-1. 首页点芯片「学 Python 基础：会用 print」或进「Python 章节目录」  
-2. 打开 **第 1 章** → 依次三练，提交代码，看**判定对错**（非真实 LLM）  
-3. 第 3 练通过后进入进展页，写具体进展 + 再来方向（AC-03）  
-4. 确认全程无问卷墙、未付费可完成  
+```powershell
+cd apps/leapma_web
+uv run python test_client.py
+```
 
-示例通过作答（原创练习，自行输入）：
+会对第 1～3 章各提交一题并断言判定通过。
 
-- 练 1：`print("Hello LeapMa")`  
-- 练 2：`print("I write Python")`  
-- 练 3：两行 `print("Go")` 与 `print("Learn")`  
+## 第 1～3 章手工验收（摘要）
+
+1. 首页芯片「学 Python 基础：变量与类型」或「Python 章节目录」  
+2. Dashboard 见 15 章；第 4～15 为「未开放」；续学 CTA 的 N/M 正确  
+3. 打开第 1～3 章，混合题型 Submit 看规则判定（非真实 LLM）  
+4. 全程无问卷墙、游客可学；Run 仍为占位  
+
+示例通过作答：
+
+- py-01-l2：选 **B**  
+- py-02-l3：填 `n * n`  
+- py-03-l1：选 **B**  
 
 ## 原则护栏
 
-禁止问卷墙 · Growth Loop · Hard No · Growth Before Monetization · 不抄袭竞品文本。
+禁止问卷墙 · Growth Loop · Hard No · Growth Before Monetization · 不抄袭竞品文本 · 不整份 md 当页面。

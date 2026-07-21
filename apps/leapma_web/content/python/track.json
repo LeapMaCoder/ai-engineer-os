@@ -2,9 +2,22 @@
   "id": "python",
   "title": "Python 学习成长",
   "tagline": "窄路径 · 动手练习 · 可见对错",
+  "source_note": "题源改编自 Founder Engineer OS Obsidian 笔记（Concepts / Drills / Review / Quiz），LeapMa 原创改写，非 Boot.dev 官网原文。",
   "chapters": [
-    {"id": "py-01", "title": "第 1 章 · 开口说话：print 与字符串", "status": "ready"},
-    {"id": "py-02", "title": "第 2 章 · 记住东西：变量与赋值", "status": "skeleton"},
-    {"id": "py-03", "title": "第 3 章 · 做个决定：if 分支入门", "status": "skeleton"}
+    {"id": "py-01", "title": "第 1 章 · 变量与类型", "status": "ready", "theme": "Variables"},
+    {"id": "py-02", "title": "第 2 章 · 函数", "status": "ready", "theme": "Functions"},
+    {"id": "py-03", "title": "第 3 章 · 作用域", "status": "ready", "theme": "Scope"},
+    {"id": "py-04", "title": "第 4 章 · 导论与路径", "status": "skeleton", "theme": "Introduction"},
+    {"id": "py-05", "title": "第 5 章 · 测试与调试", "status": "skeleton", "theme": "Testing/Debugging"},
+    {"id": "py-06", "title": "第 6 章 · 计算", "status": "skeleton", "theme": "Computing"},
+    {"id": "py-07", "title": "第 7 章 · 比较", "status": "skeleton", "theme": "Comparisons"},
+    {"id": "py-08", "title": "第 8 章 · 循环", "status": "skeleton", "theme": "Loops"},
+    {"id": "py-09", "title": "第 9 章 · 列表", "status": "skeleton", "theme": "Lists"},
+    {"id": "py-10", "title": "第 10 章 · 字典", "status": "skeleton", "theme": "Dictionaries"},
+    {"id": "py-11", "title": "第 11 章 · 集合", "status": "skeleton", "theme": "Sets"},
+    {"id": "py-12", "title": "第 12 章 · 错误处理", "status": "skeleton", "theme": "Errors"},
+    {"id": "py-13", "title": "第 13 章 · 类型提示", "status": "skeleton", "theme": "Type Hints"},
+    {"id": "py-14", "title": "第 14 章 · 综合练习", "status": "skeleton", "theme": "Practice"},
+    {"id": "py-15", "title": "第 15 章 · 章末测验", "status": "skeleton", "theme": "Quiz"}
   ]
 }
