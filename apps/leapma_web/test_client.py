@@ -37,6 +37,12 @@ def main() -> int:
         url = f"/track/python/{chapter_id}/{lesson_id}"
         g = client.get(url)
         assert g.status_code == 200, f"GET {url} -> {g.status_code}"
+        html_get = g.get_data(as_text=True)
+        assert "学" in html_get and "例" in html_get and "练" in html_get, (
+            f"expected 学/例/练 sections on {url}"
+        )
+        assert "正常模式" in html_get, f"expected concept mode toggle on {url}"
+        assert 'id="learn"' in html_get and 'id="practice"' in html_get
         p = client.post(
             url,
             data={"action": "submit", "attempt_text": answer},
@@ -52,6 +58,13 @@ def main() -> int:
             f"expected pass for {chapter_id}/{lesson_id}, got:\n{html[:800]}"
         )
         print(f"OK {chapter_id}/{lesson_id} passed on page")
+
+    # Story hook on py-01-l2
+    story_page = client.get("/track/python/py-01/py-01-l2")
+    assert story_page.status_code == 200
+    story_html = story_page.get_data(as_text=True)
+    assert "故事模式" in story_html
+    assert "id=\"concept-story\"" in story_html or "concept-story" in story_html
 
     # Continue CTA should show N/M after passes
     dash = client.get("/dashboard")

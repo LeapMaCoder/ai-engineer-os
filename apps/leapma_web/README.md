@@ -56,12 +56,32 @@ uv run python test_client.py
 
 会对第 1～3 章各提交一题并断言判定通过。
 
+## 课内结构（先学后练）
+
+每课页固定分区：**【学】→【例】→【练】→【提交】**。默认先展示讲解；可用「去练习」锚点跳到题目，但不可去掉概念区。
+
+概念区支持模式切换：`正常模式 | 故事模式`（仅切换文案，不影响判定）。无 `concept.story` 时故事按钮灰掉。
+
+### Lesson JSON 钩子（`content/python/chapter_XX.json`）
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `concept.normal` | 是 | 正常模式讲解 |
+| `concept.story` | 否 | 故事模式；缺省则 UI 不启用 |
+| `example.code` / `example.note` | 建议有 | 示例代码与说明 |
+| `type` / `prompt` / … | 是 | 练与判定（亦可放进 `exercises[0]`，loader 会提升） |
+
+旧字段（`coach`、`prompt`、`checks`…）仍兼容；无 `concept` 时 loader 用 `coach` 作薄回退。
+
+示范含 story：`py-01-l2`、`py-02-l1`。
+
 ## 第 1～3 章手工验收（摘要）
 
 1. 首页芯片「学 Python 基础：变量与类型」或「Python 章节目录」  
 2. Dashboard 见 15 章；第 4～15 为「未开放」；续学 CTA 的 N/M 正确  
-3. 打开第 1～3 章，混合题型 Submit 看规则判定（非真实 LLM）  
-4. 全程无问卷墙、游客可学；Run 仍为占位  
+3. 打开任意 ready 课：先见【学】【例】，再【练】【提交】；含 story 的课可切换模式  
+4. 混合题型 Submit 看规则判定（非真实 LLM）  
+5. 全程无问卷墙、游客可学；Run 仍为占位；无 XP/联赛 UI  
 
 示例通过作答：
 

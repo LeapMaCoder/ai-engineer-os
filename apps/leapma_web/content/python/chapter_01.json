@@ -10,6 +10,13 @@
       "type": "code",
       "title": "热身：让屏幕开口",
       "coach": "先用一行 print 确认环境会回话。真正主线是后面的变量与类型。",
+      "concept": {
+        "normal": "程序要跟人说话，最常用的口是 print。\n\n写 print(...) 时：括号里的内容会显示到屏幕上。字符串要用引号包起来，例如 \"Hello\"。\n\n本课先确认：你会让屏幕说出约定好的那一行字。后面几课再学「名字贴到值上」。"
+      },
+      "example": {
+        "code": "print(\"Hello LeapMa\")",
+        "note": "一行调用：print + 括号 + 引号字符串。"
+      },
       "prompt": "写一行 Python：用 print 输出恰好 Hello LeapMa（含空格与大小写）。",
       "hint": "形如 print(\"Hello LeapMa\")",
       "options": [],
@@ -27,6 +34,14 @@
       "type": "mcq",
       "title": "选择：赋值究竟在做什么",
       "coach": "把变量想成贴在值上的标签，而不是「装东西的盒子」。",
+      "concept": {
+        "normal": "在 Python 里，变量更像贴纸，不是盒子。\n\n- 值（如 100、\"hi\"）先存在；\n- 名字（如 score）是贴在值上的标签；\n- score = 100 的意思是：把名字 score 绑定到值 100。\n\n等号 = 在这里是「绑定 / 贴标签」，不是数学上的「等于」。\n之后再写 score = 101，是把同一张标签挪到新值上。",
+        "story": "想象仓库货架上摆着一箱苹果，旁边贴了纸条「今日库存」。\n\nscore = 100 就像：把「今日库存」这张纸条贴到「100」那一箱上——不是把 100 塞进叫 score 的铁盒子里锁死。\n\n第二天写 score = 101：你只是把纸条撕下来，贴到另一箱「101」上。旧的 100 还在货架某处，只是没人再叫它「今日库存」了。"
+      },
+      "example": {
+        "code": "score = 100\nprint(score)\nscore = 101\nprint(score)",
+        "note": "两次赋值：标签从 100 挪到 101。"
+      },
       "prompt": "在 Python 里，写出 score = 100 时，等号 = 最准确的含义是？",
       "hint": "不是数学上的「等于」。",
       "options": [
@@ -45,6 +60,13 @@
       "type": "fill",
       "title": "填空：凑出整数 8",
       "coach": "左边是名字，右边是值。类型要一致才能做整数加法。",
+      "concept": {
+        "normal": "赋值左边是名字，右边是值。\n\n常见类型先记四个：\n- int：整数，如 3、8\n- float：小数，如 3.14\n- str：文字，如 \"8\"（带引号）\n- bool：True / False\n\n做整数加法时，两边都该是数字类型。\"3\" + \"5\" 是拼接成 \"35\"，不是 8。"
+      },
+      "example": {
+        "code": "left = 3\nright = 5\ntotal = left + right\nprint(total)  # 8",
+        "note": "两个 int 相加得到 int。"
+      },
       "prompt": "补全空白，使 total 打印为 8（不要用字符串）：\nleft = 3\nright = ___\ntotal = left + right\nprint(total)",
       "hint": "填一个整数，让 3 + right == 8。",
       "options": [],
@@ -58,6 +80,13 @@
       "type": "short",
       "title": "简答：加号的两种面孔",
       "coach": "同一符号 +，遇到不同类型含义不同。",
+      "concept": {
+        "normal": "同一个 +，类型不同，含义不同：\n\n- 2 + 2 → 4（整数加法）\n- \"2\" + \"2\" → \"22\"（字符串拼接）\n\n类型决定运算符的行为。写代码时先问：两边分别是什么类型？"
+      },
+      "example": {
+        "code": "print(2 + 2)      # 4\nprint(\"2\" + \"2\")  # 22",
+        "note": "对比数字加法与文字拼接。"
+      },
       "prompt": "用一两句话说明：\"2\" + \"2\" 的结果与 2 + 2 的结果分别是什么？为什么不同？",
       "hint": "一个是字符串拼接，一个是整数加法。",
       "options": [],
@@ -87,6 +116,13 @@
       "type": "code",
       "title": "代码：标签挪位后打印谁",
       "coach": "b = a 时，b 贴的是当时的值；之后改 a 不会拖着旧标签一起走。",
+      "concept": {
+        "normal": "两个名字可以先后贴到同一个值上，但之后各自挪动互不影响。\n\nn = 10\nm = n   → m 也贴到当时的 10\nn = n + 5 → 只把 n 挪到 15；m 仍贴着 10\n\n所以最终 print(n) 与 print(m) 会看到不同结果。"
+      },
+      "example": {
+        "code": "n = 10\nm = n\nn = n + 5\nprint(n)  # 15\nprint(m)  # 10",
+        "note": "m = n 复制的是「当时贴着谁」，不是永远跟着 n 走。"
+      },
       "prompt": "根据下面逻辑，写出两行 print，依次输出最终的 n 与 m（应看到 15 和 10）：\nn = 10\nm = n\nn = n + 5\n# 在此写两行 print",
       "hint": "print(n) 然后 print(m)；或一行里两次也可以，但需能看出 15 与 10。",
       "options": [],

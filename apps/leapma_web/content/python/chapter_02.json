@@ -10,6 +10,14 @@
       "type": "mcq",
       "title": "选择：def 做了什么",
       "coach": "函数像菜谱：先写好，点名时才真正做菜。",
+      "concept": {
+        "normal": "函数 = 起了名字的可复用代码块：定义一次，调用多次。\n\n- def name(...): 只是登记这份代码，不会立刻跑函数体；\n- name(...) 带括号调用时，才真正执行；\n- return 把结果交回调用方；print 只把字打到屏幕。\n\n本课先分清：定义 ≠ 立刻执行。",
+        "story": "把函数想成厨房墙上的菜谱卡片。\n\ndef greasy_noodles(): ... 是把菜谱钉到墙上——还没开火。\n\n只有喊一声 greasy_noodles()（点这道菜），炉子才开始按步骤做。\n\nreturn 是把做好的那盘端回餐桌交给点菜的人；print 只是在厨房门口喊一句「好了」，桌上不一定端得到。"
+      },
+      "example": {
+        "code": "def greet():\n    return \"hi\"\n\nprint(greet())  # 调用后才执行函数体",
+        "note": "def 登记；greet() 才执行。"
+      },
       "prompt": "关于 def，哪一句最准确？",
       "hint": "定义 ≠ 立刻执行函数体。",
       "options": [
@@ -28,6 +36,13 @@
       "type": "mcq",
       "title": "选择：参数还是实参",
       "coach": "定义时的空位叫参数；调用时塞进去的值叫实参。",
+      "concept": {
+        "normal": "参数（parameter）是定义时的空位名字；实参（argument）是调用时塞进去的具体值。\n\ndef add(a, b): 里的 a、b 是参数。\nadd(3, 4) 里的 3、4 是实参。\n\n空位标签 vs 塞进去的值——别把两个词对调。"
+      },
+      "example": {
+        "code": "def add(a, b):      # a, b = 参数\n    return a + b\n\ntotal = add(3, 4)   # 3, 4 = 实参",
+        "note": "定义写空位，调用填具体值。"
+      },
       "prompt": "在 def add(a, b): 与调用 add(3, 4) 中，说法正确的是？",
       "hint": "a、b 是定义时的名字；3、4 是调用时的值。",
       "options": [
@@ -46,6 +61,13 @@
       "type": "fill",
       "title": "填空：平方要 return",
       "coach": "想让调用方拿到结果，靠 return，不是只 print。",
+      "concept": {
+        "normal": "想让调用方拿到计算结果，用 return。\n\nreturn 会立刻结束函数，并把值交回去，例如：\nx = square(3)  # 若 return n*n，则 x 为 9\n\n若只 print 不 return，调用方往往拿到 None。"
+      },
+      "example": {
+        "code": "def square(n):\n    return n * n\n\nprint(square(3))  # 9",
+        "note": "return 把平方结果交给调用方。"
+      },
       "prompt": "补全 return 后面的表达式，使 square(3) 得到 9：\ndef square(n):\n    return ___\nprint(square(3))",
       "hint": "n * n 或 n ** 2。",
       "options": [],
@@ -59,6 +81,13 @@
       "type": "short",
       "title": "简答：return 与 print",
       "coach": "一个交回给调用方，一个只在屏幕上留痕迹。",
+      "concept": {
+        "normal": "return：把值交回程序（调用方可以接着用）。\nprint：把文字显示给人看（屏幕有输出，变量未必拿到值）。\n\n两者可以同时出现，但职责不同。初学优先想清楚：这次是要「给人看」还是「给程序用」。"
+      },
+      "example": {
+        "code": "def bad():\n    print(10)   # 屏幕有 10，返回 None\n\ndef good():\n    return 10\n\nx = bad()   # x 是 None\ny = good()  # y 是 10",
+        "note": "对比「只显示」与「交回值」。"
+      },
       "prompt": "用一两句话写出 return 与 print 的关键差别（可举例）。",
       "hint": "提到「调用方能否接收」或 None。",
       "options": [],
@@ -83,6 +112,13 @@
       "type": "code",
       "title": "代码：写一个打招呼函数",
       "coach": "小函数：一个参数，拼接后 return。",
+      "concept": {
+        "normal": "小函数练习：一个参数，拼接字符串，用 return 交回。\n\ndef greeting(name):\n    return \"hi \" + name\n\n调用 greeting(\"Ada\") 应得到 hi Ada（hi 与名字之间有一个空格）。"
+      },
+      "example": {
+        "code": "def greeting(name):\n    return \"hi \" + name\n\nprint(greeting(\"Ada\"))  # hi Ada",
+        "note": "参数进、拼接、return 出。"
+      },
       "prompt": "定义函数 greeting(name)，返回字符串 \"hi \" 与 name 的拼接（中间有一个空格）。例如 greeting(\"Ada\") 得到 hi Ada。",
       "hint": "def greeting(name): return \"hi \" + name",
       "options": [],

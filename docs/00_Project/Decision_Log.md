@@ -78,6 +78,7 @@ tags:
 | D-046 | 2026-07-21 | **可选账号（非门槛）**：Dashboard 保持游客可用；轻量 username+password 哈希存库；登录后绑定进度/显示名；禁止注册墙。 | Accepted | Founder |
 | D-047 | 2026-07-21 | **Python 15 章主题骨架 + 先打穿 1～3 章**：主题序含 Introduction→…→Quiz；ready 对齐 Obsidian ch01 变量 / ch02 函数 / ch03 作用域；题源=Engineer OS 笔记**改编**（禁抄 Boot.dev 官网）；题型 mcq/fill/short/code；规则判定为主；4～15 skeleton 诚实未开放。 | Accepted | Founder |
 | D-048 | 2026-07-21 | **视觉迁暗色终端风**：采用 Boot.dev-inspired design tokens（primary `#00FF88` 等）；弱化/不做 XP·商店·排行榜·成就墙；金仅作进度点缀；禁止问卷墙与注册门槛不变。 | Accepted | Founder |
+| D-049 | 2026-07-21 | **课内先学后练**：lesson 固定【学】【例】【练】【提交】；内容钩子 `concept.normal`（必填）/`concept.story`（可选）+ `example`；模式切换不影响判定。 | Accepted | Founder |
 
 ---
 

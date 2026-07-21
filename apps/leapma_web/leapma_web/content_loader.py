@@ -9,6 +9,17 @@ from typing import Any
 
 _CONTENT = Path(__file__).resolve().parents[1] / "content" / "python"
 
+_EXERCISE_KEYS = (
+    "type",
+    "prompt",
+    "hint",
+    "options",
+    "answers",
+    "checks",
+    "pass_feedback",
+    "fail_prefix",
+)
+
 
 def _chapter_path(chapter_id: str) -> Path:
     """Map py-01 → chapter_01.json, py-15 → chapter_15.json."""
@@ -29,7 +40,58 @@ def load_track() -> dict[str, Any]:
 
 @lru_cache(maxsize=32)
 def load_chapter(chapter_id: str) -> dict[str, Any]:
-    return json.loads(_chapter_path(chapter_id).read_text(encoding="utf-8-sig"))
+    raw = json.loads(_chapter_path(chapter_id).read_text(encoding="utf-8-sig"))
+    lessons = raw.get("lessons") or []
+    raw["lessons"] = [normalize_lesson(x) for x in lessons]
+    return raw
+
+
+def normalize_lesson(raw: dict[str, Any]) -> dict[str, Any]:
+    """Normalize concept / example / exercises into a stable lesson shape.
+
+    Compatible with:
+    - flat exercise fields (type/prompt/…) on the lesson (legacy)
+    - nested ``exercises[]`` (first item promoted when flat fields missing)
+    - ``concept`` as str or ``{normal, story?}``
+    - ``example`` as str or ``{code, note?}``
+    """
+    lesson = dict(raw)
+
+    exercises = lesson.get("exercises")
+    if isinstance(exercises, list) and exercises:
+        ex0 = exercises[0] if isinstance(exercises[0], dict) else {}
+        for key in _EXERCISE_KEYS:
+            cur = lesson.get(key)
+            empty = cur is None or cur == "" or cur == []
+            if empty and key in ex0:
+                lesson[key] = ex0[key]
+
+    concept = lesson.get("concept")
+    if isinstance(concept, str):
+        lesson["concept"] = {"normal": concept.strip(), "story": None}
+    elif isinstance(concept, dict):
+        normal = (concept.get("normal") or "").strip()
+        story_raw = concept.get("story")
+        story = (story_raw or "").strip() or None
+        lesson["concept"] = {"normal": normal, "story": story}
+    else:
+        # Legacy: coach as thin concept fallback (UI still shows 【学】)
+        fallback = (lesson.get("coach") or "").strip()
+        lesson["concept"] = {"normal": fallback, "story": None}
+
+    example = lesson.get("example")
+    if isinstance(example, str):
+        lesson["example"] = {"code": example, "note": ""}
+    elif isinstance(example, dict):
+        lesson["example"] = {
+            "code": example.get("code") or example.get("text") or "",
+            "note": example.get("note") or "",
+        }
+    else:
+        lesson["example"] = {"code": "", "note": ""}
+
+    lesson["has_story"] = bool(lesson["concept"].get("story"))
+    return lesson
 
 
 def list_chapters() -> list[dict[str, Any]]:
@@ -55,6 +117,28 @@ def chapter_is_playable(chapter_id: str) -> bool:
         return False
     ch = load_chapter(chapter_id)
     return any(not x.get("locked") for x in (ch.get("lessons") or []))
+
+
+def prev_lesson(chapter_id: str, lesson_id: str) -> tuple[str, str] | None:
+    lessons = load_chapter(chapter_id).get("lessons") or []
+    ids = [x["id"] for x in lessons]
+    if lesson_id not in ids:
+        return None
+    i = ids.index(lesson_id)
+    if i > 0:
+        return chapter_id, ids[i - 1]
+    chapters = list_chapters()
+    cids = [c["id"] for c in chapters]
+    if chapter_id not in cids:
+        return None
+    ci = cids.index(chapter_id)
+    if ci <= 0:
+        return None
+    prev_ch = cids[ci - 1]
+    prev_lessons = load_chapter(prev_ch).get("lessons") or []
+    if not prev_lessons:
+        return None
+    return prev_ch, prev_lessons[-1]["id"]
 
 
 def next_lesson(chapter_id: str, lesson_id: str) -> tuple[str, str] | None:

@@ -22,7 +22,7 @@ tags:
 | 项 | 值 |
 |----|-----|
 | **阶段** | **Phase 5 — 视觉 + 游客 Dashboard + Python 15 章骨架** |
-| **体验** | D-048 暗色终端风 tokens；D-045/046/047：游客 Dashboard；Python 1～3 ready，4～15 skeleton |
+| **体验** | D-048 暗色终端风；D-049 课内先学后练 + concept 多模式钩子；Python 1～3 ready，4～15 skeleton |
 
 ---
 

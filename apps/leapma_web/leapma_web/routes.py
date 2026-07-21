@@ -626,6 +626,23 @@ def lesson_play(chapter_id: str, lesson_id: str):
                         )
                     return redirect(url_for("growth.progress"))
 
+    prev = content.prev_lesson(chapter_id, lesson_id)
+    nxt = content.next_lesson(chapter_id, lesson_id)
+    prev_url = (
+        url_for("growth.lesson_play", chapter_id=prev[0], lesson_id=prev[1])
+        if prev
+        else None
+    )
+    next_url = None
+    if nxt:
+        nch, nl = nxt
+        nlesson = content.get_lesson(nch, nl)
+        nmeta = next((c for c in content.list_chapters() if c["id"] == nch), None)
+        locked_next = bool(nlesson and nlesson.get("locked"))
+        skeleton_next = bool(nmeta and nmeta.get("status") != "ready")
+        if not locked_next and not skeleton_next:
+            next_url = url_for("growth.lesson_play", chapter_id=nch, lesson_id=nl)
+
     return render_template(
         "lesson.html",
         chapter=ch,
@@ -633,4 +650,6 @@ def lesson_play(chapter_id: str, lesson_id: str):
         grade=grade,
         run_demo=run_demo,
         attempt_text=request.form.get("attempt_text", "") if request.method == "POST" else "",
+        prev_url=prev_url,
+        next_url=next_url,
     )

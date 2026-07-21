@@ -1,66 +1,179 @@
 {% extends "base.html" %}
 {% block title %}{{ lesson.title }}{% endblock %}
 {% block body %}
-<section class="panel">
+<nav class="breadcrumb" aria-label="面包屑">
+  <a href="{{ url_for('growth.dashboard') }}">Dashboard</a>
+  <span class="crumb-sep">/</span>
+  <a href="{{ url_for('growth.track_home') }}">Python</a>
+  <span class="crumb-sep">/</span>
+  <a href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">{{ chapter.title }}</a>
+  <span class="crumb-sep">/</span>
+  <span class="crumb-current">{{ lesson.title }}</span>
+</nav>
+
+<section class="panel lesson-shell">
   <p class="coach-label">{{ chapter.title }}</p>
   <h1>{{ lesson.title }}</h1>
-  {% if lesson.type %}
-  <p class="badge soft-type">题型 · {{ {'mcq':'单选','fill':'填空','short':'简答','code':'代码'}.get(lesson.type, lesson.type) }}</p>
-  {% endif %}
+  {% if lesson.coach %}
   <p class="coach-line">{{ lesson.coach }}</p>
-  <pre class="box code-block prompt-block">{{ lesson.prompt }}</pre>
-  {% if lesson.hint %}<p class="muted">提示：{{ lesson.hint }}</p>{% endif %}
-
-  {% if grade %}
-  <pre class="box {% if grade.passed %}highlight{% endif %}">{{ grade.body }}</pre>
-  {% if grade.passed %}
-  <p class="badge ok">判定：通过</p>
-  {% else %}
-  <p class="badge warn">判定：未过 · 改一改再交</p>
-  {% endif %}
   {% endif %}
 
-  {% if run_demo %}
-  <p class="badge demo">Run · Demo</p>
-  <p class="run-note">真沙箱执行尚未接入。当前请用 Submit 获得对错判定。</p>
-  {% endif %}
+  <div class="lesson-jump">
+    <a class="jump-practice" href="#practice">去练习 →</a>
+    <span class="muted">先学再练 · 讲解不会去掉</span>
+  </div>
 
-  {% if not lesson.locked %}
-  <form method="post" class="lesson-form">
-    {% if lesson.type == 'mcq' and lesson.options %}
-    <fieldset class="mcq-set">
-      <legend>选择一项</legend>
-      {% for opt in lesson.options %}
-      <label class="mcq-option">
-        <input type="radio" name="attempt_text" value="{{ opt.id }}"
-          {% if attempt_text == opt.id %}checked{% endif %} required>
-        <span><strong>{{ opt.id }}.</strong> {{ opt.text }}</span>
-      </label>
-      {% endfor %}
-    </fieldset>
-    {% elif lesson.type == 'fill' %}
-    <label for="attempt_text">填空作答</label>
-    <input id="attempt_text" type="text" name="attempt_text" class="fill-input"
-      value="{{ attempt_text or '' }}" placeholder="在此填写空白处…" required>
-    {% elif lesson.type == 'short' %}
-    <label for="attempt_text">简答（关键词判定）</label>
-    <textarea id="attempt_text" class="code" name="attempt_text" rows="5"
-      placeholder="用一两句话写要点…">{{ attempt_text or '' }}</textarea>
-    {% else %}
-    <label for="attempt_text">你的代码 / 作答</label>
-    <textarea id="attempt_text" class="code" name="attempt_text" rows="8"
-      placeholder="在此写下本课要求的代码…">{{ attempt_text or '' }}</textarea>
-    {% endif %}
-    <div class="btn-row">
-      <button type="submit" name="action" value="submit">Submit · 提交判定</button>
-      {% if lesson.type == 'code' or not lesson.type %}
-      <button type="submit" name="action" value="run" class="ghost">Run · 即将支持</button>
+  {# —— 【学】 —— #}
+  <section id="learn" class="lesson-section" aria-labelledby="learn-heading">
+    <h2 id="learn-heading" class="section-heading"><span class="section-tag">学</span> 概念</h2>
+
+    <div class="concept-mode-bar" role="group" aria-label="概念模式">
+      <button type="button" class="mode-btn is-active" data-mode="normal" id="mode-normal">正常模式</button>
+      {% if lesson.has_story %}
+      <button type="button" class="mode-btn" data-mode="story" id="mode-story">故事模式</button>
+      {% else %}
+      <button type="button" class="mode-btn is-disabled" disabled title="本课暂无故事模式">故事模式</button>
       {% endif %}
     </div>
-    <p class="run-note">判定以规则反馈为主。Run 为占位，不启动沙箱。</p>
-  </form>
-  {% endif %}
-  <p style="margin-top:1rem"><a href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">← 本章目录</a>
+
+    <div id="concept-normal" class="concept-body box soft" data-concept-panel="normal">{{ lesson.concept.normal }}</div>
+    {% if lesson.has_story %}
+    <div id="concept-story" class="concept-body box soft is-hidden" data-concept-panel="story" hidden>{{ lesson.concept.story }}</div>
+    {% endif %}
+  </section>
+
+  {# —— 【例】 —— #}
+  <section id="example" class="lesson-section" aria-labelledby="example-heading">
+    <h2 id="example-heading" class="section-heading"><span class="section-tag">例</span> 示例</h2>
+    {% if lesson.example.note %}
+    <p class="example-note">{{ lesson.example.note }}</p>
+    {% endif %}
+    {% if lesson.example.code %}
+    <pre class="box code-block">{{ lesson.example.code }}</pre>
+    {% else %}
+    <p class="muted">本课示例稍后再补。</p>
+    {% endif %}
+  </section>
+
+  {# —— 【练】 —— #}
+  <section id="practice" class="lesson-section" aria-labelledby="practice-heading">
+    <h2 id="practice-heading" class="section-heading"><span class="section-tag">练</span> 练习</h2>
+    {% if lesson.type %}
+    <p class="badge soft-type">题型 · {{ {'mcq':'单选','fill':'填空','short':'简答','code':'代码'}.get(lesson.type, lesson.type) }}</p>
+    {% endif %}
+    <pre class="box code-block prompt-block">{{ lesson.prompt }}</pre>
+    {% if lesson.hint %}<p class="muted">提示：{{ lesson.hint }}</p>{% endif %}
+  </section>
+
+  {# —— 【提交】 —— #}
+  <section id="submit" class="lesson-section" aria-labelledby="submit-heading">
+    <h2 id="submit-heading" class="section-heading"><span class="section-tag">提交</span> 判定</h2>
+
+    {% if grade %}
+    <pre class="box {% if grade.passed %}highlight{% endif %}">{{ grade.body }}</pre>
+    {% if grade.passed %}
+    <p class="badge ok">判定：通过</p>
+    {% else %}
+    <p class="badge warn">判定：未过 · 改一改再交</p>
+    {% endif %}
+    {% endif %}
+
+    {% if run_demo %}
+    <p class="badge demo">Run · Demo</p>
+    <p class="run-note">真沙箱执行尚未接入。当前请用 Submit 获得对错判定。</p>
+    {% endif %}
+
+    {% if not lesson.locked %}
+    <form method="post" class="lesson-form">
+      {% if lesson.type == 'mcq' and lesson.options %}
+      <fieldset class="mcq-set">
+        <legend>选择一项</legend>
+        {% for opt in lesson.options %}
+        <label class="mcq-option">
+          <input type="radio" name="attempt_text" value="{{ opt.id }}"
+            {% if attempt_text == opt.id %}checked{% endif %} required>
+          <span><strong>{{ opt.id }}.</strong> {{ opt.text }}</span>
+        </label>
+        {% endfor %}
+      </fieldset>
+      {% elif lesson.type == 'fill' %}
+      <label for="attempt_text">填空作答</label>
+      <input id="attempt_text" type="text" name="attempt_text" class="fill-input"
+        value="{{ attempt_text or '' }}" placeholder="在此填写空白处…" required>
+      {% elif lesson.type == 'short' %}
+      <label for="attempt_text">简答（关键词判定）</label>
+      <textarea id="attempt_text" class="code" name="attempt_text" rows="5"
+        placeholder="用一两句话写要点…">{{ attempt_text or '' }}</textarea>
+      {% else %}
+      <label for="attempt_text">你的代码 / 作答</label>
+      <textarea id="attempt_text" class="code" name="attempt_text" rows="8"
+        placeholder="在此写下本课要求的代码…">{{ attempt_text or '' }}</textarea>
+      {% endif %}
+      <div class="btn-row">
+        <button type="submit" name="action" value="submit">Submit · 提交判定</button>
+        {% if lesson.type == 'code' or not lesson.type %}
+        <button type="submit" name="action" value="run" class="ghost">Run · 即将支持</button>
+        {% endif %}
+      </div>
+      <p class="run-note">判定以规则反馈为主。概念模式不影响对错。Run 为占位，不启动沙箱。</p>
+    </form>
+    {% endif %}
+  </section>
+
+  <nav class="lesson-nav" aria-label="课间导航">
+    {% if prev_url %}
+    <a class="btn ghost" href="{{ prev_url }}">← Back</a>
+    {% else %}
+    <a class="btn ghost" href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">← 本章目录</a>
+    {% endif %}
+    {% if next_url %}
+    <a class="btn secondary" href="{{ next_url }}">Next →</a>
+    {% else %}
+    <a class="btn secondary" href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">本章目录 →</a>
+    {% endif %}
+  </nav>
+  <p class="lesson-foot-links"><a href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">← 本章目录</a>
   · <a href="{{ url_for('growth.dashboard') }}">Dashboard</a></p>
 </section>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll(".mode-btn[data-mode]");
+  if (!buttons.length) return;
+  var panels = {
+    normal: document.getElementById("concept-normal"),
+    story: document.getElementById("concept-story")
+  };
+  function setMode(mode) {
+    buttons.forEach(function (btn) {
+      btn.classList.toggle("is-active", btn.getAttribute("data-mode") === mode);
+    });
+    Object.keys(panels).forEach(function (key) {
+      var el = panels[key];
+      if (!el) return;
+      var on = key === mode;
+      el.hidden = !on;
+      el.classList.toggle("is-hidden", !on);
+    });
+    try {
+      var url = new URL(window.location.href);
+      if (mode === "story") url.searchParams.set("mode", "story");
+      else url.searchParams.delete("mode");
+      history.replaceState(null, "", url.pathname + url.search + url.hash);
+    } catch (e) { /* ignore */ }
+  }
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setMode(btn.getAttribute("data-mode"));
+    });
+  });
+  var initial = "normal";
+  try {
+    if (new URLSearchParams(window.location.search).get("mode") === "story" && panels.story) {
+      initial = "story";
+    }
+  } catch (e) { /* ignore */ }
+  setMode(initial);
+})();
+</script>
 {% endblock %}
