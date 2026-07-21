@@ -19,5 +19,6 @@ tags:
 | [[Roadmap]] | 阶段路线 |
 | [[Current_State]] | 当前快照 |
 | [[Open_Questions]] | 未决问题 |
+| [[Decision_Log]] | 关键产品决策（Phase 0–2） |
 
 同步规则：`.cursor/rules/global/document-navigation-rule.mdc`

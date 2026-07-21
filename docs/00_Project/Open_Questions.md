@@ -48,9 +48,9 @@ tags:
 | Q-C1 | 问题级 PRD 的第一题应聚焦哪一痛点？ | Open | ICP + MVP Review 后 |
 | Q-C2 | 「有效成长会话」的用户可感知最小定义？ | Open | 调研 + NSM 校准 |
 | Q-C3 | 免费/付费价值边界？ | Open | MVP Freemium Review + 访谈 |
-| Q-C4 | 是否批准原则 9（Growth Before Monetization）修订稿？ | Open | 本轮 Founder Review |
-| Q-C5 | 付费「更强问题」列表是否正确？ | Open | Founder Review + 持续验证 |
-| Q-C6 | 目标驱动八步环是否作为 MVP 真源闭环？ | Open | 本轮 Founder Review |
+| Q-C4 | 原则 9 Growth Before Monetization 正式内容 | **Resolved** | [[Decision_Log]] D-031 |
+| Q-C5 | 付费「更强问题」列表细节 | Open | PRD + 持续验证 |
+| Q-C6 | 目标驱动八步环是否产品真源 | **Resolved** = Core Growth Loop v1.0 | [[Decision_Log]] D-033 |
 
 ## D. 技术（全部未决 — 禁止提前锁死）
 

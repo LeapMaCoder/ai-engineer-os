@@ -72,7 +72,7 @@ flowchart LR
 - 用强骚扰兑换留存  
 - 把免费用户当「转化炮灰」叙事  
 
-级别：原则 9 Growth Before Monetization — Founder 方向已通过，文案修订待本轮 Review 确认；商业压力下能否坚持 — **Unknown**
+级别：原则 9 Growth Before Monetization — **Accepted**（Phase 2 定稿）；商业压力下执行力 — **Unknown**
 
 ---
 

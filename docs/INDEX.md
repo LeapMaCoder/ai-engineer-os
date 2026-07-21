@@ -27,6 +27,7 @@ tags:
 | [[Roadmap]] | Phase 路线图 |
 | [[Current_State]] | 产品/技术/决策快照 |
 | [[Open_Questions]] | 未决问题清单 |
+| [[Decision_Log]] | Phase 0–2 关键产品决策 |
 
 ## 1. 愿景 `01_Vision/`
 
@@ -73,15 +74,15 @@ tags:
 | 文档 | 说明 |
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
-| [[MVP/README]] | **MVP 包（草稿，待 Founder Review）** |
+| [[MVP/README]] | **MVP 包（Phase 2 定稿）** |
 | → [[MVP_Vision]] | MVP 目标与价值 |
-| → [[Core_Growth_Loop]] | 成长闭环 |
+| → [[Core_Growth_Loop]] | **Growth Loop v1.0 产品真源** |
 | → [[Free_vs_Paid_Strategy]] | Freemium |
 | → [[MVP_Scope]] / [[Non_Goals]] | 范围 |
-| → [[Success_Metrics]] | 成功指标（含 Monetization Signal） |
+| → [[Success_Metrics]] | 指标（含 Monetization Signal / WTP） |
 | → [[MVP_User_Journey]] | 旅程 |
 | → [[MVP_Risk_Assessment]] | 风险 |
-| PRD | ⏳ 尚未创建 |
+| PRD | ⏳ **Phase 3 Ready** — 待撰写 |
 
 ## 4–11. 工程文档（占位）
 

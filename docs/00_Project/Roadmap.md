@@ -110,11 +110,7 @@ timeline
 - 成功指标与风险
 - Founder Review 通过
 
-**状态：** 📝 首轮方向通过；修订稿（目标驱动环 / Growth Before Monetization / Monetization Signal / Continuous Validation）**等待 Founder Review**；按要求暂不 commit  
-
-**下一阶段：** MVP PRD Definition  
-
-**进入下一阶段前：** 本轮 Review 通过即可起草 PRD；User Research **并行持续验证**，不作为阻塞门禁
+**状态：** ✅ Phase 2 定稿（Finalization 文档待 Founder 确认）；下一阶段 **Phase 3 MVP PRD Definition Ready**
 
 ---
 

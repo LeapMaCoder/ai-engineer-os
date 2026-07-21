@@ -10,7 +10,8 @@ tags:
   - mvp
   - metrics
   - leapma
-review: founder_pending
+review: approved
+status_note: "Phase 2 finalized; WTP signal added"
 ---
 
 # Success Metrics — MVP 成功指标
@@ -80,11 +81,13 @@ flowchart LR
 | 升级兴趣 | 主动询问会员/升级、点击了解付费价值（非强迫） | **Hypothesis** |
 | 高级能力需求 | 表达需要更深诊断、更强路径、更高强度辅导 | **Hypothesis** |
 | 价值感知 | 能用自己的话说清「免费已有用，若付费希望多得到什么」 | **Hypothesis** |
+| Willingness To Pay Signal | 在无强迫下表达愿为增强价值付出代价的意向（口头/选择/候名单等，非强制收款） | **Hypothesis** |
 
 **纪律：**
 
-- Monetization Signal ≠ 收入 KPI  
-- 无信号时优先修成长闭环，而不是加硬 paywall  
+- Monetization Signal ≠ 收入 KPI；早期**不要求**真实付费  
+- Willingness To Pay Signal 是意向信号，**不是** Conversion 完成  
+- 无信号时优先修 [[Core_Growth_Loop]]，而不是加硬 paywall  
 - 有信号时再设计 Conversion 实验  
 
 对齐原则 9：Growth Before Monetization。
