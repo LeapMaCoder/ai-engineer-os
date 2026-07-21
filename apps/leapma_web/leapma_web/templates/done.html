@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}闭环完成{% endblock %}
+{% block body %}
+<section>
+  <h1>最小成长闭环已跑通（AC-04）</h1>
+  <p class="badge ok">未付费路径可完成 · 无付费墙</p>
+  <h2>你能复述的下一步（曾）</h2>
+  <p class="box">{{ gs.next_step }}</p>
+  <h2>你指出的进展</h2>
+  <p class="box">{{ gs.progress_note }}</p>
+  <h2>为何再来（GL-8）</h2>
+  <p class="box highlight">{{ gs.next_intent }}</p>
+  <form method="post" action="{{ url_for('growth.start') }}">
+    <button type="submit">再开一轮（续环）</button>
+  </form>
+</section>
+{% endblock %}

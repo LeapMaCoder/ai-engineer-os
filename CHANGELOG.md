@@ -12,7 +12,7 @@ LeapMa 的重要变更将记录在本文件中。
 - Phase 1–1.7：愿景/调研/访谈体系/ICP 框架/项目治理导航（Dashboard、INDEX、文档同步规则）。
 - Phase 2–3：MVP 策略、Growth Loop v1.0、PRD（Problem First）。
 - Phase 4：Specification Foundation；**SPEC-GL-001 = Approved**。
-- Phase 5：`SPEC-GL-001_Architecture` **Approved**；ADR-0001（Python）/ ADR-0002（MySQL）**Accepted**；AQ-001 SSR Web / AQ-002 可替换 LLM Provider；**未授权前不写业务代码**。
+- Phase 5：Arch/ADR Accepted；**垂直切片** `apps/leapma_web`（Flask SSR；Mock LLM；MySQL/SQLite）；ADR-0003 Flask。
 
 ## [0.0.0] - 2026-07-20
 

@@ -160,11 +160,11 @@ timeline
 
 **架构门禁：** ✅ [[SPEC-GL-001_Architecture]] **Approved** · ADR-0001/0002 **Accepted**
 
-**当前：** 门禁已过；**业务代码仍等待 Founder 显式授权**（本任务不 commit）
+**当前：** 门禁已过；垂直切片 `apps/leapma_web` **已落地**（待手工验收 / Founder commit）
 
-**禁止：** K8s/微服务；PHP 主栈；Hard No 域；无授权编码
+**禁止：** K8s/微服务；PHP 主栈；Hard No 域
 
-**其后：** 授权 → First Growth Experience 垂直切片（Python SSR + MySQL）
+**其后：** 验收 AC → commit → 迭代真实 LLM / MySQL 生产配置
 
 ---
 

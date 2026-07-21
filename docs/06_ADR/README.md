@@ -25,6 +25,7 @@ Proposed | Accepted | Deprecated | Superseded
 |----|------|------|
 | [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] | Runtime stack for SPEC-GL-001 | **Accepted** |
 | [[ADR-0002_Primary_Store_for_SPEC-GL-001]] | Primary store for SPEC-GL-001 | **Accepted** |
+| [[ADR-0003_Flask_SSR_for_SPEC-GL-001]] | Flask + Jinja SSR 实现选择 | **Accepted** |
 
 ## 规则
 

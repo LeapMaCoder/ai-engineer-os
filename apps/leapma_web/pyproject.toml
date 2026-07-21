@@ -1,0 +1,19 @@
+[project]
+name = "leapma-web"
+version = "0.1.0"
+description = "SPEC-GL-001 First Growth Experience — Flask SSR vertical slice"
+requires-python = ">=3.11"
+dependencies = [
+  "flask>=3.0,<4",
+  "python-dotenv>=1.0,<2",
+  "pymysql>=1.1,<2",
+  "cryptography>=42,<46",
+  "httpx>=0.27,<1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["leapma_web"]

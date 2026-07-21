@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}短练习 · GL-4{% endblock %}
+{% block body %}
+<section>
+  <h1>学习行动（GL-4）</h1>
+  <p>主路径：短练习。提问为辅（可把问题写在作答里）。</p>
+  <p class="box">{{ gs.exercise_prompt }}</p>
+  <form method="post">
+    <label for="attempt_text">你的作答</label>
+    <textarea id="attempt_text" name="attempt_text" rows="6" required placeholder="写你的理解/步骤/伪代码…"></textarea>
+    <label class="check">
+      <input type="checkbox" name="force_uncertain" value="1">
+      演示「不确定」坦诚分支（AC-02）
+    </label>
+    <button type="submit">提交并获取反馈（GL-5）</button>
+  </form>
+  <p class="muted">提示：输入含「不确定演示」也可触发坦诚分支；要求「代写整个项目」会被拒绝（Hard No）。</p>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}定向 · GL-1{% endblock %}
+{% block body %}
+<section>
+  <h1>目标意图（GL-1）</h1>
+  <p>用一句话说清你想提升什么、何为成功。不必完整职业规划。</p>
+  <form method="post">
+    <label for="goal_intent">目标意图</label>
+    <textarea id="goal_intent" name="goal_intent" rows="3" required placeholder="例：补 Python 基础，能独立写小脚本"></textarea>
+    <button type="submit">继续（推断位置感）</button>
+  </form>
+</section>
+{% endblock %}

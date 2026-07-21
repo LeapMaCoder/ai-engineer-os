@@ -97,6 +97,7 @@ tags:
 | [[06_ADR/README]] | ADR 索引 |
 | [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] | 运行时（**Accepted**：Python） |
 | [[ADR-0002_Primary_Store_for_SPEC-GL-001]] | 主存（**Accepted**：MySQL） |
+| [[ADR-0003_Flask_SSR_for_SPEC-GL-001]] | Web 框架（**Accepted**：Flask SSR） |
 
 ## 6–11. 工程文档（占位）
 

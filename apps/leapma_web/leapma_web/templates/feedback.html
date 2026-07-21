@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}AI 反馈 · GL-5{% endblock %}
+{% block body %}
+<section>
+  <h1>可信反馈（GL-5 / AC-02）</h1>
+  {% if gs.feedback_uncertain %}
+    <p class="badge warn">uncertain = true（坦诚边界）</p>
+  {% endif %}
+  {% if gs.feedback_rejected_codegen %}
+    <p class="badge warn">已拒绝：代写整项目主价值</p>
+  {% endif %}
+  <pre class="box">{{ gs.feedback_body }}</pre>
+  <p class="muted">你的作答摘要：{{ gs.attempt_text[:120] }}{% if gs.attempt_text|length > 120 %}…{% endif %}</p>
+  <p><a class="btn" href="{{ url_for('growth.progress') }}">回顾进展（GL-6…8）</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}进展 · GL-6…8{% endblock %}
+{% block body %}
+<section>
+  <h1>进展可见与续环（GL-6 / GL-7 / GL-8 · AC-03）</h1>
+  <p>请你指出相对目标的至少一点<strong>具体</strong>进展（禁止空夸奖/假等级）。</p>
+  <p class="muted">目标：{{ gs.goal_intent }}</p>
+  <form method="post">
+    <label for="progress_note">我的具体进展（≥1 点）</label>
+    <textarea id="progress_note" name="progress_note" rows="3" required placeholder="例：我能用自己的话说明 X，并知道下一处要改 Y"></textarea>
+    <label for="next_intent">为何再来 / 下一方向</label>
+    <textarea id="next_intent" name="next_intent" rows="2" required placeholder="例：下次继续改错点 Y，或把目标收窄到 Z"></textarea>
+    <button type="submit">完成最小闭环</button>
+  </form>
+</section>
+{% endblock %}

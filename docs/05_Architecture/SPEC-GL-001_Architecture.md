@@ -184,7 +184,7 @@ sequenceDiagram
 
 | 主题 | 决策 | 状态 |
 |------|------|------|
-| 运行时 | Python 单应用（Web + AI 编排）；**不锁**具体 Web 框架名 | ADR-0001 **Accepted** |
+| 运行时 | Python 单应用（不锁框架名）→ 实现选定 **Flask SSR**（ADR-0003） | ADR-0001 **Accepted** · ADR-0003 **Accepted** |
 | UI 形态 | **简单 Web，服务端渲染优先**；非复杂 SPA；非纯 CLI 产品 | AQ-001 **Resolved** |
 | 主存储 | MySQL Primary Store | ADR-0002 **Accepted** |
 | Redis | 首切片非必须 | Deferred |

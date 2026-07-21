@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}下一步 · GL-3{% endblock %}
+{% block body %}
+<section>
+  <h1>明确下一步（GL-3 / AC-01）</h1>
+  <p>请你能主动复述：接下来我该做什么？</p>
+  <p class="box highlight">{{ gs.next_step }}</p>
+  <p class="muted">目标：{{ gs.goal_intent }}</p>
+  <p><a class="btn" href="{{ url_for('growth.exercise') }}">开始短练习（GL-4）</a></p>
+</section>
+{% endblock %}

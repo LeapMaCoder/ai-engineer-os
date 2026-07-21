@@ -20,13 +20,13 @@ LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品
 
 ## 当前阶段
 
-**Phase 5 — Architecture Approved**（待 Founder 显式授权垂直切片编码）
+**Phase 5 — Vertical Slice 进行中**（`apps/leapma_web` · SPEC-GL-001）
 
-已完成：SPEC-GL-001 Approved · Arch Approved · ADR-0001/0002 Accepted
+已完成：Spec / Arch / ADR Accepted；Founder 已授权编码。
 
-**禁止：** 无显式授权的业务功能代码。
+启动与验收：[apps/leapma_web/README.md](apps/leapma_web/README.md)
 
-详情：[Current_State](docs/00_Project/Current_State.md) · [Architecture](docs/05_Architecture/SPEC-GL-001_Architecture.md)
+**Agent 不 commit**（Founder 手动）。
 
 ## 开发方式
 

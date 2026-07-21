@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}LeapMa · First Growth Experience{% endblock %}
+{% block body %}
+<section>
+  <h1>First Growth Experience</h1>
+  <p>走完最小闭环：定向 → 短练习 → 可信反馈 → 进展可见 → 为何再来。未付费即可完成（AC-04）。</p>
+  <form method="post" action="{{ url_for('growth.start') }}">
+    <button type="submit">开始（匿名免费会话）</button>
+  </form>
+  <p class="muted">GL-1…8 最小路径 · Mock LLM 默认可跑通</p>
+</section>
+{% endblock %}
