@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}注册 · LeapMa{% endblock %}
+{% block body %}
+<section class="panel" style="max-width:28rem">
+  <p class="coach-label">可选 · 非门槛</p>
+  <h1>注册</h1>
+  <p class="lede">最小账号：用户名 + 密码。邮箱可选。不注册也能学 Python 第 1 章。</p>
+  <form method="post" action="{{ url_for('growth.register') }}">
+    <label for="username">用户名</label>
+    <input id="username" type="text" name="username" required maxlength="32" autocomplete="username">
+    <label for="password">密码（至少 6 位）</label>
+    <input id="password" type="password" name="password" required minlength="6" autocomplete="new-password">
+    <label for="display_name">显示名（可选）</label>
+    <input id="display_name" type="text" name="display_name" maxlength="32" placeholder="默认用用户名">
+    <label for="email">邮箱（可选）</label>
+    <input id="email" type="email" name="email" maxlength="255" autocomplete="email">
+    <button type="submit">创建账号</button>
+  </form>
+  <p class="muted" style="margin-top:1rem">
+    已有账号？<a href="{{ url_for('growth.login') }}">登录</a>
+    · <a href="{{ url_for('growth.dashboard') }}">先去 Dashboard</a>
+  </p>
+</section>
+{% endblock %}

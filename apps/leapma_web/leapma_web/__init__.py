@@ -34,6 +34,9 @@ def create_app() -> Flask:
     @app.context_processor
     def inject_guest():
         name = (session.get("display_name") or "").strip()
-        return {"guest_label": name if name else "游客"}
+        return {
+            "guest_label": name if name else "游客",
+            "logged_in": bool(session.get("logged_in")),
+        }
 
     return app

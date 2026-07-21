@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import re
 
+from datetime import date
+
 from flask import (
     Blueprint,
     current_app,
@@ -14,6 +16,7 @@ from flask import (
     session,
     url_for,
 )
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from leapma_web import db
 from leapma_web import content_loader as content
@@ -33,11 +36,36 @@ PYTHON_CHIPS = [
     "职场补 Python 入门",
 ]
 
+# 章级能力短标签（进度文案用，非问卷）
+CHAPTER_CAPABILITY = {
+    "py-01": "会用 print",
+    "py-02": "会用变量",
+    "py-03": "会用 if",
+}
+
+COACH_TIPS = [
+    "模糊了就复习上一课，再回来继续。",
+    "一次只练一小步；通过了再往下。",
+    "提交判定比完美代码更重要——先动手。",
+    "卡住超过十分钟？回头看教练提示。",
+    "进度用「会不会」衡量，不看虚荣百分比。",
+]
+
 
 def _uid() -> str:
     if "user_id" not in session:
         session["user_id"] = db.create_user(is_paid=False)
     return session["user_id"]
+
+
+def _is_logged_in() -> bool:
+    return bool(session.get("logged_in"))
+
+
+def _coach_tip(user_id: str) -> str:
+    """Rotate one tip per calendar day (stable for same user)."""
+    seed = sum(ord(c) for c in (user_id or "x")[:8]) + date.today().toordinal()
+    return COACH_TIPS[seed % len(COACH_TIPS)]
 
 
 def _sid() -> str | None:
@@ -250,19 +278,44 @@ def done():
 # --- Guest dashboard / personal center ---
 
 
-def _continue_target(user_id: str) -> tuple[str, str]:
-    """Return (url, title) for continue CTA."""
+def _chapter_progress(user_id: str, chapter_id: str, status: str) -> tuple[int, int]:
+    """Return (passed, total) for unlocked lessons; skeleton → (0, 0)."""
+    if status != "ready":
+        return 0, 0
+    ch = content.load_chapter(chapter_id)
+    lessons = [x for x in (ch.get("lessons") or []) if not x.get("locked")]
     passed = db.list_passed_lessons(user_id, "python")
-    ch1 = content.load_chapter("py-01")
-    for lesson in ch1.get("lessons") or []:
-        if lesson["id"] not in passed and not lesson.get("locked"):
+    n_pass = sum(1 for x in lessons if x["id"] in passed)
+    return n_pass, len(lessons)
+
+
+def _continue_target(user_id: str) -> tuple[str, str, str | None]:
+    """Return (url, cta_label, lesson_title) for continue CTA.
+
+    Jumps to the next incomplete unlocked lesson on a ready chapter.
+    """
+    passed = db.list_passed_lessons(user_id, "python")
+    for meta in content.list_chapters():
+        if meta["status"] != "ready":
+            continue
+        ch = content.load_chapter(meta["id"])
+        for lesson in ch.get("lessons") or []:
+            if lesson.get("locked") or lesson["id"] in passed:
+                continue
+            cap = CHAPTER_CAPABILITY.get(meta["id"], "")
+            n, total = _chapter_progress(user_id, meta["id"], meta["status"])
+            # chapter index from id suffix when possible
+            label = f"继续学习 · 第{meta['id'].replace('py-0', '')}章 {n}/{total}"
+            if cap:
+                label = f"{label} · {cap}"
             return (
                 url_for(
                     "growth.lesson_play",
-                    chapter_id="py-01",
+                    chapter_id=meta["id"],
                     lesson_id=lesson["id"],
                 ),
-                f"继续：{ch1['title']} · {lesson['title']}",
+                label,
+                lesson.get("title"),
             )
     last = db.latest_attempted_lesson(user_id, "python")
     if last:
@@ -271,74 +324,170 @@ def _continue_target(user_id: str) -> tuple[str, str]:
         title = lesson["title"] if lesson else lid
         return (
             url_for("growth.lesson_play", chapter_id=cid, lesson_id=lid),
-            f"回到：{title}",
+            f"回到上一练 · {title}",
+            title,
         )
     return (
         url_for("growth.chapter_view", chapter_id="py-01"),
-        "开始：Python 第 1 章",
+        "开始学习 · 第1章 0/3 · 会用 print",
+        None,
     )
+
+
+def _current_status_line(user_id: str) -> str:
+    """一行状态：能力语言 + N/M。"""
+    for meta in content.list_chapters():
+        if meta["status"] != "ready":
+            continue
+        n, total = _chapter_progress(user_id, meta["id"], meta["status"])
+        cap = CHAPTER_CAPABILITY.get(meta["id"], "")
+        ch_num = meta["id"].replace("py-0", "").replace("py-", "")
+        if n < total:
+            base = f"第{ch_num}章 {n}/{total}"
+            return f"{base} · {cap}" if cap else base
+    # all ready chapters complete (or none)
+    n, total = _chapter_progress(user_id, "py-01", "ready")
+    if total and n >= total:
+        return f"第1章 {n}/{total} · 会用 print（本章已过）"
+    return "第1章 0/3 · 会用 print（尚未开始）"
 
 
 @bp.get("/dashboard")
 @bp.get("/me")
 def dashboard():
     uid = _uid()
-    display_name = (session.get("display_name") or "").strip() or "游客"
-    passed = db.list_passed_lessons(uid, "python")
+    logged_in = _is_logged_in()
+    user = db.get_user(uid) if logged_in else None
+    display_name = (session.get("display_name") or "").strip()
+    if not display_name and user and user.display_name:
+        display_name = user.display_name
+        session["display_name"] = display_name
+    if not display_name:
+        display_name = "游客"
+
     chapter_rows = []
     for meta in content.list_chapters():
-        ch = content.load_chapter(meta["id"])
-        lessons = [x for x in (ch.get("lessons") or []) if not x.get("locked")]
-        total = len(lessons) if meta["status"] == "ready" else 0
-        n_pass = sum(1 for x in lessons if x["id"] in passed)
+        n_pass, total = _chapter_progress(uid, meta["id"], meta["status"])
+        cap = CHAPTER_CAPABILITY.get(meta["id"], "")
         if meta["status"] != "ready":
-            pct = 0
-            pct_label = "未开放"
+            nm_label = "未开放"
+            status_text = "尚未交付 · 诚实占位"
         elif total == 0:
-            pct = 0
-            pct_label = "0%"
+            nm_label = "0/0"
+            status_text = cap or ""
         else:
-            pct = int(round(100 * n_pass / total))
-            pct_label = f"{pct}%"
+            nm_label = f"{n_pass}/{total}"
+            status_text = cap
         chapter_rows.append(
             {
                 "id": meta["id"],
                 "title": meta["title"],
                 "status": meta["status"],
                 "passed": n_pass,
-                "total": total if meta["status"] == "ready" else 0,
-                "pct": pct,
-                "pct_label": pct_label,
+                "total": total,
+                "nm_label": nm_label,
+                "capability": status_text,
+                "bar_pct": int(round(100 * n_pass / total)) if total else 0,
                 "url": url_for("growth.chapter_view", chapter_id=meta["id"]),
             }
         )
-    continue_url, continue_title = _continue_target(uid)
-    gs = db.latest_session_for_user(uid)
-    progress_line = None
-    if gs and (gs.progress_note or gs.next_step or gs.feedback_body):
-        if gs.progress_note:
-            progress_line = f"最近进展：{gs.progress_note[:120]}"
-        elif gs.next_step:
-            progress_line = f"当前下一步：{gs.next_step[:120]}"
-        else:
-            progress_line = "你已开始一轮练习；继续推进章节即可。"
+    continue_url, continue_title, continue_lesson = _continue_target(uid)
+    status_line = _current_status_line(uid)
     return render_template(
         "dashboard.html",
         guest_id_short=uid[:8],
         display_name=display_name,
+        logged_in=logged_in,
+        username=(user.username if user else None),
         chapter_rows=chapter_rows,
         continue_url=continue_url,
         continue_title=continue_title,
-        progress_line=progress_line,
+        continue_lesson=continue_lesson,
+        status_line=status_line,
+        coach_tip=_coach_tip(uid),
     )
 
 
 @bp.post("/dashboard/name")
 def dashboard_name():
-    _uid()
+    uid = _uid()
     name = (request.form.get("display_name") or "").strip()[:32]
     session["display_name"] = name
+    if _is_logged_in():
+        db.set_user_display_name(uid, name or None)
     flash("显示名已更新。" if name else "已恢复为「游客」。")
+    return redirect(url_for("growth.dashboard"))
+
+
+def _bind_account(account_id: str, *, display_name: str | None = None) -> None:
+    """Switch session to registered account; merge guest progress if any."""
+    guest_id = session.get("user_id")
+    if guest_id and guest_id != account_id and not session.get("logged_in"):
+        db.merge_guest_into_user(guest_id, account_id)
+    session["user_id"] = account_id
+    session["logged_in"] = True
+    if display_name is not None:
+        session["display_name"] = display_name
+    elif not session.get("display_name"):
+        user = db.get_user(account_id)
+        if user and user.display_name:
+            session["display_name"] = user.display_name
+
+
+@bp.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+    username = (request.form.get("username") or "").strip()
+    password = request.form.get("password") or ""
+    display_name = (request.form.get("display_name") or "").strip()[:32]
+    email = (request.form.get("email") or "").strip()[:255] or None
+    if len(username) < 2 or len(username) > 32:
+        flash("用户名请用 2～32 个字符。")
+        return render_template("register.html")
+    if len(password) < 6:
+        flash("密码至少 6 位。")
+        return render_template("register.html")
+    try:
+        uid = db.register_user(
+            username=username,
+            password_hash=generate_password_hash(password),
+            display_name=display_name or username,
+            email=email,
+        )
+    except ValueError as exc:
+        flash(str(exc))
+        return render_template("register.html")
+    _bind_account(uid, display_name=display_name or username)
+    flash("注册成功。游客进度已尽量并入账号；Dashboard 仍可不登录使用。")
+    return redirect(url_for("growth.dashboard"))
+
+
+@bp.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+    username = (request.form.get("username") or "").strip()
+    password = request.form.get("password") or ""
+    user = db.get_user_by_username(username)
+    if not user or not user.password_hash:
+        flash("用户名或密码不对。")
+        return render_template("login.html")
+    if not check_password_hash(user.password_hash, password):
+        flash("用户名或密码不对。")
+        return render_template("login.html")
+    _bind_account(user.id, display_name=user.display_name or user.username)
+    flash("已登录。进度已关联到账号。")
+    return redirect(url_for("growth.dashboard"))
+
+
+@bp.post("/logout")
+def logout():
+    session.pop("logged_in", None)
+    # Keep a fresh guest identity so Dashboard stays usable without wall.
+    session["user_id"] = db.create_user(is_paid=False)
+    session.pop("growth_session_id", None)
+    flash("已退出。你仍可游客身份继续练。")
     return redirect(url_for("growth.dashboard"))
 
 

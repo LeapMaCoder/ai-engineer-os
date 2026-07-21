@@ -1,41 +1,53 @@
 {% extends "base.html" %}
 {% block title %}Dashboard · LeapMa{% endblock %}
 {% block body %}
-<section class="panel">
-  <p class="coach-label">个人中心 · 游客</p>
-  <h1>你的成长面板</h1>
-  <p class="lede">无需注册。这里是路线与进度的门面——看见走到哪了，然后继续练。</p>
+<section class="panel dash-hero">
+  <p class="coach-label">{% if logged_in %}个人中心 · 已登录{% else %}个人中心 · 游客可用{% endif %}</p>
+  <h1>继续学习</h1>
+  <p class="dash-status">{{ status_line }}</p>
+  {% if continue_lesson %}
+  <p class="muted dash-next-lesson">下一练：{{ continue_lesson }}</p>
+  {% endif %}
+  <a class="btn btn-continue" href="{{ continue_url }}">{{ continue_title }}</a>
+  <p class="dash-tip" role="note"><span class="dash-tip-label">教练 Tip</span> {{ coach_tip }}</p>
 </section>
 
 <section class="dash-grid two" style="margin-top:1rem">
   <div class="panel">
     <h2>身份</h2>
-    <p class="muted">Guest ID（会话）</p>
-    <p class="stat" style="font-size:1rem;word-break:break-all">{{ guest_id_short }}</p>
+    <p class="muted">{% if logged_in %}账号{% else %}Guest ID（会话）{% endif %}</p>
+    <p class="stat" style="font-size:1rem;word-break:break-all">
+      {% if logged_in and username %}{{ username }}{% else %}{{ guest_id_short }}{% endif %}
+    </p>
     <form method="post" action="{{ url_for('growth.dashboard_name') }}">
       <label for="display_name">显示名（可改，非问卷）</label>
       <input id="display_name" type="text" name="display_name" value="{{ display_name }}" maxlength="32" placeholder="例如：阿码">
       <button type="submit">保存显示名</button>
     </form>
+    {% if not logged_in %}
+    <p class="muted" style="margin-top:1rem">注册可选——不挡 Dashboard。想跨设备保留进度再登录。</p>
+    <p class="btn-row">
+      <a class="btn secondary" href="{{ url_for('growth.login') }}">登录</a>
+      <a class="btn ghost" href="{{ url_for('growth.register') }}">注册</a>
+    </p>
+    {% else %}
+    <form method="post" action="{{ url_for('growth.logout') }}" style="margin-top:1rem">
+      <button type="submit" class="ghost">退出登录</button>
+    </form>
+    {% endif %}
   </div>
 
   <div class="panel">
-    <h2>继续学习</h2>
-    {% if continue_title %}
-    <p class="coach-line">{{ continue_title }}</p>
-    {% else %}
-    <p class="coach-line">还没有进度。从 Python 第 1 章开始。</p>
-    {% endif %}
-    <a class="btn" href="{{ continue_url }}">继续上次学习</a>
-    {% if progress_line %}
-    <p class="muted" style="margin-top:1rem">{{ progress_line }}</p>
-    {% endif %}
+    <h2>当前课程</h2>
+    <p class="coach-line">Python 赛道</p>
+    <p class="dash-status-inline">{{ status_line }}</p>
+    <p class="muted">进度用能力 + 数字表示；未开放章不假装完成。</p>
   </div>
 </section>
 
 <section class="panel" style="margin-top:1rem">
-  <h2>Python 赛道路线</h2>
-  <p class="muted">参考「路线 + 进度」信息结构；第 2～3 章未开放时诚实标注，不假装完成。</p>
+  <h2>章列表 · 第 1～3 章</h2>
+  <p class="muted">N/M = 已过课数 / 本章可练课数。</p>
   <ul class="chapter-list">
     {% for row in chapter_rows %}
     <li>
@@ -43,15 +55,15 @@
         <span>
           {{ row.title }}
           {% if row.status == 'ready' %}
-            <span class="badge ok">{{ row.passed }}/{{ row.total }} 已过</span>
+            <span class="badge ok">{{ row.nm_label }}{% if row.capability %} · {{ row.capability }}{% endif %}</span>
           {% else %}
             <span class="badge warn">未开放</span>
           {% endif %}
         </span>
-        <span class="muted">{{ row.pct_label }}</span>
+        <span class="muted">{% if row.status == 'ready' %}{{ row.nm_label }}{% else %}未开放{% endif %}</span>
       </a>
-      {% if row.status == 'ready' %}
-      <div class="progress-bar" aria-hidden="true"><span style="width:{{ row.pct }}%"></span></div>
+      {% if row.status == 'ready' and row.total %}
+      <div class="progress-bar" aria-hidden="true"><span style="width:{{ row.bar_pct }}%"></span></div>
       {% else %}
       <div class="progress-bar" aria-hidden="true"><span style="width:0%"></span></div>
       {% endif %}

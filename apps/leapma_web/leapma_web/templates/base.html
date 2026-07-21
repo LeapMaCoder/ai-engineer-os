@@ -15,6 +15,13 @@
     <nav class="nav" aria-label="主导航">
       <a href="{{ url_for('growth.dashboard') }}" class="{% if request.endpoint == 'growth.dashboard' %}is-active{% endif %}">Dashboard</a>
       <a href="{{ url_for('growth.track_home') }}">开始练</a>
+      {% if logged_in %}
+      <form class="nav-auth" method="post" action="{{ url_for('growth.logout') }}">
+        <button type="submit" class="nav-linkish">退出</button>
+      </form>
+      {% else %}
+      <a href="{{ url_for('growth.login') }}">登录</a>
+      {% endif %}
       <span class="nav-guest">{{ guest_label }}</span>
     </nav>
   </header>

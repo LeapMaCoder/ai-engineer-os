@@ -75,6 +75,7 @@ tags:
 | D-043 | 2026-07-21 | **判定式/规则反馈优先**；真实 LLM 为辅（Later）。保留可替换 Provider；默认 mock；不以真实 LLM 为跑通前提。 | Accepted | Founder |
 | D-044 | 2026-07-21 | **Boot.dev 式章节动手路径**（窄路径、章内练习→可见对错）；初期 Python **前三章**，可一章一章交付；**禁止抄袭**竞品文本/习题。 | Accepted | Founder |
 | D-045 | 2026-07-21 | **成长可见门面**：自有视觉风格 + 游客个人中心 / Dashboard Demo（路线+进度，无强制注册、无复杂游戏化）；Run 沙箱可滞后。 | Accepted | Founder |
+| D-046 | 2026-07-21 | **可选账号（非门槛）**：Dashboard 保持游客可用；轻量 username+password 哈希存库；登录后绑定进度/显示名；禁止注册墙。 | Accepted | Founder |
 
 ---
 

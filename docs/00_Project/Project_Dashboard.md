@@ -22,7 +22,7 @@ tags:
 | 项 | 值 |
 |----|-----|
 | **阶段** | **Phase 5 — 视觉 + 游客 Dashboard + Python 切片** |
-| **体验** | D-045：自有风格；`/dashboard` 游客中心 Demo |
+| **体验** | D-045/D-046：游客 Dashboard + 可选登录；Boot.dev 式继续学习 / 章 N·M |
 
 ---
 

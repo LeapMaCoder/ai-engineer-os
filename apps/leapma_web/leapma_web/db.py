@@ -25,6 +25,7 @@ def init_db(database_url: str) -> None:
         with _connect() as conn:
             conn.executescript(_SQLITE_DDL)
             conn.commit()
+        _ensure_auth_columns()
     elif database_url.startswith("mysql"):
         _backend = "mysql"
         import pymysql
@@ -48,8 +49,35 @@ def init_db(database_url: str) -> None:
                 for stmt in _MYSQL_DDL:
                     cur.execute(stmt)
             conn.commit()
+        _ensure_auth_columns()
     else:
         raise ValueError(f"Unsupported DATABASE_URL scheme: {database_url}")
+
+
+def _ensure_auth_columns() -> None:
+    """Add optional auth columns on existing installs (CREATE IF NOT EXISTS misses ALTERs)."""
+    with _connect() as conn:
+        if _backend == "sqlite":
+            existing = {
+                r[1] for r in conn.execute("PRAGMA table_info(users)").fetchall()
+            }
+            for name, sqlite_type, _mysql_type in _AUTH_COLUMNS:
+                if name not in existing:
+                    # SQLite cannot add UNIQUE via ADD COLUMN; enforce in app.
+                    plain = sqlite_type.replace(" UNIQUE", "")
+                    conn.execute(f"ALTER TABLE users ADD COLUMN {name} {plain}")
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS "
+                    "WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'users'"
+                )
+                existing = {r["COLUMN_NAME"] for r in cur.fetchall()}
+                for name, _sqlite_type, mysql_type in _AUTH_COLUMNS:
+                    if name not in existing:
+                        cur.execute(f"ALTER TABLE users ADD COLUMN {name} {mysql_type}")
+            conn.commit()
 
 
 def _sqlite_path(url: str) -> Path:
@@ -97,7 +125,11 @@ _SQLITE_DDL = """
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,
   created_at TEXT NOT NULL,
-  is_paid INTEGER NOT NULL DEFAULT 0
+  is_paid INTEGER NOT NULL DEFAULT 0,
+  username TEXT UNIQUE,
+  email TEXT,
+  password_hash TEXT,
+  display_name TEXT
 );
 CREATE TABLE IF NOT EXISTS growth_sessions (
   id TEXT PRIMARY KEY,
@@ -137,7 +169,11 @@ _MYSQL_DDL = [
     """CREATE TABLE IF NOT EXISTS users (
   id VARCHAR(36) PRIMARY KEY,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  is_paid TINYINT(1) NOT NULL DEFAULT 0
+  is_paid TINYINT(1) NOT NULL DEFAULT 0,
+  username VARCHAR(64) NULL UNIQUE,
+  email VARCHAR(255) NULL,
+  password_hash VARCHAR(255) NULL,
+  display_name VARCHAR(64) NULL
 ) ENGINE=InnoDB""",
     """CREATE TABLE IF NOT EXISTS growth_sessions (
   id VARCHAR(36) PRIMARY KEY,
@@ -172,6 +208,13 @@ _MYSQL_DDL = [
   CONSTRAINT fk_utp_user FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB""",
 ]
+
+_AUTH_COLUMNS = (
+    ("username", "TEXT UNIQUE", "VARCHAR(64) NULL UNIQUE"),
+    ("email", "TEXT", "VARCHAR(255) NULL"),
+    ("password_hash", "TEXT", "VARCHAR(255) NULL"),
+    ("display_name", "TEXT", "VARCHAR(64) NULL"),
+)
 
 
 def _now() -> str:
@@ -427,3 +470,199 @@ def latest_attempted_lesson(user_id: str, track_id: str) -> Optional[tuple[str, 
         return None
     d = dict(row)
     return d["chapter_id"], d["lesson_id"]
+
+
+@dataclass
+class UserRecord:
+    id: str
+    is_paid: bool
+    username: Optional[str]
+    email: Optional[str]
+    password_hash: Optional[str]
+    display_name: Optional[str]
+
+
+def _row_to_user(row: Any) -> UserRecord:
+    d = dict(row)
+    return UserRecord(
+        id=d["id"],
+        is_paid=bool(d.get("is_paid")),
+        username=d.get("username"),
+        email=d.get("email"),
+        password_hash=d.get("password_hash"),
+        display_name=d.get("display_name"),
+    )
+
+
+def get_user(user_id: str) -> Optional[UserRecord]:
+    with _connect() as conn:
+        if _backend == "sqlite":
+            row = conn.execute(
+                "SELECT * FROM users WHERE id = ?", (user_id,)
+            ).fetchone()
+        else:
+            with conn.cursor() as cur:
+                cur.execute("SELECT * FROM users WHERE id = %s", (user_id,))
+                row = cur.fetchone()
+    return _row_to_user(row) if row else None
+
+
+def get_user_by_username(username: str) -> Optional[UserRecord]:
+    uname = (username or "").strip()
+    if not uname:
+        return None
+    with _connect() as conn:
+        if _backend == "sqlite":
+            row = conn.execute(
+                "SELECT * FROM users WHERE username = ? COLLATE NOCASE", (uname,)
+            ).fetchone()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT * FROM users WHERE username = %s",
+                    (uname,),
+                )
+                row = cur.fetchone()
+    return _row_to_user(row) if row else None
+
+
+def register_user(
+    *,
+    username: str,
+    password_hash: str,
+    display_name: str | None = None,
+    email: str | None = None,
+) -> str:
+    """Create a registered account user. Raises ValueError if username taken."""
+    uname = username.strip()
+    if get_user_by_username(uname):
+        raise ValueError("用户名已被占用")
+    uid = str(uuid.uuid4())
+    dname = (display_name or "").strip() or uname
+    em = (email or "").strip() or None
+    with _connect() as conn:
+        if _backend == "sqlite":
+            conn.execute(
+                "INSERT INTO users (id, created_at, is_paid, username, email, "
+                "password_hash, display_name) VALUES (?, ?, 0, ?, ?, ?, ?)",
+                (uid, _now(), uname, em, password_hash, dname),
+            )
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO users (id, is_paid, username, email, "
+                    "password_hash, display_name) VALUES (%s, 0, %s, %s, %s, %s)",
+                    (uid, uname, em, password_hash, dname),
+                )
+            conn.commit()
+    return uid
+
+
+def set_user_display_name(user_id: str, display_name: str | None) -> None:
+    name = (display_name or "").strip() or None
+    with _connect() as conn:
+        if _backend == "sqlite":
+            conn.execute(
+                "UPDATE users SET display_name = ? WHERE id = ?",
+                (name, user_id),
+            )
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "UPDATE users SET display_name = %s WHERE id = %s",
+                    (name, user_id),
+                )
+            conn.commit()
+
+
+def merge_guest_into_user(guest_id: str, account_id: str) -> None:
+    """Move guest progress/sessions onto an account. No-op if same id."""
+    if not guest_id or not account_id or guest_id == account_id:
+        return
+    with _connect() as conn:
+        if _backend == "sqlite":
+            # Progress: prefer account row on conflict; take guest if account missing.
+            rows = conn.execute(
+                "SELECT track_id, chapter_id, lesson_id, status, last_attempt, "
+                "last_passed, updated_at FROM user_track_progress WHERE user_id=?",
+                (guest_id,),
+            ).fetchall()
+            for r in rows:
+                existing = conn.execute(
+                    "SELECT 1 FROM user_track_progress WHERE user_id=? AND track_id=? "
+                    "AND chapter_id=? AND lesson_id=?",
+                    (account_id, r["track_id"], r["chapter_id"], r["lesson_id"]),
+                ).fetchone()
+                if existing:
+                    continue
+                conn.execute(
+                    "INSERT INTO user_track_progress "
+                    "(user_id, track_id, chapter_id, lesson_id, status, "
+                    "last_attempt, last_passed, updated_at) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                    (
+                        account_id,
+                        r["track_id"],
+                        r["chapter_id"],
+                        r["lesson_id"],
+                        r["status"],
+                        r["last_attempt"],
+                        r["last_passed"],
+                        r["updated_at"],
+                    ),
+                )
+            conn.execute(
+                "DELETE FROM user_track_progress WHERE user_id=?", (guest_id,)
+            )
+            conn.execute(
+                "UPDATE growth_sessions SET user_id=? WHERE user_id=?",
+                (account_id, guest_id),
+            )
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT track_id, chapter_id, lesson_id, status, last_attempt, "
+                    "last_passed, updated_at FROM user_track_progress WHERE user_id=%s",
+                    (guest_id,),
+                )
+                rows = cur.fetchall()
+                for r in rows:
+                    cur.execute(
+                        "SELECT 1 FROM user_track_progress WHERE user_id=%s AND "
+                        "track_id=%s AND chapter_id=%s AND lesson_id=%s",
+                        (
+                            account_id,
+                            r["track_id"],
+                            r["chapter_id"],
+                            r["lesson_id"],
+                        ),
+                    )
+                    if cur.fetchone():
+                        continue
+                    cur.execute(
+                        "INSERT INTO user_track_progress "
+                        "(user_id, track_id, chapter_id, lesson_id, status, "
+                        "last_attempt, last_passed, updated_at) "
+                        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                        (
+                            account_id,
+                            r["track_id"],
+                            r["chapter_id"],
+                            r["lesson_id"],
+                            r["status"],
+                            r["last_attempt"],
+                            r["last_passed"],
+                            r["updated_at"],
+                        ),
+                    )
+                cur.execute(
+                    "DELETE FROM user_track_progress WHERE user_id=%s", (guest_id,)
+                )
+                cur.execute(
+                    "UPDATE growth_sessions SET user_id=%s WHERE user_id=%s",
+                    (account_id, guest_id),
+                )
+            conn.commit()

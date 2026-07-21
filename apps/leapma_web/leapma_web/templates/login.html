@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}登录 · LeapMa{% endblock %}
+{% block body %}
+<section class="panel" style="max-width:28rem">
+  <p class="coach-label">可选 · 非门槛</p>
+  <h1>登录</h1>
+  <p class="lede">登录后进度绑到账号。游客仍可直接进 Dashboard，无需先注册。</p>
+  <form method="post" action="{{ url_for('growth.login') }}">
+    <label for="username">用户名</label>
+    <input id="username" type="text" name="username" required maxlength="32" autocomplete="username">
+    <label for="password">密码</label>
+    <input id="password" type="password" name="password" required autocomplete="current-password">
+    <button type="submit">登录</button>
+  </form>
+  <p class="muted" style="margin-top:1rem">
+    还没有账号？<a href="{{ url_for('growth.register') }}">注册</a>
+    · <a href="{{ url_for('growth.dashboard') }}">先去 Dashboard</a>
+  </p>
+</section>
+{% endblock %}
