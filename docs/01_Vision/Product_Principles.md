@@ -4,7 +4,7 @@ type: vision
 status: active
 owner: ""
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 tags:
   - vision
   - principles
@@ -146,6 +146,26 @@ flowchart TD
 
 ---
 
+## 原则 9：Growth Before Monetization（成长先于变现）
+
+**英文名：** Growth Before Monetization
+
+**陈述：** 产品首先帮助用户产生**真实成长**，再通过**增强价值**实现商业化。免费用户不是被限制的用户，而是**未来价值用户**。
+
+**决策含义：**
+
+- 先证明成长闭环成立，再优化变现强度
+- 免费层必须能跑通核心成长闭环（目标 → 评估 → 路径 → 行动 → 反馈 → 可见 → 下一目标）
+- 禁止用砍断关键成长体验的方式制造付费焦虑
+- 商业化做在强度 / 深度 / 速度等增强价值上，而非「能不能成长」
+- 短期转化率不得压过真实成长与长期信任
+
+**反例：** 用户尚未感到任何成长，就被付费墙挡住反馈与下一步。
+
+**来源：** Phase 2 Founder Review；详见 [[Free_vs_Paid_Strategy]]
+
+---
+
 ## 原则冲突时的裁决顺序
 
 当原则冲突时，按以下优先级裁决（高 → 低）：
@@ -153,7 +173,8 @@ flowchart TD
 ```mermaid
 flowchart TD
   P6[6 诚实 AI / 信任] --> P1[1 成长优先]
-  P1 --> P2[2 反馈优先]
+  P1 --> P9[9 Growth Before Monetization]
+  P9 --> P2[2 反馈优先]
   P2 --> P4[4 能力可见]
   P4 --> P3[3 个性化路径]
   P3 --> P5[5 有效坚持]
@@ -161,7 +182,7 @@ flowchart TD
   P8 --> P7[7 垂直优先]
 ```
 
-说明：信任与成长结果高于增长花活；垂直聚焦高于版图扩张。
+说明：信任与真实成长高于增长花活；**成长先于变现**；垂直聚焦高于版图扩张。
 
 ## 原则不会回答的问题
 
@@ -175,3 +196,5 @@ flowchart TD
 
 - [[LeapMa_Vision]]
 - [[Product_North_Star]]
+- [[Free_vs_Paid_Strategy]]
+- [[MVP_Vision]]

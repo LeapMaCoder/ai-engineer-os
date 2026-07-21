@@ -4,7 +4,7 @@ type: project
 status: active
 owner: ""
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 tags:
   - project
   - roadmap
@@ -24,9 +24,10 @@ timeline
   Phase 1.5 : 桌面调研
   Phase 1.6 : 用户发现访谈
   Phase 1.7 : 项目治理
-  Phase 2 : Spec 与架构
-  Phase 3 : 首个垂直切片实现
-  Phase 4+ : 扩展与规模化
+  Phase 2 : MVP 与增长模型
+  Phase 3 : Spec 与架构
+  Phase 4 : 首个垂直切片
+  Phase 5+ : 扩展与规模化
 ```
 
 ---
@@ -90,27 +91,41 @@ timeline
 
 ---
 
-## Phase 1.7 — Project Governance 🔄
+## Phase 1.7 — Project Governance ✅
 
 **目标：** 项目状态对 AI/人类可见
 
-**完成标志：**
-
-- Dashboard / Map / Roadmap / State / Open Questions
-- `docs/INDEX.md` + README 入口清晰
-- 文档导航 Cursor Rule
-
-**状态：** ✅ 完成（Dashboard / Map / Roadmap / State / Questions / INDEX / 导航 Rule）
+**状态：** ✅ 完成
 
 ---
 
-## Phase 2 — Specification & Architecture ⏳
+## Phase 2 — MVP & Growth Model Definition 🔄
+
+**目标：** 定义第一个 MVP，并同时考虑免费留存与付费转化
+
+**完成标志：**
+
+- `docs/03_Product/MVP/` 文档包
+- Freemium 价值差异（非残缺锁功能）
+- 成功指标与风险
+- Founder Review 通过
+
+**状态：** 📝 首轮方向通过；修订稿（目标驱动环 / Growth Before Monetization / Monetization Signal / Continuous Validation）**等待 Founder Review**；按要求暂不 commit  
+
+**下一阶段：** MVP PRD Definition  
+
+**进入下一阶段前：** 本轮 Review 通过即可起草 PRD；User Research **并行持续验证**，不作为阻塞门禁
+
+---
+
+## Phase 3 — Specification & Architecture ⏳
 
 **目标：** 在已定 ICP + 问题级 PRD 之后，形成可测试规格与系统设计
 
 **进入条件：**
 
-- 首发 ICP 已决策
+- MVP Review 通过（或修订后通过）
+- 首发 ICP 已决策（推荐）
 - 至少一份问题级 PRD 已批准
 - 核心假设 P0 非全部 Unvalidated
 
@@ -126,11 +141,11 @@ timeline
 
 ---
 
-## Phase 3 — First Vertical Slice ⏳
+## Phase 4 — First Vertical Slice ⏳
 
 **目标：** 首个可验证的垂直切片实现（具体范围以 Spec 为准）
 
-**进入条件：** Phase 2 门禁通过
+**进入条件：** Phase 3 门禁通过
 
 **产出（方向）：**
 
@@ -142,7 +157,7 @@ timeline
 
 ---
 
-## Phase 4+ — Expand & Operate ⏳
+## Phase 5+ — Expand & Operate ⏳
 
 **方向（非承诺）：**
 
@@ -159,9 +174,10 @@ timeline
 
 | 从 | 到 | 门禁 |
 |----|-----|------|
-| 1.6 | 2 前的 PRD | ICP 决策 + 访谈证据 |
-| PRD | Phase 2 | PRD 批准 |
-| Phase 2 | Phase 3 | Spec + Arch（+ADR） |
-| Phase 3 | Release | Review + Test 映射 Spec |
+| 1.6 | ICP | 访谈证据 + 框架打分 |
+| Phase 2 | PRD / Phase 3 | Founder Review MVP +（建议）ICP |
+| PRD | Phase 3 Spec | PRD 批准 |
+| Phase 3 | Phase 4 | Spec + Arch（+ADR） |
+| Phase 4 | Release | Review + Test 映射 Spec |
 
 详见 [[Development_Workflow]]。

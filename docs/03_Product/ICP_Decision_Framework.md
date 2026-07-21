@@ -19,7 +19,9 @@ related:
 # ICP Decision Framework — 首发用户选择方法
 
 本文提供**选择 LeapMa 第一个 MVP 服务人群**的方法。  
-在访谈证据进入 [[Hypothesis_Validation]] 之前，任何「已定 ICP」都只是 **Hypothesis**。
+在访谈证据进入 [[Hypothesis_Validation]] 之前，任何「已定 ICP」都只是 **Hypothesis**，且**可随持续验证修订**。
+
+ICP 打分**不阻塞** MVP PRD Definition（Continuous Validation）。
 
 **禁止：** 用本框架直接导出功能列表、页面或技术方案。
 

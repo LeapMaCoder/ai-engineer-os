@@ -4,7 +4,7 @@ type: project
 status: active
 owner: ""
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 tags:
   - project
   - state
@@ -13,68 +13,42 @@ tags:
 
 # Current State — 当前状态
 
-快照日期：`2026-07-20`  
-详细入口：[[Project_Dashboard]]
+快照日期：`2026-07-21`  
+入口：[[Project_Dashboard]]
 
 ## 1. 产品状态
 
 | 项 | 状态 |
 |----|------|
-| 愿景 / 原则 / 北极星 | ✅ 已文档化 |
-| 桌面调研 | ✅ 已完成 |
-| 一手用户访谈 | ❌ 0 / 10 |
-| 首发 ICP | ❌ 未决策（H8 仍为假设） |
-| 问题级 PRD | ❌ 无 |
-| Specification | ❌ 无 |
-| 可对用户演示的产品 | ❌ 无 |
-| 付费/增长实验 | ❌ 无 |
-
-**一句话：** 战略与研究骨架已立，**发现尚未完成**，无功能产品。
+| Phase 2 MVP 定义 | 首轮方向通过；**修订稿待 Founder Review** |
+| 原则 9 | Growth Before Monetization（修订稿） |
+| 成长环 | 目标驱动八步环（修订稿） |
+| Monetization Signal | 已写入指标（Hypothesis；早期不要求付费） |
+| User Research | Continuous Validation（**非**开发阻塞） |
+| MVP PRD | ⏳ 下一阶段 |
+| 访谈执行 | 0/N（可并行） |
+| 代码 / Spec | ❌ |
 
 ## 2. 技术状态
 
-| 项 | 状态 |
-|----|------|
-| 业务代码 | ❌ 无 |
-| 技术栈选型 | ❌ 未定（无 ADR） |
-| apps / services / packages | 仅 README 占位 |
-| infrastructure | 仅占位 |
-| CI/CD | ❌ 无 |
-| 数据库 / API / 页面 | ❌ 无 |
-
-**一句话：** 刻意保持技术真空，等待 Spec + Architecture。
+无业务代码；技术真空保持中。
 
 ## 3. 决策状态
 
-| 决策 | 状态 | 文档 |
-|------|------|------|
-| 做成长系统而非课超市 | 已接受（愿景层） | [[LeapMa_Vision]] |
-| SDD 为开发模式 | 已接受 | [[Development_Workflow]] |
-| NSM = WEGS | 已定义（未度量） | [[Product_North_Star]] |
-| 首发 ICP | **未决** | [[ICP_Decision_Framework]] |
-| 语言/框架/云 | **未决** | — |
-| License | **未决** | README |
-
-## 4. 未知问题（摘要）
-
-完整列表见 [[Open_Questions]]。最高优先级：
-
-1. 首发服务谁？（H8）
-2. 坚持失败的真实机制？（H2）
-3. 用户是否为反馈付费？（H4）
-4. AI 反馈信任边界？（H5）
-
-## 5. 证据健康度
-
-| 类型 | 水平 |
+| 决策 | 状态 |
 |------|------|
-| Confirmed（一手） | 极低 |
-| Hypothesis | 高（大量桌面推断） |
-| Unknown | 高（付费、留存、市场规模等） |
+| 整体 MVP 方向 | **通过**（Founder） |
+| Growth Before Monetization | 修订中，待二次确认 |
+| 目标驱动成长环 | 修订中，待二次确认 |
+| 访谈不阻塞 MVP | **通过**（Founder） |
+| 用户一定付费 | **明确不假设** |
 
-## 6. 变更日志（状态快照）
+## 4. 下一阶段
+
+**MVP PRD Definition**（本轮 Review 通过后）
+
+## 5. 变更日志
 
 | 日期 | 变化 |
 |------|------|
-| 2026-07-20 | 建立治理文档；Phase 1.7 ✅；主航道仍为 1.6 访谈 |
-| 2026-07-21 | docs 目录重编号：Vision=01 … Operations=11；Project 保留 00 |
+| 2026-07-21 | Phase 2 首轮通过后修订；Dashboard → MVP Definition Review；**未 commit** |

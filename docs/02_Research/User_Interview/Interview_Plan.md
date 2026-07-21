@@ -15,15 +15,28 @@ related:
   - "[[Founder_Interview_Guide]]"
 ---
 
-# 访谈计划 — Founder User Discovery
+# 访谈计划 — Continuous Validation
+
+## 0. 定位（Founder Review）
+
+User Research = **Continuous Validation（持续验证）**  
+**不是** MVP 开发 / PRD 推进的 **Development Blocker（开发阻塞）**。
+
+| 可以并行 | 不必等待「凑满 10 场」才开始 |
+|----------|------------------------------|
+| MVP PRD Definition | 用当前 Hypothesis 起草，标注证据级别 |
+| 假设滚动更新 | 每有新访谈就更新台账 |
+| ICP 打分 | 证据增强后修订，允许先验启动 |
+
+10 场仍是**推荐样本深度**，用于提高置信度，而非门禁闸门。
 
 ## 1. 访谈目标
 
-在 **10 次**创始人主导的用户访谈内，完成：
+在持续进行的创始人访谈中（建议累计约 10 次作为阶段里程碑）：
 
 1. 验证/证伪核心问题假设（H1–H7）
-2. 为三类候选人群打分，支撑首发 ICP 决策（H8 + [[ICP_Decision_Framework]]）
-3. 收集真实行为故事（最近一次学习），而非对 LeapMa 的偏好表态
+2. 为三类候选人群打分，支撑 ICP（H8）— **可修订，非一次性锁死**
+3. 收集真实行为故事，而非对 LeapMa 的偏好表态
 
 **本阶段不产出功能清单、页面或技术方案。**
 

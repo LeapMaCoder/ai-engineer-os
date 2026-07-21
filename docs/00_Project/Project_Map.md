@@ -72,7 +72,7 @@ flowchart LR
 | `00_Project/` | 导航、阶段、状态、未决问题 | **活跃** |
 | `01_Vision/` | 使命愿景原则北极星 | 活跃 |
 | `02_Research/` | 用户/竞品/市场/访谈 | 活跃（访谈待执行） |
-| `03_Product/` | ICP / 未来 PRD | ICP 框架已有；PRD 无 |
+| `03_Product/` | ICP / **MVP 草稿** / 未来 PRD | MVP 待 Founder Review |
 | `04_Specifications/` | 规格 | 空 |
 | `05_Architecture/` | 架构 | 空 |
 | `06_ADR/` | 决策记录 | 空 |

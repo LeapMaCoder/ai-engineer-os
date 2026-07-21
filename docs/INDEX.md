@@ -4,7 +4,7 @@ type: project
 status: active
 owner: ""
 created: 2026-07-20
-updated: 2026-07-20
+updated: 2026-07-21
 tags:
   - index
   - leapma
@@ -73,6 +73,14 @@ tags:
 | 文档 | 说明 |
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
+| [[MVP/README]] | **MVP 包（草稿，待 Founder Review）** |
+| → [[MVP_Vision]] | MVP 目标与价值 |
+| → [[Core_Growth_Loop]] | 成长闭环 |
+| → [[Free_vs_Paid_Strategy]] | Freemium |
+| → [[MVP_Scope]] / [[Non_Goals]] | 范围 |
+| → [[Success_Metrics]] | 成功指标（含 Monetization Signal） |
+| → [[MVP_User_Journey]] | 旅程 |
+| → [[MVP_Risk_Assessment]] | 风险 |
 | PRD | ⏳ 尚未创建 |
 
 ## 4–11. 工程文档（占位）

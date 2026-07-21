@@ -136,7 +136,7 @@ flowchart LR
 | **当前状态** | Unvalidated |
 | **证据** | 仅有 [[Target_User_Analysis]] 桌面推断 |
 | **验证方式** | 三群对照 + [[ICP_Decision_Framework]] 打分 |
-| **结果** | 待填写；**在访谈前不得当作已定 ICP** |
+| **结果** | 待填写；ICP 可随证据修订，**不阻塞** MVP PRD 起草 |
 
 ---
 
