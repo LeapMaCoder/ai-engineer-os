@@ -73,9 +73,9 @@ flowchart LR
 | `01_Vision/` | 使命愿景原则北极星 | 活跃 |
 | `02_Research/` | 用户/竞品/市场/访谈 | 活跃（持续验证） |
 | `03_Product/` | MVP 定稿 / PRD Complete | ✅ |
-| `04_Specifications/` | Spec 体系；SPEC-GL-001 **Approved** | **Phase 4 ✅ → Arch 下一步** |
-| `05_Architecture/` | 架构 | 空 |
-| `06_ADR/` | 技术决策记录 | 空 |
+| `04_Specifications/` | Spec 体系；SPEC-GL-001 **Approved** | ✅ |
+| `05_Architecture/` | SPEC-GL-001 最小架构 **Approved** | **Phase 5 ✅** |
+| `06_ADR/` | ADR-0001/0002 **Accepted** | ✅ |
 | `07_Sprint/` | Sprint | 空 |
 | `08_Development/` | 流程与 AI 角色 | 活跃 |
 | `09_Testing/` | 测试策略 | 空 |

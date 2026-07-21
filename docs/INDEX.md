@@ -87,12 +87,21 @@ tags:
 | [[Spec_Status]] | Draft→Review→Approved→Implemented |
 | [[features/SPEC-GL-001_First_Growth_Experience]] | **First Growth Experience（Approved）** |
 
-## 5–11. 工程文档（占位）
+## 5. 架构 `05_Architecture/` · ADR `06_ADR/`
+
+| 文档 | 说明 |
+|------|------|
+| [[05_Architecture/README]] | 架构目录职责 |
+| [[SPEC-GL-001_Architecture]] | First Growth Experience 最小架构（**Approved**） |
+| [[Development_Environment]] | 已有环境（≠ 强制栈） |
+| [[06_ADR/README]] | ADR 索引 |
+| [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] | 运行时（**Accepted**：Python） |
+| [[ADR-0002_Primary_Store_for_SPEC-GL-001]] | 主存（**Accepted**：MySQL） |
+
+## 6–11. 工程文档（占位）
 
 | 目录 | 状态 |
 |------|------|
-| `05_Architecture/` | 空 |
-| `06_ADR/` | 空 |
 | `07_Sprint/` | 空 |
 | `08_Development/` | [[Development_Workflow]] · [[AI_Team_Roles]] |
 | `09_Testing/` | 空 |

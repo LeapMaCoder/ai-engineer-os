@@ -19,28 +19,28 @@ tags:
 
 | 项 | 状态 |
 |----|------|
-| Phase 3 MVP PRD | ✅ Complete（commit `946235b`） |
-| **当前阶段** | **Phase 4 — SPEC-GL-001 Approved** |
-| Spec 体系 | ✅ 模板 / 索引 / 状态机就绪 |
-| SPEC-GL-001 | **Approved**（OQ-001…005 Resolved；整环 First Growth Experience） |
-| Architecture / ADR | ❌ **下一步**（尚未开始；本任务不写） |
-| 代码 / UI / DB / API | ❌ **仍禁止**（须先过 Architecture 门禁） |
+| SPEC-GL-001 | ✅ **Approved** |
+| Architecture | ✅ **Approved** |
+| ADR-0001 / 0002 | ✅ **Accepted** |
+| **当前阶段** | **Phase 5 — Arch 门禁已过；待授权垂直切片** |
+| 业务代码 | ❌ **仍禁止**（须 Founder 显式授权） |
 
 ## 2. 技术状态
 
-无业务代码；无技术选型。等待 Architecture。
+| 项 | 状态 |
+|----|------|
+| 运行时 | Python 单应用（不锁框架名） |
+| UI | 简单 Web，SSR 优先 |
+| 主存 | MySQL；Redis 首切片非必须 |
+| LLM | 不锁厂商；可替换 Provider；App 侧诚实边界 |
+| AQ-003 / AQ-004 | Hypothesis（不阻塞） |
 
-## 3. 决策状态
+## 3. 下一阶段
 
-见 [[Decision_Log]]（D-031 / D-033 / D-039）。SPEC-GL-001 单 Spec 整环 Approved，不八拆。
+Founder 授权 → SPEC-GL-001 垂直切片实现。
 
-## 4. 下一阶段
-
-**Architecture**（最小 Arch 笔记 / 必要 ADR）→ 再实现。
-
-## 5. 变更日志
+## 4. 变更日志
 
 | 日期 | 变化 |
 |------|------|
-| 2026-07-21 | SPEC-GL-001 OQ 定稿；Status → **Approved**；下一步 Architecture；**未 commit** |
-| 2026-07-21 | Phase 3 `946235b`；Spec Foundation；SPEC-GL-001 Draft |
+| 2026-07-21 | Arch + ADR Accepted 定稿；AQ-001/002 Resolved；**未 commit** |

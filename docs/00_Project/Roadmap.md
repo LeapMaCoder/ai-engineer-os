@@ -27,7 +27,7 @@ timeline
   Phase 2 : MVP 与增长模型
   Phase 3 : MVP PRD Complete
   Phase 4 : SPEC-GL-001 Approved
-  Phase 5 : Architecture & Vertical Slice
+  Phase 5 : Architecture Approved
   Phase 6+ : 扩展与规模化
 ```
 
@@ -154,13 +154,17 @@ timeline
 
 ---
 
-## Phase 5 — Architecture & First Vertical Slice ⏳
+## Phase 5 — Architecture & First Vertical Slice 🔄
 
-**目标：** 在 Spec Approved 后做架构与最小实现（范围以 Spec 为准）
+**目标：** SPEC-GL-001 最小架构 + ADR Accepted；授权后实现垂直切片
 
-**进入条件：** 至少 SPEC-GL-001 Approved（及必要 Arch/ADR）
+**架构门禁：** ✅ [[SPEC-GL-001_Architecture]] **Approved** · ADR-0001/0002 **Accepted**
 
-**状态：** 未开始
+**当前：** 门禁已过；**业务代码仍等待 Founder 显式授权**（本任务不 commit）
+
+**禁止：** K8s/微服务；PHP 主栈；Hard No 域；无授权编码
+
+**其后：** 授权 → First Growth Experience 垂直切片（Python SSR + MySQL）
 
 ---
 
@@ -178,7 +182,7 @@ timeline
 |----|-----|------|
 | Phase 3 | Phase 4 | PRD Complete |
 | Phase 4 | SPEC-GL-001 Approved | OQ 定稿 + Founder 批准 |
-| SPEC Approved | Architecture | Spec_Status + 最小 Arch/ADR |
-| Arch 门禁 | 业务实现 | 禁止无 Arch 编码 |
+| SPEC Approved | Architecture Approved | Arch + ADR Accepted |
+| Arch Approved | 垂直切片实现 | **Founder 显式授权编码** |
 
 详见 [[Development_Workflow]]。

@@ -1,22 +1,37 @@
-﻿# 06_ADR — 架构决策记录
+﻿---
+title: 06_ADR — 架构决策记录
+type: adr
+status: active
+created: 2026-07-21
+updated: 2026-07-21
+tags:
+  - adr
+  - leapma
+---
+
+# 06_ADR — 架构决策记录
 
 ## 职责
 
 记录**重要技术决策**及其理由，避免未来人类与 AI Agent 默默推翻。
 
-## 何时写 ADR
+## 状态取值
 
-- 选择或更换主要依赖 / 平台
-- 变更系统边界或数据所有权
-- 影响安全、隐私或合规的决策
-- 难以回退或再议成本高的事项
+Proposed | Accepted | Deprecated | Superseded
+
+## 当前 ADR
+
+| ID | 标题 | 状态 |
+|----|------|------|
+| [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] | Runtime stack for SPEC-GL-001 | **Accepted** |
+| [[ADR-0002_Primary_Store_for_SPEC-GL-001]] | Primary store for SPEC-GL-001 | **Accepted** |
 
 ## 规则
 
-- ADR 精神上是追加式：用新 ADR 废止旧决策，勿改写历史。
-- 链接相关 Architecture 与 Spec。
-- 状态取值：Proposed（提议）| Accepted（已接受）| Deprecated（废弃）| Superseded（被替代）
+- 追加式：用新 ADR 废止旧决策，勿改写历史。  
+- 链接 Architecture 与 Spec。  
+- Arch + 必要 ADR **Accepted** 后，仍须 Founder **显式授权**才可写业务功能代码。
 
 ## 模板
 
-使用 `docs/templates/ADR_Template.md`。
+`docs/templates/ADR_Template.md`

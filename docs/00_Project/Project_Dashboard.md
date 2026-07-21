@@ -21,26 +21,24 @@ tags:
 
 | 项 | 值 |
 |----|-----|
-| **阶段** | **Phase 4 — SPEC-GL-001 Approved** |
-| **Phase 3** | ✅ MVP PRD Complete（commit `946235b`） |
-| **SDD** | Vision ✅ → Product/PRD ✅ → **SPEC-GL-001 Approved ✅** → Arch ⏳ → Code ❌ |
+| **阶段** | **Phase 5 — Architecture Approved（待授权编码）** |
+| **SDD** | Vision ✅ → Product ✅ → Spec ✅ → **Arch ✅** → Code ⏳ |
 
 ```mermaid
 flowchart LR
-  P3[Phase 3 PRD ✅] --> P4[Phase 4 Spec]
-  P4 --> Spec1[SPEC-GL-001 Approved ✅]
-  Spec1 --> Arch[Architecture ⏳]
-  Arch --> Code[Code ⏳]
+  Spec[SPEC-GL-001 ✅] --> Arch[Architecture ✅]
+  Arch --> ADR[ADR-0001/0002 ✅]
+  ADR --> Auth[Founder 授权编码 ⏳]
+  Auth --> Code[Vertical Slice]
 ```
 
 ---
 
 ## 2. 当前目标
 
-1. **下一步：Architecture**（最小 Arch 笔记 / 必要 ADR）  
-2. Continuous Validation 并行（ICP 仍 Hypothesis）  
-3. **仍禁止业务代码**，直至 Architecture 门禁通过（垂直切片再小也须先有最小 Arch）  
-4. **本任务不 commit**；建议 Founder 将 Foundation + SPEC-GL-001 一并 commit  
+1. Founder **显式授权**后，实现 SPEC-GL-001 垂直切片  
+2. Continuous Validation 并行（AQ-003/004 仍 Hypothesis）  
+3. **本任务不 commit**；未授权前仍禁止业务代码  
 
 ---
 
@@ -48,9 +46,11 @@ flowchart LR
 
 | 项 | 入口 |
 |----|------|
-| Phase 3 PRD | commit `946235b` · [[PRD/README]] |
-| Spec 基建 | [[04_Specifications/README]] · Template / Index / Status |
-| SPEC-GL-001 | [[features/SPEC-GL-001_First_Growth_Experience]]（**Approved**；OQ 已定稿） |
+| SPEC-GL-001 | **Approved** |
+| Architecture | [[SPEC-GL-001_Architecture]] **Approved** |
+| ADR-0001 | Python 单应用 **Accepted** |
+| ADR-0002 | MySQL Primary Store **Accepted** |
+| AQ-001 / AQ-002 | Resolved（SSR Web；可替换 LLM Provider） |
 
 ---
 
@@ -58,8 +58,8 @@ flowchart LR
 
 | 事项 | 状态 |
 |------|------|
-| Architecture（Phase 5 入口） | **未开始** |
-| Founder commit（建议） | **等待中**（Execution 不执行） |
+| 垂直切片实现 | **等待 Founder 显式授权**（未开始） |
+| 文档 commit（建议） | **等待中**（Execution 不执行） |
 
 ---
 
@@ -67,26 +67,25 @@ flowchart LR
 
 | 顺序 | 行动 |
 |------|------|
-| 1 |（建议）Founder commit Spec Foundation + SPEC-GL-001 Approved |
-| 2 | 写最小 Architecture / ADR |
-| 3 | 再实现 First Growth Experience；仍禁无 Arch 编码 |
+| 1 |（建议）commit Spec + Arch + ADR Accepted |
+| 2 | Founder 授权垂直切片 Prompt |
+| 3 | Python SSR 最小环实现（对齐 AC-01…04） |
 
 ---
 
-## 6. 产品真源速查
+## 6. 真源速查
 
 | 真源 | 文档 |
 |------|------|
-| Primary Problem | [[MVP_Core_Problem]] |
-| Growth Loop v1.0 | [[Core_Growth_Loop]] |
-| D-039 | 验证闭环非功能完整 |
-| Spec 状态机 | [[Spec_Status]] |
-| Feature 索引 | [[Feature_Index]] |
-| First Growth Experience | [[features/SPEC-GL-001_First_Growth_Experience]] **Approved** |
+| Spec | [[features/SPEC-GL-001_First_Growth_Experience]] |
+| Arch | [[SPEC-GL-001_Architecture]] |
+| ADR | [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] · [[ADR-0002_Primary_Store_for_SPEC-GL-001]] |
 
 ---
 
 ## 7. Review
 
-- [x] SPEC-GL-001 OQ 定稿 → Approved  
-- [ ] **按要求：不要 commit**（建议 Founder 自行 commit）  
+- [x] Architecture Approved  
+- [x] ADR-0001 / ADR-0002 Accepted  
+- [ ] Founder 授权编码  
+- [ ] **按要求：不要 commit**  
