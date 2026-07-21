@@ -69,17 +69,19 @@ flowchart LR
 
 | 目录 | 职责 | 当前状态 |
 |------|------|----------|
-| `00_Project/` | 导航、阶段、状态、未决问题、**决策日志** | **活跃** |
-| `03_Product/` | ICP / **MVP 定稿** / PRD Ready | Phase 3 Ready |
-| `04_Specifications/` | 规格 | 空 |
+| `00_Project/` | 导航、阶段、状态、未决问题、决策日志 | **活跃** |
+| `01_Vision/` | 使命愿景原则北极星 | 活跃 |
+| `02_Research/` | 用户/竞品/市场/访谈 | 活跃（持续验证） |
+| `03_Product/` | MVP 定稿 / PRD Complete | ✅ |
+| `04_Specifications/` | Spec 体系；SPEC-GL-001 **Approved** | **Phase 4 ✅ → Arch 下一步** |
 | `05_Architecture/` | 架构 | 空 |
-| `06_ADR/` | 决策记录 | 空 |
+| `06_ADR/` | 技术决策记录 | 空 |
 | `07_Sprint/` | Sprint | 空 |
 | `08_Development/` | 流程与 AI 角色 | 活跃 |
 | `09_Testing/` | 测试策略 | 空 |
 | `10_Release/` | 发布 | 空 |
 | `11_Operations/` | 运维 | 空 |
-| `templates/` | SDD 模板 | 活跃 |
+| `templates/` | 通用 SDD 模板 | 活跃（Spec 执行模板以 04 为准） |
 | `Archive/` | 归档 | 空 |
 
 ## 4. 关键文档关系（当前）

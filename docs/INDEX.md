@@ -75,19 +75,22 @@ tags:
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
 | [[MVP/README]] | MVP 包（Phase 2 定稿） |
-| [[PRD/README]] | **Phase 3 MVP PRD Complete**（待最终确认 commit） |
-| → [[MVP_Core_Problem]] | Primary + Supporting |
-| → [[User_Stories]] | Must × 4 |
-| → [[Acceptance_Criteria]] | Must AC × 4 |
-| → [[MVP_Out_of_Scope]] | Hard No |
-| → [[Phase3_PRD_Review_Report]] | 质量审查报告 |
-| → [[Problem_PRD_Template]] | 问题优先模板 |
+| [[PRD/README]] | **Phase 3 MVP PRD Complete**（`946235b`） |
 
-## 4–11. 工程文档（占位）
+## 4. 规格 `04_Specifications/`
+
+| 文档 | 说明 |
+|------|------|
+| [[04_Specifications/README]] | Spec 在 SDD 中的角色 |
+| [[Spec_Template]] | Feature Spec 执行模板 |
+| [[Feature_Index]] | 索引（SPEC-GL-001 = **Approved**） |
+| [[Spec_Status]] | Draft→Review→Approved→Implemented |
+| [[features/SPEC-GL-001_First_Growth_Experience]] | **First Growth Experience（Approved）** |
+
+## 5–11. 工程文档（占位）
 
 | 目录 | 状态 |
 |------|------|
-| `04_Specifications/` | 空 |
 | `05_Architecture/` | 空 |
 | `06_ADR/` | 空 |
 | `07_Sprint/` | 空 |
@@ -95,7 +98,7 @@ tags:
 | `09_Testing/` | 空 |
 | `10_Release/` | 空 |
 | `11_Operations/` | 空 |
-| `templates/` | SDD 模板齐全 |
+| `templates/` | 通用模板；Feature Spec 以 04 为准 |
 | `Archive/` | 空 |
 
 ## 仓库其他入口

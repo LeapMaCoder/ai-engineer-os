@@ -26,8 +26,8 @@ timeline
   Phase 1.7 : 项目治理
   Phase 2 : MVP 与增长模型
   Phase 3 : MVP PRD Complete
-  Phase 4 : Spec 与架构
-  Phase 5 : 首个垂直切片
+  Phase 4 : SPEC-GL-001 Approved
+  Phase 5 : Architecture & Vertical Slice
   Phase 6+ : 扩展与规模化
 ```
 
@@ -127,45 +127,38 @@ timeline
 - D-039：MVP validates growth loop, not feature completeness
 - Founder Final Review 方向批准
 
-**状态：** ✅ **MVP PRD Complete**（文档定稿；**等待最终确认后 commit**）
+**状态：** ✅ **MVP PRD Complete**（commit `946235b`）
 
 **禁止（仍有效）：** 代码 / 技术架构抢跑 / 数据库 / UI
 
-**下一阶段：** Phase 4 Specification & Architecture
+**下一阶段：** Phase 4 Specification Foundation
 
 ---
 
-## Phase 4 — Specification & Architecture ⏳
+## Phase 4 — Specification Foundation + SPEC-GL-001 ✅
 
-**目标：** 在 PRD 批准后，形成可测试规格与系统设计
+**目标：** Spec 体系就绪；整环第一刀 **SPEC-GL-001** Approved
 
-**进入条件：**
+**完成标志：**
 
-- Phase 3 PRD Founder Review 通过
-- 核心假设持续验证中（不要求全部 Confirmed）
+- `docs/04_Specifications/` 模板 / 索引 / 状态机
+- SPEC-GL-001 正文 Approved（OQ 定稿；整环不八拆）
+- AC / AI Behavior 未削弱；Hard No / D-031 / D-033 / D-039 保持
 
-**产出（方向）：**
+**状态：** ✅ **SPEC-GL-001 Approved**（见 [[features/SPEC-GL-001_First_Growth_Experience]]）  
+建议 Founder 将 Foundation + Spec **一并 commit**（Execution 不执行）
 
-- `04_Specifications/` 核心 Spec
-- `05_Architecture/` 系统架构
-- `06_ADR/` 必要决策
+**禁止（仍有效至 Arch）：** 无 Architecture 的业务代码 / UI / DB / API；按 GL 拆 8 个大 Spec
 
-**禁止提前：** 无 Spec/Arch 的业务编码
-
-**状态：** 未开始
+**其后：** Phase 5 Architecture（最小 Arch / 必要 ADR）→ 再实现
 
 ---
 
-## Phase 5 — First Vertical Slice ⏳
+## Phase 5 — Architecture & First Vertical Slice ⏳
 
-**目标：** 首个可验证的垂直切片实现（具体范围以 Spec 为准）
+**目标：** 在 Spec Approved 后做架构与最小实现（范围以 Spec 为准）
 
-**进入条件：** Phase 4 门禁通过
-
-**产出（方向）：**
-
-- `apps/` / `services/` 最小实现
-- 映射 Spec 的测试
+**进入条件：** 至少 SPEC-GL-001 Approved（及必要 Arch/ADR）
 
 **状态：** 未开始
 
@@ -183,9 +176,9 @@ timeline
 
 | 从 | 到 | 门禁 |
 |----|-----|------|
-| Phase 2 | Phase 3 | MVP 策略定稿 |
-| Phase 3 | Phase 4 | PRD Founder Review |
-| Phase 4 | Phase 5 | Spec + Arch（+ADR） |
-| Phase 5 | Release | Review + Test 映射 Spec |
+| Phase 3 | Phase 4 | PRD Complete |
+| Phase 4 | SPEC-GL-001 Approved | OQ 定稿 + Founder 批准 |
+| SPEC Approved | Architecture | Spec_Status + 最小 Arch/ADR |
+| Arch 门禁 | 业务实现 | 禁止无 Arch 编码 |
 
 详见 [[Development_Workflow]]。

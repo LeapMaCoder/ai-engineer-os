@@ -10,6 +10,8 @@ LeapMa 的重要变更将记录在本文件中。
 
 - Phase 0：项目结构、文档体系（SDD）、Cursor Rules、AI 团队角色与开发流程。
 - Phase 1–1.7：愿景/调研/访谈体系/ICP 框架/项目治理导航（Dashboard、INDEX、文档同步规则）。
+- Phase 2–3：MVP 策略、Growth Loop v1.0、PRD（Problem First）。
+- Phase 4：Specification Foundation；**SPEC-GL-001 First Growth Experience = Approved**（OQ 定稿；建议 commit；下一步 Architecture）。
 
 ## [0.0.0] - 2026-07-20
 

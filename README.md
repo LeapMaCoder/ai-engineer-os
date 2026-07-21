@@ -20,14 +20,13 @@ LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品
 
 ## 当前阶段
 
-**Phase 1.7 — Project Governance ✅**（治理就绪）  
-**主航道仍在 Phase 1.6：** 待执行 10 场用户访谈 → 选定首发 ICP
+**Phase 4 — SPEC-GL-001 Approved**（下一步：Architecture）
 
-已完成：Phase 0 体系 · Phase 1 愿景 · Phase 1.5 桌面调研 · Phase 1.6 访谈体系 · Phase 1.7 导航治理  
+已完成：Phase 0–2 策略 · Phase 3 MVP PRD（`946235b`）· Spec 基建 · SPEC-GL-001 Approved
 
-**禁止：** 功能设计 / 页面 / 技术方案 / 业务编码（直至 Spec + Arch 门禁）。
+**禁止：** 无 Architecture 门禁的业务代码 / UI / DB / API。
 
-详情：[Current_State](docs/00_Project/Current_State.md)
+详情：[Current_State](docs/00_Project/Current_State.md) · [SPEC-GL-001](docs/04_Specifications/features/SPEC-GL-001_First_Growth_Experience.md)
 
 ## 开发方式
 
