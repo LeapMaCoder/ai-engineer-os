@@ -13,7 +13,8 @@ Vision → **Product** → Specification → Architecture → Code → Test
 | 文档 | 说明 |
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 选择方法（访谈后打分） |
-| [[MVP/README]] | MVP 与增长模型（**Phase 2 定稿**） |
+| [[MVP/README]] | MVP 与增长模型（Phase 2 定稿） |
+| [[PRD/README]] | **Phase 3 MVP PRD Complete** |
 
 ## 包含
 

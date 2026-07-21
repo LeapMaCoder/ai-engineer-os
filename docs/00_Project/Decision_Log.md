@@ -67,6 +67,7 @@ tags:
 | D-036 | 2026-07-21 | Monetization Signal 含升级兴趣、高级能力需求、价值感知、**Willingness To Pay Signal**；早期不要求付费 | Accepted | Founder 定稿 |
 | D-037 | 2026-07-21 | 不假设用户一定付费 | Accepted | 研究/商业纪律 |
 | D-038 | 2026-07-21 | Phase 2 定稿完成；下一阶段 = MVP PRD Definition | Accepted | Phase 2 Finalization |
+| D-039 | 2026-07-21 | **MVP validates growth loop, not feature completeness** — LeapMa MVP 的目标不是构建完整学习平台，而是验证用户是否能通过成长闭环持续获得价值。Primary Problem 与 4 US / 4 AC 定稿；Hard No 保留。 | Accepted | Phase 3 Final Review |
 
 ---
 

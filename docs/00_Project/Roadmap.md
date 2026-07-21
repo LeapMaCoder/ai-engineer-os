@@ -25,9 +25,10 @@ timeline
   Phase 1.6 : 用户发现访谈
   Phase 1.7 : 项目治理
   Phase 2 : MVP 与增长模型
-  Phase 3 : Spec 与架构
-  Phase 4 : 首个垂直切片
-  Phase 5+ : 扩展与规模化
+  Phase 3 : MVP PRD Complete
+  Phase 4 : Spec 与架构
+  Phase 5 : 首个垂直切片
+  Phase 6+ : 扩展与规模化
 ```
 
 ---
@@ -99,7 +100,7 @@ timeline
 
 ---
 
-## Phase 2 — MVP & Growth Model Definition 🔄
+## Phase 2 — MVP & Growth Model Definition ✅
 
 **目标：** 定义第一个 MVP，并同时考虑免费留存与付费转化
 
@@ -110,20 +111,38 @@ timeline
 - 成功指标与风险
 - Founder Review 通过
 
-**状态：** ✅ Phase 2 定稿（Finalization 文档待 Founder 确认）；下一阶段 **Phase 3 MVP PRD Definition Ready**
+**状态：** ✅ 定稿（commit `cca5bd0`）
 
 ---
 
-## Phase 3 — Specification & Architecture ⏳
+## Phase 3 — MVP PRD Definition ✅
 
-**目标：** 在已定 ICP + 问题级 PRD 之后，形成可测试规格与系统设计
+**目标：** 以 Problem First 定义第一个 MVP 要解决的核心用户问题
+
+**完成标志：**
+
+- Primary Problem 定稿
+- Must User Stories = 4；Must AC = 4
+- Hard No 确认
+- D-039：MVP validates growth loop, not feature completeness
+- Founder Final Review 方向批准
+
+**状态：** ✅ **MVP PRD Complete**（文档定稿；**等待最终确认后 commit**）
+
+**禁止（仍有效）：** 代码 / 技术架构抢跑 / 数据库 / UI
+
+**下一阶段：** Phase 4 Specification & Architecture
+
+---
+
+## Phase 4 — Specification & Architecture ⏳
+
+**目标：** 在 PRD 批准后，形成可测试规格与系统设计
 
 **进入条件：**
 
-- MVP Review 通过（或修订后通过）
-- 首发 ICP 已决策（推荐）
-- 至少一份问题级 PRD 已批准
-- 核心假设 P0 非全部 Unvalidated
+- Phase 3 PRD Founder Review 通过
+- 核心假设持续验证中（不要求全部 Confirmed）
 
 **产出（方向）：**
 
@@ -137,30 +156,24 @@ timeline
 
 ---
 
-## Phase 4 — First Vertical Slice ⏳
+## Phase 5 — First Vertical Slice ⏳
 
 **目标：** 首个可验证的垂直切片实现（具体范围以 Spec 为准）
 
-**进入条件：** Phase 3 门禁通过
+**进入条件：** Phase 4 门禁通过
 
 **产出（方向）：**
 
 - `apps/` / `services/` 最小实现
 - 映射 Spec 的测试
-- 发布说明（若对用户可见）
 
 **状态：** 未开始
 
 ---
 
-## Phase 5+ — Expand & Operate ⏳
+## Phase 6+ — Expand & Operate ⏳
 
-**方向（非承诺）：**
-
-- 能力图谱与路径深化
-- 游戏化在护栏内扩展
-- 多端 / 运维成熟度
-- 数据驱动迭代 NSM（WEGS）
+**方向（非承诺）：** 图谱深化、护栏内游戏化、多端、运维、NSM 迭代
 
 **状态：** 未开始
 
@@ -170,10 +183,9 @@ timeline
 
 | 从 | 到 | 门禁 |
 |----|-----|------|
-| 1.6 | ICP | 访谈证据 + 框架打分 |
-| Phase 2 | PRD / Phase 3 | Founder Review MVP +（建议）ICP |
-| PRD | Phase 3 Spec | PRD 批准 |
-| Phase 3 | Phase 4 | Spec + Arch（+ADR） |
-| Phase 4 | Release | Review + Test 映射 Spec |
+| Phase 2 | Phase 3 | MVP 策略定稿 |
+| Phase 3 | Phase 4 | PRD Founder Review |
+| Phase 4 | Phase 5 | Spec + Arch（+ADR） |
+| Phase 5 | Release | Review + Test 映射 Spec |
 
 详见 [[Development_Workflow]]。

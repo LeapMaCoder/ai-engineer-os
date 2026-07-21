@@ -13,10 +13,7 @@ tags:
 
 # Project Dashboard — 项目总览
 
-> **AI 与人类的默认入口。** 会话开始先读本页。
-
-最后更新：`2026-07-21`  
-本地 Git 根：`LeapMa/ai-engineer-os/`
+最后更新：`2026-07-21`
 
 ---
 
@@ -24,85 +21,70 @@ tags:
 
 | 项 | 值 |
 |----|-----|
-| **阶段** | **Phase 3 — MVP PRD Definition Ready** |
-| **Phase 2** | ✅ 定稿（待本轮 Finalization Founder Review 确认文档落盘） |
-| **SDD 位置** | Vision ✅ → Research 🔄 → Product ✅（MVP 模型）→ **PRD ⏳** → Spec ❌ → Code ❌ |
+| **阶段** | **Phase 3 — MVP PRD Complete** |
+| **含义** | PRD 方向与聚焦已 Founder 批准；定稿文档待最终确认后 commit |
+| **SDD** | Vision ✅ → MVP 模型 ✅ → **PRD ✅（待 commit）** → Spec ❌ → Code ❌ |
 
 ```mermaid
 flowchart LR
-  P2[Phase 2 MVP ✅] --> P3[Phase 3 MVP PRD Ready]
-  P3 --> PRD[PRD Definition]
-  PRD --> Spec[Spec ⏳]
+  P2[Phase 2 ✅] --> P3[Phase 3 PRD Complete]
+  P3 --> P4[Phase 4 Spec ⏳]
 ```
 
 ---
 
 ## 2. 当前目标
 
-1. Founder **确认 Phase 2 Finalization 落盘**（原则 9 / Loop v1.0 / Decision Log）  
-2. 确认后立即开始 **MVP PRD Definition**  
-3. Continuous Validation 并行（不阻塞）  
-4. 禁止：代码 / DB / API / 技术选型 / UI  
+1. Founder **最终确认**本轮定稿落盘（Primary / 4+4 / Hard No / D-039）  
+2. 确认后 **commit** Phase 3  
+3. 下一阶段准备：**Specification**（仍禁止代码 / UI / DB）  
+4. Continuous Validation 并行  
 
 ---
 
-## 3. 已完成事项
+## 3. 已完成
 
 | 项 | 入口 |
 |----|------|
-| Phase 0–1.7 | 体系 / 愿景 / 调研 / 治理 |
-| Phase 2 MVP 模型 | [[MVP/README]] |
-| 原则 9 Growth Before Monetization | [[Product_Principles]] |
-| Core Growth Loop **v1.0** 产品真源 | [[Core_Growth_Loop]] |
-| Monetization Signal + WTP | [[Success_Metrics]] |
-| Decision Log Phase 0–2 | [[Decision_Log]] |
+| Phase 2 | `cca5bd0` · [[Decision_Log]] |
+| Primary Problem（定稿表述） | [[MVP_Core_Problem]] |
+| Must US = 4 / Must AC = 4 | [[User_Stories]] · [[Acceptance_Criteria]] |
+| Hard No | [[MVP_Out_of_Scope]] |
+| D-039 | [[Decision_Log]] |
 
 ---
 
-## 4. 进行中事项
+## 4. 进行中
 
 | 事项 | 状态 |
 |------|------|
-| Phase 2 Finalization Founder Review | **等待中**（按要求未 commit） |
-| MVP PRD Definition | **Ready to start**（Review 通过后） |
-| Continuous Validation | 并行 |
+| Phase 3 Final Review 确认 | **等待中**（未 commit） |
 
 ---
 
-## 5. 下一步计划
+## 5. 下一步
 
 | 顺序 | 行动 |
 |------|------|
-| 1 | Founder 确认本轮定稿文档 |
-| 2 | 撰写 MVP PRD（功能须映射 GL-1…GL-8） |
-| 3 | PRD 批准 → Spec（仍无代码） |
+| 1 | Founder 最终确认 → commit |
+| 2 | Phase 4：按 PRD 写 Spec（映射 GL + AC） |
+| 3 | 仍禁止：代码 / 架构抢跑 / DB / UI |
 
 ---
 
-## 6. 产品真源（速查）
+## 6. 产品真源速查
 
 | 真源 | 文档 |
 |------|------|
-| 愿景 | [[LeapMa_Vision]] |
-| 原则 | [[Product_Principles]]（含 P9） |
-| 成长环 v1.0 | [[Core_Growth_Loop]] |
-| NSM | [[Product_North_Star]] |
-| 决策 | [[Decision_Log]] |
+| Primary Problem | [[MVP_Core_Problem]] |
+| Growth Loop v1.0 | [[Core_Growth_Loop]] |
+| D-039 | MVP validates growth loop, not feature completeness |
+| 原则 9 | Growth Before Monetization |
 
 ---
 
-## 7. 当前风险
+## 7. Review
 
-| 风险 | 备注 |
-|------|------|
-| R4/R1 AI 沦为聊天 | 仍最高优先 Hypothesis |
-| PRD 不映射 Growth Loop | 违反 D-033 |
-| 过早变现拆环 | 违反 P9 |
-
----
-
-## 8. Review 清单
-
-- [ ] Phase 2 Finalization 通过  
-- [ ] 通过后可 commit  
-- [ ] 启动 MVP PRD  
+- [ ] Final Review 通过  
+- [ ] 通过后 commit  
+- [ ] **按要求：现在不要 commit**  

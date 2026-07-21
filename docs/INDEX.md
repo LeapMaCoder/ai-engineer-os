@@ -74,15 +74,14 @@ tags:
 | 文档 | 说明 |
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
-| [[MVP/README]] | **MVP 包（Phase 2 定稿）** |
-| → [[MVP_Vision]] | MVP 目标与价值 |
-| → [[Core_Growth_Loop]] | **Growth Loop v1.0 产品真源** |
-| → [[Free_vs_Paid_Strategy]] | Freemium |
-| → [[MVP_Scope]] / [[Non_Goals]] | 范围 |
-| → [[Success_Metrics]] | 指标（含 Monetization Signal / WTP） |
-| → [[MVP_User_Journey]] | 旅程 |
-| → [[MVP_Risk_Assessment]] | 风险 |
-| PRD | ⏳ **Phase 3 Ready** — 待撰写 |
+| [[MVP/README]] | MVP 包（Phase 2 定稿） |
+| [[PRD/README]] | **Phase 3 MVP PRD Complete**（待最终确认 commit） |
+| → [[MVP_Core_Problem]] | Primary + Supporting |
+| → [[User_Stories]] | Must × 4 |
+| → [[Acceptance_Criteria]] | Must AC × 4 |
+| → [[MVP_Out_of_Scope]] | Hard No |
+| → [[Phase3_PRD_Review_Report]] | 质量审查报告 |
+| → [[Problem_PRD_Template]] | 问题优先模板 |
 
 ## 4–11. 工程文档（占位）
 
