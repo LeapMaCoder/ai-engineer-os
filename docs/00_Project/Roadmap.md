@@ -1,4 +1,4 @@
----
+﻿---
 title: 产品路线图
 type: project
 status: active
@@ -116,9 +116,9 @@ timeline
 
 **产出（方向）：**
 
-- `03_Specifications/` 核心 Spec
-- `04_Architecture/` 系统架构
-- `05_ADR/` 必要决策
+- `04_Specifications/` 核心 Spec
+- `05_Architecture/` 系统架构
+- `06_ADR/` 必要决策
 
 **禁止提前：** 无 Spec/Arch 的业务编码
 

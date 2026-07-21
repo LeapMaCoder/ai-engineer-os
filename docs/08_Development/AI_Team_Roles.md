@@ -1,4 +1,4 @@
----
+﻿---
 title: AI 团队角色
 type: development
 status: active
@@ -74,7 +74,7 @@ flowchart LR
 
 ### 输出
 
-- `docs/02_Product/` 中的 PRD、澄清后的需求、优先级问题陈述
+- `docs/03_Product/` 中的 PRD、澄清后的需求、优先级问题陈述
 
 ### 禁止事项
 

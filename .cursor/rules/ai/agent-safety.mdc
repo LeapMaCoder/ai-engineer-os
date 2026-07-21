@@ -1,6 +1,6 @@
----
+﻿---
 description: LeapMa AI 导师/Agent 系统约束
-globs: services/**/*,docs/03_Specifications/**/*,docs/04_Architecture/**
+globs: services/**/*,docs/04_Specifications/**/*,docs/05_Architecture/**
 alwaysApply: false
 ---
 

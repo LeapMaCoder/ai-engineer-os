@@ -1,4 +1,4 @@
----
+﻿---
 title: LeapMa 项目仪表盘
 type: project
 status: active
@@ -16,8 +16,9 @@ tags:
 > **AI 与人类的默认入口。** 会话开始先读本页，再按需下钻。  
 > 重要文档变更后必须同步本页（见 `.cursor/rules/global/document-navigation-rule.mdc`）。
 
-最后更新：`2026-07-20`  
-本地 Git 根目录：`LeapMa/ai-engineer-os/` → [GitHub](https://github.com/LeapMaCoder/ai-engineer-os)
+最后更新：`2026-07-21`  
+本地 Git 根目录：`LeapMa/ai-engineer-os/` → [GitHub](https://github.com/LeapMaCoder/ai-engineer-os)  
+文档编号：`00_Project` → `01_Vision` → … → `11_Operations`（已消除双 `00_`）
 
 ---
 
@@ -54,7 +55,7 @@ flowchart LR
 |------|----------|------|
 | Phase 0 | Monorepo、SDD 文档体系、模板、Cursor Rules、AI 角色与流程 | [[docs/README]] |
 | Phase 1 | 愿景 / 原则 / 北极星 | [[LeapMa_Vision]] |
-| Phase 1.5 | 用户 / 竞品留存 / 市场桌面调研 | [[01_Research/README]] |
+| Phase 1.5 | 用户 / 竞品留存 / 市场桌面调研 | [[02_Research/README]] |
 | Phase 1.6 | 访谈体系 + ICP 决策框架（**访谈未执行**） | [[Interview_Plan]] |
 | Phase 1.7 | 项目导航与状态治理 | [[Project_Map]] |
 
@@ -78,7 +79,7 @@ flowchart LR
 | 1 | 执行访谈 I-001…I-010 | 10 份 [[Interview_Template]] |
 | 2 | 更新 H1–H8 状态 | [[Hypothesis_Validation]] 非全 Unvalidated |
 | 3 | ICP 加权打分 + 决策记录 | [[ICP_Decision_Framework]] |
-| 4 | 进入问题级 PRD（仍非 Spec/代码） | `docs/02_Product/` |
+| 4 | 进入问题级 PRD（仍非 Spec/代码） | `docs/03_Product/` |
 
 详见 [[Roadmap]]。
 
@@ -124,7 +125,7 @@ flowchart LR
 | 阶段路线 | [[Roadmap]] |
 | 未决问题 | [[Open_Questions]] |
 | 为什么做 | [[LeapMa_Vision]] |
-| 调研证据 | [[01_Research/README]] |
+| 调研证据 | [[02_Research/README]] |
 | 怎么开发 | [[Development_Workflow]] |
 
 完整索引：[[docs/INDEX]]

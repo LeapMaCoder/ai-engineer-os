@@ -1,4 +1,4 @@
-# LeapMa
+﻿# LeapMa
 
 AI Native 程序员成长平台。
 
@@ -37,7 +37,7 @@ LeapMa 采用 **Specification Driven Development（SDD）**。
 Vision → Product → Specification → Architecture → Code → Test
 ```
 
-流程见 [Development_Workflow](docs/07_Development/Development_Workflow.md)。
+流程见 [Development_Workflow](docs/08_Development/Development_Workflow.md)。
 
 ## 仓库目录
 
@@ -47,9 +47,9 @@ Vision → Product → Specification → Architecture → Code → Test
 ai-engineer-os/
 ├── docs/
 │   ├── 00_Project/      # 导航与状态（先读 Dashboard）
-│   ├── 00_Vision/
-│   ├── 01_Research/
-│   ├── 02_Product/
+│   ├── 01_Vision/
+│   ├── 02_Research/
+│   ├── 03_Product/
 │   ├── INDEX.md         # 文档索引
 │   └── ...
 ├── apps/ services/ packages/ infrastructure/ tests/ scripts/

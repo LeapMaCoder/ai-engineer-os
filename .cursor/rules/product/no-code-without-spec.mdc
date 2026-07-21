@@ -1,4 +1,4 @@
----
+﻿---
 description: 产品规则 — 用户价值优先；禁止过早写代码
 alwaysApply: true
 ---
@@ -13,8 +13,8 @@ alwaysApply: true
 
 1. Vision 引用（或确认现有 Vision 仍适用）
 2. 不确定性高时做 Research
-3. `docs/02_Product/` 中的 PRD
-4. `docs/03_Specifications/` 中的 Specification
+3. `docs/03_Product/` 中的 PRD
+4. `docs/04_Specifications/` 中的 Specification
 
 ## 允许产出
 

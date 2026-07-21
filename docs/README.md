@@ -1,4 +1,4 @@
-# docs/ — LeapMa Source of Truth
+﻿# docs/ — LeapMa Source of Truth
 
 `docs/` 是 LeapMa 的**唯一权威来源（Source of Truth）**。
 
@@ -23,12 +23,12 @@ Vision（愿景）
 
 | 层级 | 含义 | 目录 |
 |------|------|------|
-| Vision | 为什么做 LeapMa；长期北极星 | `00_Vision/` |
-| Product | 服务谁；问题与结果 | `02_Product/`（由 `01_Research/` 支撑） |
-| Specification | 要构建与验证的精确行为 | `03_Specifications/` |
-| Architecture | 系统如何实现规格 | `04_Architecture/` + `05_ADR/` |
+| Vision | 为什么做 LeapMa；长期北极星 | `01_Vision/` |
+| Product | 服务谁；问题与结果 | `03_Product/`（由 `02_Research/` 支撑） |
+| Specification | 要构建与验证的精确行为 | `04_Specifications/` |
+| Architecture | 系统如何实现规格 | `05_Architecture/` + `06_ADR/` |
 | Code | 已批准规格/架构的实现 | `apps/`、`services/`、`packages/` |
-| Test | 证明代码符合规格 | `tests/` + `08_Testing/` |
+| Test | 证明代码符合规格 | `tests/` + `09_Testing/` |
 
 治理层 `00_Project/` 不替代上述链路，只负责**状态可见与导航**。
 
@@ -46,17 +46,17 @@ Vision（愿景）
 | 文件夹 | 职责 |
 |--------|------|
 | `00_Project` | 项目导航、阶段、状态、未决问题 |
-| `00_Vision` | 使命、原则、北极星结果 |
-| `01_Research` | 市场、竞品、用户、访谈 |
-| `02_Product` | ICP、PRD、画像、旅程、成功指标 |
-| `03_Specifications` | 功能 / 非功能 / AI 行为规格 |
-| `04_Architecture` | 系统设计、边界、数据与 AI 设计 |
-| `05_ADR` | 架构决策记录 |
-| `06_Sprint` | Sprint 目标、计划、纪要 |
-| `07_Development` | 流程、AI 角色、工程实践 |
-| `08_Testing` | 测试策略、计划、质量门禁 |
-| `09_Release` | 发布说明、清单、放量 |
-| `10_Operations` | Runbook、监控、事故流程 |
+| `01_Vision` | 使命、原则、北极星结果 |
+| `02_Research` | 市场、竞品、用户、访谈 |
+| `03_Product` | ICP、PRD、画像、旅程、成功指标 |
+| `04_Specifications` | 功能 / 非功能 / AI 行为规格 |
+| `05_Architecture` | 系统设计、边界、数据与 AI 设计 |
+| `06_ADR` | 架构决策记录 |
+| `07_Sprint` | Sprint 目标、计划、纪要 |
+| `08_Development` | 流程、AI 角色、工程实践 |
+| `09_Testing` | 测试策略、计划、质量门禁 |
+| `10_Release` | 发布说明、清单、放量 |
+| `11_Operations` | Runbook、监控、事故流程 |
 | `Archive` | 已废止文档（保留历史，勿随意删除） |
 | `templates/` | 适配 Obsidian 的 SDD 模板 |
 | `INDEX.md` | 全库索引 |

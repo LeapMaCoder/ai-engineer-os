@@ -1,4 +1,4 @@
----
+﻿---
 title: 开发流程
 type: development
 status: active
@@ -54,35 +54,35 @@ flowchart TD
 
 ### 2. 调研（Research）
 
-- 位置：`docs/01_Research/`
+- 位置：`docs/02_Research/`
 - 模板：`docs/templates/Research_Template.md`
 - 目标：用证据降低不确定性。
 - 仅有 Research **不**授权写代码。
 
 ### 3. 产品定义（Product Definition）
 
-- 位置：`docs/02_Product/`
+- 位置：`docs/03_Product/`
 - 模板：`docs/templates/PRD_Template.md`
 - 必须包含用户、目标、非目标、成功信号。
 - 必须引用 Vision（使用了 Research 时一并引用）。
 
 ### 4. 规格（Specification）
 
-- 位置：`docs/03_Specifications/`
+- 位置：`docs/04_Specifications/`
 - 模板：`docs/templates/Specification_Template.md`
 - 需求必须可测试（ID + 验收标准）。
 - 模糊在 Spec 中消除，不靠代码注释。
 
 ### 5. 架构（Architecture）
 
-- 位置：`docs/04_Architecture/`
+- 位置：`docs/05_Architecture/`
 - 模板：`docs/templates/Architecture_Template.md`
 - 描述 Spec 如何在 `apps/`、`services/`、`packages/`、`infrastructure/` 中落地。
-- 重大选型 → `docs/05_ADR/` 写 ADR。
+- 重大选型 → `docs/06_ADR/` 写 ADR。
 
 ### 6. 任务拆解（Task Breakdown）
 
-- 位置：`docs/06_Sprint/`（或外部追踪器 + Task 模板）
+- 位置：`docs/07_Sprint/`（或外部追踪器 + Task 模板）
 - 每个任务引用 Spec ID（必要时引用 Architecture）。
 - 禁止无文档依据的孤儿实现任务。
 
@@ -100,13 +100,13 @@ flowchart TD
 
 ### 9. 测试（Testing）
 
-- 策略在 `docs/08_Testing/`；套件在 `/tests` 与代码旁。
+- 策略在 `docs/09_Testing/`；套件在 `/tests` 与代码旁。
 - 测试断言 Spec。
 - 失败映射回 Spec ID，或产出 Spec 缺陷报告。
 
 ### 10. 发布（Release）
 
-- 说明放在 `docs/09_Release/`，使用 Release Note 模板。
+- 说明放在 `docs/10_Release/`，使用 Release Note 模板。
 - 更新 `CHANGELOG.md`。
 - 高风险变更须有放量/回滚计划。
 

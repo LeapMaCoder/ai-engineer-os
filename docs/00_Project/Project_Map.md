@@ -1,4 +1,4 @@
----
+﻿---
 title: 项目地图
 type: project
 status: active
@@ -40,12 +40,12 @@ ai-engineer-os/           # Git 仓库根（与 GitHub 同名）
 flowchart TB
   README[README.md] --> Dash[00_Project/Dashboard]
   Dash --> INDEX[docs/INDEX.md]
-  INDEX --> Vision[00_Vision]
-  INDEX --> Research[01_Research]
-  INDEX --> Product[02_Product]
-  INDEX --> Spec[03_Specifications]
-  INDEX --> Arch[04_Architecture]
-  INDEX --> Dev[07_Development]
+  INDEX --> Vision[01_Vision]
+  INDEX --> Research[02_Research]
+  INDEX --> Product[03_Product]
+  INDEX --> Spec[04_Specifications]
+  INDEX --> Arch[05_Architecture]
+  INDEX --> Dev[08_Development]
   Spec -.->|尚未启用| Code[apps/services]
   Arch -.->|尚未启用| Code
 ```
@@ -70,17 +70,17 @@ flowchart LR
 | 目录 | 职责 | 当前状态 |
 |------|------|----------|
 | `00_Project/` | 导航、阶段、状态、未决问题 | **活跃** |
-| `00_Vision/` | 使命愿景原则北极星 | 活跃 |
-| `01_Research/` | 用户/竞品/市场/访谈 | 活跃（访谈待执行） |
-| `02_Product/` | ICP / 未来 PRD | ICP 框架已有；PRD 无 |
-| `03_Specifications/` | 规格 | 空 |
-| `04_Architecture/` | 架构 | 空 |
-| `05_ADR/` | 决策记录 | 空 |
-| `06_Sprint/` | Sprint | 空 |
-| `07_Development/` | 流程与 AI 角色 | 活跃 |
-| `08_Testing/` | 测试策略 | 空 |
-| `09_Release/` | 发布 | 空 |
-| `10_Operations/` | 运维 | 空 |
+| `01_Vision/` | 使命愿景原则北极星 | 活跃 |
+| `02_Research/` | 用户/竞品/市场/访谈 | 活跃（访谈待执行） |
+| `03_Product/` | ICP / 未来 PRD | ICP 框架已有；PRD 无 |
+| `04_Specifications/` | 规格 | 空 |
+| `05_Architecture/` | 架构 | 空 |
+| `06_ADR/` | 决策记录 | 空 |
+| `07_Sprint/` | Sprint | 空 |
+| `08_Development/` | 流程与 AI 角色 | 活跃 |
+| `09_Testing/` | 测试策略 | 空 |
+| `10_Release/` | 发布 | 空 |
+| `11_Operations/` | 运维 | 空 |
 | `templates/` | SDD 模板 | 活跃 |
 | `Archive/` | 归档 | 空 |
 
@@ -109,7 +109,7 @@ flowchart TD
 ## 5. Research 子树
 
 ```text
-01_Research/
+02_Research/
 ├── User/                 # 桌面用户分析
 ├── User_Interview/       # 创始人访谈体系
 ├── Competitors/          # 留存视角竞品

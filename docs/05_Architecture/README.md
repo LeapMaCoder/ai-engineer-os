@@ -1,4 +1,4 @@
-# 04_Architecture
+﻿# 05_Architecture
 
 ## 职责
 
@@ -19,7 +19,7 @@ Vision → Product → Specification → **Architecture** → Code → Test
 ## 规则
 
 - Architecture 必须映射到 Specification（可追溯）。
-- 重大选型须在 `05_ADR/` 写 ADR。
+- 重大选型须在 `06_ADR/` 写 ADR。
 - 不要在聊天里随口定栈 — 记入本文档 + ADR。
 - 禁止无文档更新的「靠 PR 长出架构」。
 

@@ -1,6 +1,6 @@
----
+﻿---
 description: 架构规则 — 设计完整性与 ADR 纪律
-globs: docs/04_Architecture/**,docs/05_ADR/**,infrastructure/**
+globs: docs/05_Architecture/**,docs/06_ADR/**,infrastructure/**
 alwaysApply: false
 ---
 
@@ -12,8 +12,8 @@ alwaysApply: false
 
 ## 必需产物
 
-- 非琐碎系统须有 `docs/04_Architecture/` 架构文档
-- 重大 / 难回退决策须有 `docs/05_ADR/` ADR
+- 非琐碎系统须有 `docs/05_Architecture/` 架构文档
+- 重大 / 难回退决策须有 `docs/06_ADR/` ADR
 
 ## 允许产出
 

@@ -1,4 +1,4 @@
-# tests/
+﻿# tests/
 
 不属于单一 app 或 service 的跨切面自动化测试。
 
@@ -10,7 +10,7 @@
 ## 规则
 
 - 测试跟随 Specification：被测行为须先被规格化。
-- 大规模测试套件引入前，先在 `docs/08_Testing/` 写清策略。
+- 大规模测试套件引入前，先在 `docs/09_Testing/` 写清策略。
 - 未经过 Architecture / ADR，不定测试框架选型。
 
 ## 状态

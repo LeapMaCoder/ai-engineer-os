@@ -1,4 +1,4 @@
----
+﻿---
 title: LeapMa 文档索引
 type: project
 status: active
@@ -28,7 +28,7 @@ tags:
 | [[Current_State]] | 产品/技术/决策快照 |
 | [[Open_Questions]] | 未决问题清单 |
 
-## 1. 愿景 `00_Vision/`
+## 1. 愿景 `01_Vision/`
 
 | 文档 | 说明 |
 |------|------|
@@ -36,7 +36,7 @@ tags:
 | [[Product_Principles]] | 产品决策原则 |
 | [[Product_North_Star]] | NSM = WEGS |
 
-## 2. 调研 `01_Research/`
+## 2. 调研 `02_Research/`
 
 ### User
 
@@ -68,25 +68,25 @@ tags:
 |------|------|
 | [[AI_Native_Learning_Opportunity]] | AI Native 机会 |
 
-## 3. 产品 `02_Product/`
+## 3. 产品 `03_Product/`
 
 | 文档 | 说明 |
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
 | PRD | ⏳ 尚未创建 |
 
-## 4–10. 工程文档（占位）
+## 4–11. 工程文档（占位）
 
 | 目录 | 状态 |
 |------|------|
-| `03_Specifications/` | 空 |
-| `04_Architecture/` | 空 |
-| `05_ADR/` | 空 |
-| `06_Sprint/` | 空 |
-| `07_Development/` | [[Development_Workflow]] · [[AI_Team_Roles]] |
-| `08_Testing/` | 空 |
-| `09_Release/` | 空 |
-| `10_Operations/` | 空 |
+| `04_Specifications/` | 空 |
+| `05_Architecture/` | 空 |
+| `06_ADR/` | 空 |
+| `07_Sprint/` | 空 |
+| `08_Development/` | [[Development_Workflow]] · [[AI_Team_Roles]] |
+| `09_Testing/` | 空 |
+| `10_Release/` | 空 |
+| `11_Operations/` | 空 |
 | `templates/` | SDD 模板齐全 |
 | `Archive/` | 空 |
 
