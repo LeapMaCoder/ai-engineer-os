@@ -20,13 +20,11 @@ LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品
 
 ## 当前阶段
 
-**Phase 5 — Vertical Slice 进行中**（`apps/leapma_web` · SPEC-GL-001）
+**Phase 5 — Python 赛道垂直切片**（第 1 章可玩；规则反馈；MySQL）
 
-已完成：Spec / Arch / ADR Accepted；Founder 已授权编码。
+详情：[leapma_web README](apps/leapma_web/README.md) · [Python_Track_Outline](docs/03_Product/MVP/Python_Track_Outline.md)
 
-启动与验收：[apps/leapma_web/README.md](apps/leapma_web/README.md)
-
-**Agent 不 commit**（Founder 手动）。
+**Agent 不 commit。**
 
 ## 开发方式
 

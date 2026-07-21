@@ -1,16 +1,30 @@
 {% extends "base.html" %}
-{% block title %}LeapMa · 成长教练{% endblock %}
+{% block title %}LeapMa · Python 成长{% endblock %}
 {% block body %}
-<section class="coach">
+<section class="panel">
   <p class="coach-label">教练</p>
-  <h1>你好。我们直接找下一步。</h1>
-  <p class="coach-line">不用填问卷。用一句话告诉我——你想提升什么？我会马上给你一个能动手的下一步。</p>
+  <h1>你好。我们直接练 Python。</h1>
+  <p class="lede">不用填问卷。点一个方向，或自己写一句——马上进入章节动手练习（判定反馈，不依赖真实 LLM）。</p>
+
+  <div class="chips">
+    {% for chip in chips %}
+    <form method="post" action="{{ url_for('growth.begin') }}" class="chip-form">
+      <input type="hidden" name="goal_intent" value="{{ chip }}">
+      <button type="submit" class="chip">{{ chip }}</button>
+    </form>
+    {% endfor %}
+  </div>
+
   <form method="post" action="{{ url_for('growth.begin') }}">
     <label for="goal_intent">你想提升什么？</label>
-    <textarea id="goal_intent" name="goal_intent" rows="3" required autofocus
-      placeholder="例：补 Python，能独立写小脚本"></textarea>
-    <button type="submit">给我下一步</button>
+    <textarea id="goal_intent" name="goal_intent" rows="2"
+      placeholder="例：职场补 Python，能独立写小脚本"></textarea>
+    <div class="btn-row">
+      <button type="submit">给我下一步</button>
+      <a class="btn secondary" href="{{ url_for('growth.dashboard') }}">先看 Dashboard</a>
+    </div>
   </form>
-  <p class="muted">免费可跑通整环 · 不是测评 · 不是课超市</p>
+  <p class="muted">初期赛道：Python · 第 1 章可玩 · 第 2～3 章骨架 · 免费整环</p>
+  <p><a href="{{ url_for('growth.track_home') }}">直接进入 Python 章节目录 →</a></p>
 </section>
 {% endblock %}

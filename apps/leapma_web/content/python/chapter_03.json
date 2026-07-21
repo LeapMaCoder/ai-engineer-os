@@ -1,0 +1,20 @@
+{
+  "id": "py-03",
+  "track_id": "python",
+  "title": "第 3 章 · 做个决定：if 分支入门",
+  "goal": "能写最简单的 if 条件（骨架：下一批交付完整练习）。",
+  "status": "skeleton",
+  "lessons": [
+    {
+      "id": "py-03-l1",
+      "title": "（占位）如果……就……",
+      "coach": "本章练习即将上线。完成第 1 章后记得回来。",
+      "prompt": "占位：本章尚未开放提交。",
+      "hint": "",
+      "checks": [],
+      "pass_feedback": "",
+      "fail_prefix": "",
+      "locked": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ chapter.title }}{% endblock %}
+{% block body %}
+<section class="panel">
+  <p class="coach-label">章节</p>
+  <h1>{{ chapter.title }}</h1>
+  <p class="coach-line">{{ chapter.goal }}</p>
+  {% if chapter.status != 'ready' %}
+  <p class="badge warn">骨架占位 · 完整练习稍后交付</p>
+  {% endif %}
+  <ol class="lesson-list">
+    {% for lesson in chapter.lessons %}
+    <li>
+      {% if lesson.locked %}
+        <span style="display:block;padding:0.85rem 0.15rem;color:var(--ink-soft)">{{ lesson.title }}（未开放）</span>
+      {% else %}
+        <a href="{{ url_for('growth.lesson_play', chapter_id=chapter.id, lesson_id=lesson.id) }}">
+          <span>{{ lesson.title }}{% if lesson.id in passed %} <span class="badge ok">已过</span>{% endif %}</span>
+          <span class="muted">开始</span>
+        </a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  <p><a href="{{ url_for('growth.track_home') }}">← 章节目录</a> · <a href="{{ url_for('growth.dashboard') }}">Dashboard</a></p>
+</section>
+{% endblock %}

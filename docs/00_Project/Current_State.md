@@ -19,24 +19,15 @@ tags:
 
 | 项 | 状态 |
 |----|------|
-| SPEC-GL-001 | ✅ Approved |
-| Architecture / ADR-0001/0002/0003 | ✅ Accepted |
-| **当前阶段** | **Phase 5 — 垂直切片进行中** |
-| 代码 | `apps/leapma_web`（Flask SSR；**方案 1 去问卷化**：首屏教练单输入） |
+| 初期赛道 | **Python**（D-042） |
+| 章节 | py-01 **ready**；py-02/03 **skeleton**（D-044） |
+| 反馈 | 规则判定优先；LLM Later（D-043） |
+| 代码 | `apps/leapma_web` + `content/python/` |
+| 主存 | MySQL `leapma`（凭据仅在本地 `.env`） |
 
-## 2. 技术状态
-
-- 运行时：Python / Flask + Jinja SSR  
-- 首体验：一句话目标 →（仅极度模糊时可选探针）→ NextStep → 短练习  
-- Provider：`mock` 默认；MySQL 规范 / SQLite 本地  
-
-## 3. 下一阶段
-
-手工验收去问卷化路径 → Founder commit。
-
-## 4. 变更日志
+## 2. 变更日志
 
 | 日期 | 变化 |
 |------|------|
-| 2026-07-21 | D-040 方案 1：去问卷化落盘 Spec+代码；**未 commit** |
-| 2026-07-21 | 授权落地垂直切片 `apps/leapma_web` |
+| 2026-07-21 | **D-045**：视觉重做 + 游客 Dashboard Demo；**未 commit** |
+| 2026-07-21 | D-042/043/044；Python 第 1 章可玩 + MySQL；**未 commit** |

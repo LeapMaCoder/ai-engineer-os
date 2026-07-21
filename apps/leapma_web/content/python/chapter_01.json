@@ -1,0 +1,51 @@
+{
+  "id": "py-01",
+  "track_id": "python",
+  "title": "第 1 章 · 开口说话：print 与字符串",
+  "goal": "能用 print 输出字符串，并理解引号的作用。",
+  "status": "ready",
+  "lessons": [
+    {
+      "id": "py-01-l1",
+      "title": "练习 1：打个招呼",
+      "coach": "我们不考试。写一行代码，让屏幕打出一句招呼。",
+      "prompt": "写出一行 Python，使用 print 输出：Hello LeapMa",
+      "hint": "形如：print(\"...\")",
+      "checks": [
+        {"type": "contains", "value": "print", "message": "需要用到 print。"},
+        {"type": "contains_any", "values": ["Hello LeapMa", "Hello LeapMa"], "message": "输出内容需包含 Hello LeapMa。"},
+        {"type": "regex", "pattern": "print\\s*\\(", "message": "print 后面要有括号调用。"}
+      ],
+      "pass_feedback": "对了：你完成了一次可见输出。下一步我们练字符串边界。",
+      "fail_prefix": "还差一点："
+    },
+    {
+      "id": "py-01-l2",
+      "title": "练习 2：引号包住文字",
+      "coach": "字符串要用引号包起来，否则 Python 会当成名字去找。",
+      "prompt": "用 print 输出恰好这三个词（含空格）：I write Python",
+      "hint": "单引号或双引号都可以。",
+      "checks": [
+        {"type": "contains", "value": "print", "message": "需要用到 print。"},
+        {"type": "contains", "value": "I write Python", "message": "请原样包含：I write Python"},
+        {"type": "regex", "pattern": "['\"].*I write Python.*['\"]", "message": "文字需要放在引号里。"}
+      ],
+      "pass_feedback": "很好：引号把文字变成了字符串。",
+      "fail_prefix": "再看看："
+    },
+    {
+      "id": "py-01-l3",
+      "title": "练习 3：两行输出",
+      "coach": "一次练习写两行 print，确认你能连续动手。",
+      "prompt": "写两行代码：第一行 print 输出 Go；第二行 print 输出 Learn。",
+      "hint": "两行各一个 print。",
+      "checks": [
+        {"type": "regex", "pattern": "print\\s*\\([^\\n]*Go[^\\n]*\\)", "message": "需要有一行输出 Go。"},
+        {"type": "regex", "pattern": "print\\s*\\([^\\n]*Learn[^\\n]*\\)", "message": "需要有一行输出 Learn。"},
+        {"type": "min_print_calls", "value": 2, "message": "请至少写两个 print 调用。"}
+      ],
+      "pass_feedback": "第 1 章核心练完：你会用 print 做可见输出。可以进入第 2 章骨架或回顾进展。",
+      "fail_prefix": "检查两行："
+    }
+  ]
+}

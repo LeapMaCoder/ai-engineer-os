@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}多说一句？{% endblock %}
 {% block body %}
-<section class="coach">
+<section class="panel">
   <p class="coach-label">教练</p>
   <h1>你的方向有点宽</h1>
   <p class="coach-line">我已经能给下一步了。若愿意，多说一句能帮我对准一点——<strong>随时可跳过</strong>，不是测评题。</p>
@@ -12,7 +12,7 @@
   <form method="post">
     <label for="probe_answer">可选补充（可留空）</label>
     <textarea id="probe_answer" name="probe_answer" rows="2" placeholder="不想填就点「跳过，看下一步」"></textarea>
-    <div class="row">
+    <div class="btn-row">
       <button type="submit" name="action" value="skip">跳过，看下一步</button>
       <button type="submit" name="action" value="answer" class="secondary">补充一句</button>
     </div>

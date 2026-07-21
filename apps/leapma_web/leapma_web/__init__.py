@@ -23,9 +23,17 @@ def create_app() -> Flask:
         "sqlite:///" + str(Path(__file__).resolve().parents[1] / "data" / "leapma.db"),
     )
 
+    from flask import session
+
     from leapma_web.db import init_db
     from leapma_web.routes import bp
 
     init_db(app.config["DATABASE_URL"])
     app.register_blueprint(bp)
+
+    @app.context_processor
+    def inject_guest():
+        name = (session.get("display_name") or "").strip()
+        return {"guest_label": name if name else "游客"}
+
     return app

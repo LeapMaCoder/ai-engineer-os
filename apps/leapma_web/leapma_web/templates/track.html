@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Python 赛道{% endblock %}
+{% block body %}
+<section class="panel">
+  <p class="coach-label">Python 赛道</p>
+  <h1>{{ track.title }}</h1>
+  <p class="coach-line">{{ track.tagline }} · 窄路径动手（原创内容）</p>
+  <ul class="chapter-list">
+    {% for c in chapters %}
+    <li>
+      <a href="{{ url_for('growth.chapter_view', chapter_id=c.id) }}">
+        <strong>{{ c.title }}</strong>
+        <span class="badge {% if c.status == 'ready' %}ok{% else %}warn{% endif %}">{{ c.status }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="muted">已通过练习数：{{ passed|length }}</p>
+  <p><a href="{{ url_for('growth.dashboard') }}">Dashboard</a> · <a href="{{ url_for('growth.home') }}">首页</a></p>
+</section>
+{% endblock %}

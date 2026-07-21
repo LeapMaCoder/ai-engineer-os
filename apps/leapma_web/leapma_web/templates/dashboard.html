@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · LeapMa{% endblock %}
+{% block body %}
+<section class="panel">
+  <p class="coach-label">个人中心 · 游客</p>
+  <h1>你的成长面板</h1>
+  <p class="lede">无需注册。这里是路线与进度的门面——看见走到哪了，然后继续练。</p>
+</section>
+
+<section class="dash-grid two" style="margin-top:1rem">
+  <div class="panel">
+    <h2>身份</h2>
+    <p class="muted">Guest ID（会话）</p>
+    <p class="stat" style="font-size:1rem;word-break:break-all">{{ guest_id_short }}</p>
+    <form method="post" action="{{ url_for('growth.dashboard_name') }}">
+      <label for="display_name">显示名（可改，非问卷）</label>
+      <input id="display_name" type="text" name="display_name" value="{{ display_name }}" maxlength="32" placeholder="例如：阿码">
+      <button type="submit">保存显示名</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h2>继续学习</h2>
+    {% if continue_title %}
+    <p class="coach-line">{{ continue_title }}</p>
+    {% else %}
+    <p class="coach-line">还没有进度。从 Python 第 1 章开始。</p>
+    {% endif %}
+    <a class="btn" href="{{ continue_url }}">继续上次学习</a>
+    {% if progress_line %}
+    <p class="muted" style="margin-top:1rem">{{ progress_line }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="panel" style="margin-top:1rem">
+  <h2>Python 赛道路线</h2>
+  <p class="muted">参考「路线 + 进度」信息结构；第 2～3 章未开放时诚实标注，不假装完成。</p>
+  <ul class="chapter-list">
+    {% for row in chapter_rows %}
+    <li>
+      <a href="{{ row.url }}">
+        <span>
+          {{ row.title }}
+          {% if row.status == 'ready' %}
+            <span class="badge ok">{{ row.passed }}/{{ row.total }} 已过</span>
+          {% else %}
+            <span class="badge warn">未开放</span>
+          {% endif %}
+        </span>
+        <span class="muted">{{ row.pct_label }}</span>
+      </a>
+      {% if row.status == 'ready' %}
+      <div class="progress-bar" aria-hidden="true"><span style="width:{{ row.pct }}%"></span></div>
+      {% else %}
+      <div class="progress-bar" aria-hidden="true"><span style="width:0%"></span></div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

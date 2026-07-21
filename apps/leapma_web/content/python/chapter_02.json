@@ -1,0 +1,20 @@
+{
+  "id": "py-02",
+  "track_id": "python",
+  "title": "第 2 章 · 记住东西：变量与赋值",
+  "goal": "能用变量保存值并再次使用（骨架：下一批交付完整练习）。",
+  "status": "skeleton",
+  "lessons": [
+    {
+      "id": "py-02-l1",
+      "title": "（占位）给值起个名字",
+      "coach": "本章练习即将上线。你可先回到第 1 章巩固 print。",
+      "prompt": "占位：本章尚未开放提交。",
+      "hint": "",
+      "checks": [],
+      "pass_feedback": "",
+      "fail_prefix": "",
+      "locked": true
+    }
+  ]
+}

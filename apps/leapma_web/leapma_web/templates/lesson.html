@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }}{% endblock %}
+{% block body %}
+<section class="panel">
+  <p class="coach-label">{{ chapter.title }}</p>
+  <h1>{{ lesson.title }}</h1>
+  <p class="coach-line">{{ lesson.coach }}</p>
+  <p class="box soft">{{ lesson.prompt }}</p>
+  {% if lesson.hint %}<p class="muted">提示：{{ lesson.hint }}</p>{% endif %}
+
+  {% if grade %}
+  <pre class="box {% if grade.passed %}highlight{% endif %}">{{ grade.body }}</pre>
+  {% if grade.passed %}
+  <p class="badge ok">判定：通过</p>
+  {% else %}
+  <p class="badge warn">判定：未过 · 改一改再交</p>
+  {% endif %}
+  {% endif %}
+
+  {% if run_demo %}
+  <p class="badge demo">Run · Demo</p>
+  <p class="run-note">真沙箱执行尚未接入。当前请用 Submit 获得对错判定。</p>
+  {% endif %}
+
+  {% if not lesson.locked %}
+  <form method="post">
+    <label for="attempt_text">你的代码 / 作答</label>
+    <textarea id="attempt_text" class="code" name="attempt_text" rows="8"
+      placeholder="在此写下本课要求的代码…">{{ attempt_text or '' }}</textarea>
+    <div class="btn-row">
+      <button type="submit" name="action" value="submit">Submit · 提交判定</button>
+      <button type="submit" name="action" value="run" class="ghost">Run · 即将支持</button>
+    </div>
+    <p class="run-note">Run 为占位，不启动 IDE / 容器。Submit 走现有规则判定。</p>
+  </form>
+  {% endif %}
+  <p style="margin-top:1rem"><a href="{{ url_for('growth.chapter_view', chapter_id=chapter.id) }}">← 本章目录</a>
+  · <a href="{{ url_for('growth.dashboard') }}">Dashboard</a></p>
+</section>
+{% endblock %}

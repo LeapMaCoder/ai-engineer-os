@@ -1,0 +1,10 @@
+{
+  "id": "python",
+  "title": "Python 学习成长",
+  "tagline": "窄路径 · 动手练习 · 可见对错",
+  "chapters": [
+    {"id": "py-01", "title": "第 1 章 · 开口说话：print 与字符串", "status": "ready"},
+    {"id": "py-02", "title": "第 2 章 · 记住东西：变量与赋值", "status": "skeleton"},
+    {"id": "py-03", "title": "第 3 章 · 做个决定：if 分支入门", "status": "skeleton"}
+  ]
+}

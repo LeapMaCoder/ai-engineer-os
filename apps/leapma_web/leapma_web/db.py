@@ -119,6 +119,18 @@ CREATE TABLE IF NOT EXISTS growth_sessions (
   updated_at TEXT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
+CREATE TABLE IF NOT EXISTS user_track_progress (
+  user_id TEXT NOT NULL,
+  track_id TEXT NOT NULL,
+  chapter_id TEXT NOT NULL,
+  lesson_id TEXT NOT NULL DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'unlocked',
+  last_attempt TEXT,
+  last_passed INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, track_id, chapter_id, lesson_id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
 """
 
 _MYSQL_DDL = [
@@ -146,6 +158,18 @@ _MYSQL_DDL = [
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_gs_user FOREIGN KEY (user_id) REFERENCES users(id)
+) ENGINE=InnoDB""",
+    """CREATE TABLE IF NOT EXISTS user_track_progress (
+  user_id VARCHAR(36) NOT NULL,
+  track_id VARCHAR(64) NOT NULL,
+  chapter_id VARCHAR(64) NOT NULL,
+  lesson_id VARCHAR(64) NOT NULL DEFAULT '',
+  status VARCHAR(32) NOT NULL DEFAULT 'unlocked',
+  last_attempt TEXT NULL,
+  last_passed TINYINT(1) NOT NULL DEFAULT 0,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id, track_id, chapter_id, lesson_id),
+  CONSTRAINT fk_utp_user FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB""",
 ]
 
@@ -281,3 +305,125 @@ def user_is_paid(user_id: str) -> bool:
             cur.execute("SELECT is_paid FROM users WHERE id = %s", (user_id,))
             row = cur.fetchone()
             return bool(row["is_paid"]) if row else False
+
+
+def upsert_lesson_progress(
+    user_id: str,
+    track_id: str,
+    chapter_id: str,
+    lesson_id: str,
+    *,
+    status: str,
+    last_attempt: str | None,
+    last_passed: bool,
+) -> None:
+    now = _now()
+    with _connect() as conn:
+        if _backend == "sqlite":
+            conn.execute(
+                """
+                INSERT INTO user_track_progress
+                  (user_id, track_id, chapter_id, lesson_id, status, last_attempt, last_passed, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(user_id, track_id, chapter_id, lesson_id) DO UPDATE SET
+                  status=excluded.status,
+                  last_attempt=excluded.last_attempt,
+                  last_passed=excluded.last_passed,
+                  updated_at=excluded.updated_at
+                """,
+                (
+                    user_id,
+                    track_id,
+                    chapter_id,
+                    lesson_id,
+                    status,
+                    last_attempt,
+                    1 if last_passed else 0,
+                    now,
+                ),
+            )
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO user_track_progress
+                      (user_id, track_id, chapter_id, lesson_id, status, last_attempt, last_passed)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE
+                      status=VALUES(status),
+                      last_attempt=VALUES(last_attempt),
+                      last_passed=VALUES(last_passed)
+                    """,
+                    (
+                        user_id,
+                        track_id,
+                        chapter_id,
+                        lesson_id,
+                        status,
+                        last_attempt,
+                        1 if last_passed else 0,
+                    ),
+                )
+            conn.commit()
+
+
+def list_passed_lessons(user_id: str, track_id: str) -> set[str]:
+    with _connect() as conn:
+        if _backend == "sqlite":
+            rows = conn.execute(
+                "SELECT lesson_id FROM user_track_progress "
+                "WHERE user_id=? AND track_id=? AND last_passed=1",
+                (user_id, track_id),
+            ).fetchall()
+            return {r["lesson_id"] for r in rows}
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT lesson_id FROM user_track_progress "
+                "WHERE user_id=%s AND track_id=%s AND last_passed=1",
+                (user_id, track_id),
+            )
+            rows = cur.fetchall()
+            return {r["lesson_id"] for r in rows}
+
+
+def latest_session_for_user(user_id: str) -> Optional[GrowthSession]:
+    with _connect() as conn:
+        if _backend == "sqlite":
+            row = conn.execute(
+                "SELECT * FROM growth_sessions WHERE user_id=? "
+                "ORDER BY updated_at DESC LIMIT 1",
+                (user_id,),
+            ).fetchone()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT * FROM growth_sessions WHERE user_id=%s "
+                    "ORDER BY updated_at DESC LIMIT 1",
+                    (user_id,),
+                )
+                row = cur.fetchone()
+    return _row_to_session(row) if row else None
+
+
+def latest_attempted_lesson(user_id: str, track_id: str) -> Optional[tuple[str, str]]:
+    """Return (chapter_id, lesson_id) of most recently updated progress row."""
+    with _connect() as conn:
+        if _backend == "sqlite":
+            row = conn.execute(
+                "SELECT chapter_id, lesson_id FROM user_track_progress "
+                "WHERE user_id=? AND track_id=? ORDER BY updated_at DESC LIMIT 1",
+                (user_id, track_id),
+            ).fetchone()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT chapter_id, lesson_id FROM user_track_progress "
+                    "WHERE user_id=%s AND track_id=%s ORDER BY updated_at DESC LIMIT 1",
+                    (user_id, track_id),
+                )
+                row = cur.fetchone()
+    if not row:
+        return None
+    d = dict(row)
+    return d["chapter_id"], d["lesson_id"]

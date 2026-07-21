@@ -145,9 +145,9 @@ flowchart LR
 | BR-008 | 改行为须先改本 Spec；实现须先过 Architecture 门禁，禁止无 Arch 的业务编码 | Confirmed（SDD） |
 | BR-009 | GL-2 轻量位置感 = 对话推断为主 + 可选 1 道探针；禁止完整测评认证冒充最小定向（OQ-001） | Confirmed（最小默认） |
 | BR-010 | ICP「职场补技能」仍为 Hypothesis；不阻塞本 Spec；Continuous Validation 并行（OQ-004） | Hypothesis（ICP）/ Confirmed（不阻塞） |
-| BR-011 | **首屏禁止「问卷墙」**：目标采集用单输入 / 对话式，非多题表单、非测评开场 | Confirmed（方案 1） |
-| BR-012 | **探针默认跳过**；仅目标极度模糊时建议 1 题；用户**始终可跳过**；禁止强制探针墙 | Confirmed（方案 1） |
-| BR-013 | **优先尽快给出可陈述 NextStep**，再进入短练习；位置感以对话推断为主，不阻塞下一步 | Confirmed（方案 1） |
+| BR-011 | **首屏禁止「问卷墙」**：目标采集用单输入 / 对话式，非多题表单、非测评开场（对齐原则 10 / D-041） | Confirmed（方案 1） |
+| BR-012 | **探针默认跳过**；仅目标极度模糊时建议 1 题；用户**始终可跳过**；禁止强制探针墙（原则 10） | Confirmed（方案 1） |
+| BR-013 | **优先尽快给出可陈述 NextStep**，再进入短练习；位置感以对话推断为主，不阻塞下一步（原则 10） | Confirmed（方案 1） |
 
 ## AI Behavior（GL-5 可信反馈）
 
@@ -236,3 +236,4 @@ flowchart LR
 | 2026-07-21 | 初稿 Draft：整环最小 First Growth Experience，对齐 US/AC-01…04 | Execution Agent |
 | 2026-07-21 | OQ-001…005 定稿（Strategic 默认）；Status → **Approved** | Execution Agent |
 | 2026-07-21 | 方案 1 去问卷化：BR-011…013；Flow/OQ-001 更新；**不削弱** AC | Execution Agent |
+| 2026-07-21 | 交叉引用原则 10 No Questionnaire Wall（D-041）；AC 未改 | Execution Agent |

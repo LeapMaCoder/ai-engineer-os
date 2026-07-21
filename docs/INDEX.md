@@ -34,7 +34,7 @@ tags:
 | 文档 | 说明 |
 |------|------|
 | [[LeapMa_Vision]] | 使命愿景用户痛点差异化 |
-| [[Product_Principles]] | 产品决策原则 |
+| [[Product_Principles]] | 产品决策原则（含原则 9/10：成长先于变现、禁止问卷墙） |
 | [[Product_North_Star]] | NSM = WEGS |
 
 ## 2. 调研 `02_Research/`
@@ -75,6 +75,7 @@ tags:
 |------|------|
 | [[ICP_Decision_Framework]] | 首发 ICP 方法 |
 | [[MVP/README]] | MVP 包（Phase 2 定稿） |
+| [[Python_Track_Outline]] | 初期 Python 赛道前三章大纲（D-042/044） |
 | [[PRD/README]] | **Phase 3 MVP PRD Complete**（`946235b`） |
 
 ## 4. 规格 `04_Specifications/`

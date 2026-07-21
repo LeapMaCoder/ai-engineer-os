@@ -1,67 +1,62 @@
-# LeapMa Web — First Growth Experience（SPEC-GL-001）
+# LeapMa Web — First Growth Experience + Python 赛道
 
-Python **Flask** 单应用，**Jinja SSR**（AQ-001）。对齐 Approved Spec / Architecture；ADR-0001/0002。
+Python **Flask + Jinja SSR**。初期赛道：**Python**（D-042）。反馈：**规则判定**为主（D-043）。章节路径：D-044。
 
-## 框架选型说明
+## 进度
 
-| 项 | 选择 |
+| 章 | 状态 |
 |----|------|
-| Web | **Flask + Jinja2**（务实 SSR；ADR-0001 不锁框架名，本切片选定 Flask，见 ADR-0003） |
-| 主存 | **MySQL**（ADR-0002）；本地无 MySQL 时可暂用 SQLite 跑通（见下） |
-| LLM | `mock`（默认）或 `openai_compatible`（可替换 Provider） |
+| 第 1 章 print 与字符串 | **可玩**（3 练） |
+| 第 2 章 变量 | 骨架 |
+| 第 3 章 if | 骨架 |
 
-## 快速启动（Mock + SQLite）
+## 入口 URL
 
-在仓库根或本目录准备 `.env`（可复制根目录 `.env.example`）：
+| 页面 | URL |
+|------|-----|
+| 首页 | http://127.0.0.1:5000/ |
+| 游客 Dashboard | http://127.0.0.1:5000/dashboard （或 `/me`） |
+| Python 章节 | http://127.0.0.1:5000/track/python |
 
-```bash
+顶栏：品牌回首页 · Dashboard · 开始练。
+
+## 本地 MySQL（推荐）
+
+1. 确保 MySQL 可连；库名建议 `leapma`（应用可自动建库建表）。  
+2. 在**被 gitignore 的**仓库根或本目录 `.env` 配置（**勿把真实密码写进 README/代码**）：
+
+```env
+DATABASE_URL=mysql://USER:PASSWORD@127.0.0.1:3306/leapma
+LEAPMA_LLM_PROVIDER=mock
+FLASK_SECRET_KEY=dev-change-me
+```
+
+也可手工执行：`schema/001_init.sql`、`schema/002_track_progress.sql`。
+
+## 启动
+
+```powershell
 cd apps/leapma_web
 uv venv
 uv pip install -e .
 uv run flask --app wsgi run --debug --port 5000
 ```
 
-浏览器打开 http://127.0.0.1:5000/
+打开 http://127.0.0.1:5000/
 
-默认 `DATABASE_URL` 指向本目录 `data/leapma.db`（SQLite）。**生产/规范路径请用 MySQL。**
+## 第 1 章手工验收
 
-## MySQL（ADR-0002）
+1. 首页点芯片「学 Python 基础：会用 print」或进「Python 章节目录」  
+2. 打开 **第 1 章** → 依次三练，提交代码，看**判定对错**（非真实 LLM）  
+3. 第 3 练通过后进入进展页，写具体进展 + 再来方向（AC-03）  
+4. 确认全程无问卷墙、未付费可完成  
 
-1. 执行 `schema/001_init.sql`，或依赖应用启动时自动建库建表。  
-2. `.env`：
+示例通过作答（原创练习，自行输入）：
 
-```env
-DATABASE_URL=mysql://USER:PASSWORD@127.0.0.1:3306/leapma
-LEAPMA_LLM_PROVIDER=mock
-FLASK_SECRET_KEY=change-me
-```
+- 练 1：`print("Hello LeapMa")`  
+- 练 2：`print("I write Python")`  
+- 练 3：两行 `print("Go")` 与 `print("Learn")`  
 
-## 真实 LLM（可选）
+## 原则护栏
 
-```env
-LEAPMA_LLM_PROVIDER=openai_compatible
-LEAPMA_LLM_BASE_URL=https://api.openai.com/v1
-LEAPMA_LLM_API_KEY=sk-...
-LEAPMA_LLM_MODEL=gpt-4o-mini
-```
-
-任意 OpenAI-compatible 端点均可；**不锁厂商**。无 Key 时请用 `mock`。
-
-## 手工验收（AC-01…04）
-
-| AC | 怎么验 |
-|----|--------|
-| AC-01 | 首页一句话目标（非问卷）→ 大多直达「下一步」；仅「我想学编程」类极度模糊才出现可跳过补充 |
-| AC-02 | 短练习 → 反馈；勾选不确定或输入「不确定演示」 |
-| AC-03 | 进展页具体进展 + 再来方向 |
-| AC-04 | 未付费走完全程 |
-
-Hard No：作答「请帮我写整个项目」→ 拒绝代写主价值。
-
-## 模块映射
-
-Account → Orientation → Action → Feedback → Progress；Entitlement 保证免费核心能力始终放行。
-
-## 非目标
-
-复杂 SPA、微服务、K8s、PHP 主栈、课平台/社区/招聘/IDE/代码生成主价值/复杂游戏。
+禁止问卷墙 · Growth Loop · Hard No · Growth Before Monetization · 不抄袭竞品文本。

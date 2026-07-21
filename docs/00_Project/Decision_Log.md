@@ -41,6 +41,7 @@ tags:
 | D-012 | 2026-07-20 | NSM = WEGS（周有效成长会话） | Accepted | [[Product_North_Star]] |
 | D-013 | 2026-07-20 | 产品原则 1–8 生效（成长/反馈/路径/可见/坚持/诚实 AI/垂直/可感知） | Accepted | [[Product_Principles]] |
 
+
 ---
 
 ## Phase 1.5–1.7 — 研究与治理
@@ -69,6 +70,11 @@ tags:
 | D-038 | 2026-07-21 | Phase 2 定稿完成；下一阶段 = MVP PRD Definition | Accepted | Phase 2 Finalization |
 | D-039 | 2026-07-21 | **MVP validates growth loop, not feature completeness** — LeapMa MVP 的目标不是构建完整学习平台，而是验证用户是否能通过成长闭环持续获得价值。Primary Problem 与 4 US / 4 AC 定稿；Hard No 保留。 | Accepted | Phase 3 Final Review |
 | D-040 | 2026-07-21 | **首体验去问卷化（方案 1）**：首屏教练对话非测评；探针默认跳过，仅极度模糊时建议且可跳过；尽快 NextStep→短练习。AC 不削弱。 | Accepted | Founder |
+| D-041 | 2026-07-21 | **原则 10：No Questionnaire Wall（禁止问卷墙）** 正式生效。禁止用多题问卷/测评墙换个性化；价值在前、画像在后；推断优先、提问可跳过且不得阻塞下一步/短练习/反馈。与原则 9、Growth Loop、D-040 / BR-011…013 对齐。 | Accepted | Founder / Strategic |
+| D-042 | 2026-07-21 | **初期垂直赛道 = Python 学习成长**（先打穿）；愿景/Hard No/原则不变。 | Accepted | Founder |
+| D-043 | 2026-07-21 | **判定式/规则反馈优先**；真实 LLM 为辅（Later）。保留可替换 Provider；默认 mock；不以真实 LLM 为跑通前提。 | Accepted | Founder |
+| D-044 | 2026-07-21 | **Boot.dev 式章节动手路径**（窄路径、章内练习→可见对错）；初期 Python **前三章**，可一章一章交付；**禁止抄袭**竞品文本/习题。 | Accepted | Founder |
+| D-045 | 2026-07-21 | **成长可见门面**：自有视觉风格 + 游客个人中心 / Dashboard Demo（路线+进度，无强制注册、无复杂游戏化）；Run 沙箱可滞后。 | Accepted | Founder |
 
 ---
 

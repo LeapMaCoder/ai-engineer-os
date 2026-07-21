@@ -4,12 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}LeapMa{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,550;9..144,650&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 </head>
 <body>
   <header class="top">
     <a class="brand" href="{{ url_for('growth.home') }}">LeapMa</a>
-    <span class="tag">SPEC-GL-001 · 免费成长闭环</span>
+    <nav class="nav" aria-label="主导航">
+      <a href="{{ url_for('growth.dashboard') }}" class="{% if request.endpoint == 'growth.dashboard' %}is-active{% endif %}">Dashboard</a>
+      <a href="{{ url_for('growth.track_home') }}">开始练</a>
+      <span class="nav-guest">{{ guest_label }}</span>
+    </nav>
   </header>
   <main class="wrap">
     {% with messages = get_flashed_messages() %}
@@ -19,6 +26,6 @@
     {% endwith %}
     {% block body %}{% endblock %}
   </main>
-  <footer class="foot">Growth Before Monetization · Hard No: 课平台/社区/招聘/IDE/代写主价值/复杂游戏</footer>
+  <footer class="foot">成长先于变现 · 禁止问卷墙 · 初期 Python · 判定反馈优先</footer>
 </body>
 </html>

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}你的下一步{% endblock %}
 {% block body %}
-<section class="coach">
+<section class="panel">
   <p class="coach-label">教练</p>
-  <h1>接下来做这一步（AC-01）</h1>
+  <h1>接下来做这一步</h1>
   <p class="coach-line">请你能复述出来：我下一步要做什么。</p>
   <p class="box highlight">{{ gs.next_step }}</p>
-  {% if gs.position_hint %}
+  {% if gs.goal_intent %}
   <p class="muted">我听到的方向：{{ gs.goal_intent }}</p>
   {% endif %}
   <p><a class="btn" href="{{ url_for('growth.exercise') }}">开始短练习</a></p>
