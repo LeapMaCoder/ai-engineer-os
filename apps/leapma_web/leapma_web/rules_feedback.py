@@ -82,15 +82,22 @@ def _grade_mcq(lesson: dict[str, Any], text: str) -> GradeResult:
 
 
 def _grade_fill(lesson: dict[str, Any], text: str) -> GradeResult:
+    """Match fill answers tightly: exact first; avoid 'n' matching 'n*n' or '5' in '15'."""
     answers = lesson.get("answers") or []
     compact = _norm_compact(text)
     for ans in answers:
         a = _norm_compact(str(ans))
         if not a:
             continue
-        if compact == a or a in compact or compact in a:
+        if compact == a:
             return _pass(lesson)
-    # Fall through to checks if provided
+        # Longer paste may include the answer; require non-trivial token (ops or len>=3)
+        if re.search(r"[^a-z0-9]", a) or len(a) >= 3:
+            if re.search(
+                r"(?<![a-z0-9_])" + re.escape(a) + r"(?![a-z0-9_])",
+                compact,
+            ):
+                return _pass(lesson)
     checks = lesson.get("checks") or []
     if checks:
         return _grade_with_checks(lesson, text)

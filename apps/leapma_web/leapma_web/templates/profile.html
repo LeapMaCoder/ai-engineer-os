@@ -1,69 +1,74 @@
 {% extends "base.html" %}
 {% block title %}个人中心 · LeapMa{% endblock %}
 {% block body %}
-<section class="panel">
-  <p class="coach-label">{% if logged_in %}个人中心 · 已登录{% else %}个人中心 · 游客可用{% endif %}</p>
-  <h1>个人中心</h1>
-  <p class="muted">资料与默认偏好在此管理；课内切换不会改动默认概念模式。</p>
+<section class="panel profile-hero page-profile">
+  <p class="coach-label">个人中心 · 账户与设置</p>
+  <h1>我的账户</h1>
+  <p class="muted">在此管理昵称与默认偏好。课内切换概念模式<strong>不会</strong>改动默认设置。</p>
+  <p class="profile-role">
+    {% if logged_in %}
+    <span class="badge ok">已登录</span>
+    <span class="muted">账号 {{ username }}</span>
+    {% else %}
+    <span class="badge warn">游客</span>
+    <span class="muted">Guest · {{ guest_id_short }} · 可学，注册可选</span>
+    {% endif %}
+  </p>
 </section>
 
-<section class="dash-grid two" style="margin-top:1rem">
-  <div class="panel">
-    <h2>身份</h2>
-    <p class="muted">{% if logged_in %}账号{% else %}Guest ID（会话）{% endif %}</p>
-    <p class="stat" style="font-size:1rem;word-break:break-all">
-      {% if logged_in and username %}{{ username }}{% else %}{{ guest_id_short }}{% endif %}
-    </p>
-    <p class="muted" style="margin-top:0.75rem">{{ joined_label }}</p>
-    <p>{{ joined_at }}</p>
-
-    <form method="post" action="{{ url_for('growth.profile_name') }}" style="margin-top:1.25rem">
-      <label for="display_name">显示名（可改，非问卷）</label>
-      <input id="display_name" type="text" name="display_name" value="{{ display_name }}" maxlength="32" placeholder="例如：阿码">
+<section class="profile-sections">
+  <div class="panel profile-card">
+    <h2>资料</h2>
+    <dl class="profile-dl">
+      <div>
+        <dt>显示名</dt>
+        <dd>{{ display_name }}</dd>
+      </div>
+      <div>
+        <dt>{{ joined_label }}</dt>
+        <dd>{{ joined_at }}</dd>
+      </div>
+    </dl>
+    <form method="post" action="{{ url_for('growth.profile_name') }}" class="profile-form">
+      <label for="display_name">修改显示名</label>
+      <input id="display_name" type="text" name="display_name" value="{{ display_name }}" maxlength="32" placeholder="例如：阿码" autocomplete="nickname">
       <button type="submit">保存显示名</button>
     </form>
+  </div>
 
-    <form method="post" action="{{ url_for('growth.profile_concept_mode') }}" style="margin-top:1.25rem">
+  <div class="panel profile-card">
+    <h2>默认概念模式</h2>
+    <p class="muted">打开或刷新任意课时，【学】区按此默认渲染（方案 B）。</p>
+    <p class="profile-mode-now">当前默认：<strong>{% if concept_mode_default == 'story' %}故事{% else %}正常{% endif %}</strong></p>
+    <form method="post" action="{{ url_for('growth.profile_concept_mode') }}" class="profile-form">
       <fieldset class="concept-pref-set">
-        <legend>默认概念模式</legend>
-        <p class="muted" style="margin:0.35rem 0 0.75rem">打开或刷新任意课时用此默认渲染【学】区。课内切换不会改动此项。</p>
+        <legend class="visually-hidden">选择默认概念模式</legend>
         <label class="mcq-option">
           <input type="radio" name="concept_mode_default" value="normal"
             {% if concept_mode_default != 'story' %}checked{% endif %}>
-          <span>正常</span>
+          <span>正常模式</span>
         </label>
         <label class="mcq-option">
           <input type="radio" name="concept_mode_default" value="story"
             {% if concept_mode_default == 'story' %}checked{% endif %}>
-          <span>故事</span>
+          <span>故事模式</span>
         </label>
       </fieldset>
       <button type="submit">保存默认模式</button>
     </form>
-
-    {% if not logged_in %}
-    <p class="muted" style="margin-top:1rem">注册可选——不挡学习。想跨设备保留进度再登录。</p>
-    <p class="btn-row">
-      <a class="btn secondary" href="{{ url_for('growth.login') }}">登录</a>
-      <a class="btn ghost" href="{{ url_for('growth.register') }}">注册</a>
-    </p>
-    {% else %}
-    <form method="post" action="{{ url_for('growth.logout') }}" style="margin-top:1rem">
-      <button type="submit" class="ghost">退出登录</button>
-    </form>
-    {% endif %}
+    <p class="muted profile-hint">课内临时切换不会改动此项。</p>
   </div>
 
-  <div class="panel">
-    <h2>当前学习进度</h2>
+  <div class="panel profile-card">
+    <h2>学习进度摘要</h2>
     <p class="coach-line">{{ track_name }}</p>
     <p class="dash-status-inline">{{ status_line }}</p>
     {% if continue_lesson %}
     <p class="muted">当前课：{{ continue_lesson }}</p>
     {% endif %}
     {% if chapter_summaries %}
-    <p class="muted" style="margin-top:0.75rem">第 1～{{ chapter_summaries|length }} 章摘要</p>
-    <ul class="muted" style="margin:0.35rem 0 1rem;padding-left:1.25rem">
+    <p class="muted" style="margin-top:0.75rem">第 1～{{ chapter_summaries|length }} 章</p>
+    <ul class="profile-progress-list">
       {% for s in chapter_summaries %}
       <li>{{ s }}</li>
       {% endfor %}
@@ -71,8 +76,24 @@
     {% endif %}
     <a class="btn btn-continue" href="{{ continue_url }}">{{ continue_title }}</a>
     <p class="muted" style="margin-top:1rem">
-      <a href="{{ url_for('growth.dashboard') }}">回 Dashboard 看完整章列表 →</a>
+      <a href="{{ url_for('growth.dashboard') }}">去 Dashboard 看完整章列表与续学 →</a>
     </p>
+  </div>
+
+  <div class="panel profile-card">
+    <h2>账号</h2>
+    {% if not logged_in %}
+    <p class="muted">登录/注册可选，不挡学习。跨设备保留进度时再账号化。</p>
+    <p class="btn-row">
+      <a class="btn secondary" href="{{ url_for('growth.login') }}">登录</a>
+      <a class="btn ghost" href="{{ url_for('growth.register') }}">注册</a>
+    </p>
+    {% else %}
+    <p class="muted">已登录为 <strong>{{ username }}</strong>。退出后仍可游客继续学。</p>
+    <form method="post" action="{{ url_for('growth.logout') }}">
+      <button type="submit" class="ghost">退出登录</button>
+    </form>
+    {% endif %}
   </div>
 </section>
 {% endblock %}

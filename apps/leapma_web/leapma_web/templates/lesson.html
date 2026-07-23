@@ -25,7 +25,7 @@
   </div>
 
   {# —— 【学】 —— #}
-  <section id="learn" class="lesson-section" aria-labelledby="learn-heading">
+  <section id="learn" class="lesson-section lesson-section--learn" aria-labelledby="learn-heading">
     <h2 id="learn-heading" class="section-heading">
       <span class="section-tag" id="learn-tag">学</span>
       <span id="learn-label">{% if init_mode == 'story' %}任务简报{% else %}概念{% endif %}</span>
@@ -66,7 +66,7 @@
   </section>
 
   {# —— 【例】 —— #}
-  <section id="example" class="lesson-section" aria-labelledby="example-heading">
+  <section id="example" class="lesson-section lesson-section--example" aria-labelledby="example-heading">
     <h2 id="example-heading" class="section-heading">
       <span class="section-tag" id="example-tag">例</span>
       <span id="example-label">{% if init_mode == 'story' %}任务示范{% else %}示例{% endif %}</span>
@@ -82,7 +82,7 @@
   </section>
 
   {# —— 【练】 —— #}
-  <section id="practice" class="lesson-section" aria-labelledby="practice-heading">
+  <section id="practice" class="lesson-section lesson-section--practice" aria-labelledby="practice-heading">
     <h2 id="practice-heading" class="section-heading">
       <span class="section-tag" id="practice-tag">练</span>
       <span id="practice-label">{% if init_mode == 'story' %}关卡验收{% else %}练习{% endif %}</span>
@@ -95,7 +95,7 @@
   </section>
 
   {# —— 【提交】 —— #}
-  <section id="submit" class="lesson-section" aria-labelledby="submit-heading">
+  <section id="submit" class="lesson-section lesson-section--submit" aria-labelledby="submit-heading">
     <h2 id="submit-heading" class="section-heading"><span class="section-tag">提交</span> 判定</h2>
 
     {% if grade %}

@@ -6,6 +6,8 @@ import re
 import sys
 
 from leapma_web import create_app
+from leapma_web.content_loader import load_chapter
+from leapma_web.rules_feedback import grade_lesson
 
 
 # One known-good answer per chapter (diverse types: mcq / fill / mcq)
@@ -14,6 +16,29 @@ SAMPLES = [
     ("py-02", "py-02-l3", "n * n"),  # fill: square
     ("py-03", "py-03-l1", "B"),  # mcq: local variable
 ]
+
+
+def _grade_regressions() -> None:
+    """Tighten fill/short: no 'n'→'n*n', no '5' in '15', print exact, etc."""
+    load_chapter.cache_clear()
+    lessons = {}
+    for cid in ("py-01", "py-02", "py-03"):
+        for L in load_chapter(cid)["lessons"]:
+            lessons[L["id"]] = L
+
+    def check(lid: str, attempt: str, want: bool) -> None:
+        got = grade_lesson(lessons[lid], attempt).passed
+        assert got is want, f"{lid} {attempt!r} -> {got}, want {want}"
+
+    check("py-01-l1", 'print("Hello LeapMa")', True)
+    check("py-01-l1", 'print("Hello")', False)
+    check("py-01-l3", "5", True)
+    check("py-01-l3", "15", False)
+    check("py-02-l3", "n", False)
+    check("py-02-l3", "n * n", True)
+    check("py-03-l3", "n", False)
+    check("py-03-l3", "return n * 2", True)
+    print("OK grade regressions (fill/code tightness)")
 
 
 def _assert_story_shell(html: str, *, expect_story: bool) -> None:
@@ -40,6 +65,7 @@ def _assert_story_shell(html: str, *, expect_story: bool) -> None:
 
 
 def main() -> int:
+    _grade_regressions()
     app = create_app()
     client = app.test_client()
 
@@ -51,11 +77,11 @@ def main() -> int:
     assert "未开放" in body
     assert "15" in body or "第 15 章" in body
     assert "继续学习" in body
-    assert "管理" in body and "/profile" in body
+    assert "个人中心" in body and "/profile" in body
     assert 'name="concept_mode_default"' not in body, "dashboard must not host mode form"
     assert "保存默认模式" not in body
     assert "保存显示名" not in body
-    assert "个人中心" in body  # nav link
+    assert "接下来练什么" in body or "Dashboard" in body
 
     # /me → /profile (compat)
     me = client.get("/me", follow_redirects=False)
@@ -66,15 +92,16 @@ def main() -> int:
     prof = client.get("/profile")
     assert prof.status_code == 200, f"profile {prof.status_code}"
     pbody = prof.get_data(as_text=True)
-    assert "个人中心" in pbody
+    assert "个人中心" in pbody or "我的账户" in pbody
     assert "显示名" in pbody
     assert "首次进入时间" in pbody or "注册时间" in pbody
     assert "默认概念模式" in pbody, "expected Plan B preference UI on profile"
     assert 'name="concept_mode_default"' in pbody
-    assert "课内切换不会改动此项" in pbody
-    assert "当前学习进度" in pbody or "学习进度" in pbody
+    assert "课内" in pbody and "不会改动" in pbody
+    assert "学习进度" in pbody
     assert "Python" in pbody
     assert "登录" in pbody or "注册" in pbody
+    assert "游客" in pbody or "已登录" in pbody
 
     r = client.get("/track/python")
     assert r.status_code == 200, f"track {r.status_code}"

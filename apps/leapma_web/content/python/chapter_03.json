@@ -1,174 +1,185 @@
-{
-  "id": "py-03",
-  "track_id": "python",
-  "title": "第 3 章 · 作用域",
-  "goal": "理解局部与全局：名字在哪些地方可见；默认不要用 global 改外层。",
-  "status": "ready",
-  "lessons": [
-    {
-      "id": "py-03-l1",
-      "type": "mcq",
-      "title": "选择：什么是局部变量",
-      "coach": "函数像一间房间：房间里的标签，出了门通常就找不到。",
-      "concept": {
-        "normal": "作用域回答：一个名字在哪些地方能用。\n\n- 局部变量：在函数内部创建/绑定的名字，通常只在该函数内可见；\n- 全局变量：写在文件顶层（任何 def 外）的名字，函数里一般可以读取；\n- 参数也是局部的。\n\n出了函数再去用函数里的名字，常常会 NameError。",
-        "story": {
-          "mission_title": "上锁工作室：便利贴出不了门",
-          "scene": "创客空间 · 独立工作室",
-          "npc": "导师 Coach",
-          "npc_line": "工作室里的便利贴，走廊上摸不到。先认清什么叫局部。",
-          "objective": "选出关于「局部变量」最准确的定义。",
-          "body": "函数像一间上锁的工作室：里面贴的便利贴（局部名）出了门就看不见。\n\n走廊公示栏上的名字（全局）大家都能瞄一眼；但别指望在走廊上摸到工作室里的那张便利贴。\n\n参数也是房间里的标签。",
-          "clear_hint": "局部 = 函数内部创建/绑定，通常只在该函数内可用。"
-        }
-      },
-      "example": {
-        "code": "def shout(word):\n    line = word + \"!\"\n    return line\n\nprint(shout(\"yo\"))\n# print(line)  → NameError：line 只在函数内",
-        "note": "line、word 都是局部；练习用选择题考定义，不要求抄这段。"
-      },
-      "prompt": "下列关于「局部变量」最准确的是？",
-      "hint": "看定义位置与可见范围。",
-      "options": [
-        {"id": "A", "text": "写在文件顶层、任何函数外的名字"},
-        {"id": "B", "text": "在函数内部创建/绑定的名字，通常只在该函数内可用"},
-        {"id": "C", "text": "Python 内置的名字，如 len"},
-        {"id": "D", "text": "任何带下划线的变量名"}
-      ],
-      "answers": ["B"],
-      "checks": [],
-      "pass_feedback": "局部 = 函数房间内的标签；出了函数默认不可见。",
-      "fail_prefix": "再对照定义位置想："
-    },
-    {
-      "id": "py-03-l2",
-      "type": "short",
-      "title": "简答：为什么外面 print(x) 会炸",
-      "coach": "参数也是局部的。",
-      "concept": {
-        "normal": "def f(x): 里的参数 x，只在函数执行的那间「房间」里有效。\n\n函数结束后，外面再写 print(x)，解释器找不到这个局部名字，于是 NameError。\n\n想把结果带出来：用 return，而不是指望外面直接摸到参数名。",
-        "story": {
-          "mission_title": "门卫交班：大厅再喊证号会报错",
-          "scene": "写字楼侧门值班室",
-          "npc": "门卫老陈",
-          "npc_line": "证号 x 只在值班室认。班一结束，大厅再喊——没人认。",
-          "objective": "一句话说明：函数外 print(x) 为何常 NameError。",
-          "body": "门卫只在值班室里认「访客证号 x」。班一结束，大厅再喊 x——没人认这张证，就会报 NameError。\n\n要带结果出门：把东西 return 出去，别指望大厅直接摸到证号。",
-          "clear_hint": "点出 x 是局部/只在函数内可见，或出了函数就找不到。"
-        }
-      },
-      "example": {
-        "code": "def bump(k):\n    return k + 10\n\nprint(bump(5))  # 15\n# print(k)      # NameError",
-        "note": "参数 k 出了函数不可见；练习问的是 def f(x) 外面 print(x)。"
-      },
-      "prompt": "为什么写完 def f(x): ... 之后，在函数外面再 print(x) 常常会 NameError？用一句话说明。",
-      "hint": "x 的可见范围停在函数边界。",
-      "options": [],
-      "answers": [],
-      "checks": [
-        {
-          "type": "keywords_any",
-          "values": ["局部", "函数内", "作用域", "可见", "出了", "外面", "参数", "NameError", "不存在", "找不到"],
-          "message": "请点出：x 是局部/只在函数内可见，或出了函数就找不到。"
-        }
-      ],
-      "pass_feedback": "作用域回答的是「名字在哪儿能用」。",
-      "fail_prefix": "再扣紧「范围」："
-    },
-    {
-      "id": "py-03-l3",
-      "type": "fill",
-      "title": "填空：用 return 把结果带出来",
-      "coach": "初学优先：参数进、return 出，少动全局。",
-      "concept": {
-        "normal": "初学优先路径：参数进、return 出，少用 global 改门外的名字。\n\ndef double(n):\n    return n * 2\n\n调用方用 result = double(6) 接住 12。结果是「带出房间」，不是去改全局。",
-        "story": {
-          "mission_title": "外卖窗口：餐盒递出来，别改总菜单",
-          "scene": "写字楼一层外卖窗口",
-          "npc": "窗口店员 Lin",
-          "npc_line": "原料推进来，餐盒递出去。别跑去改厨房门外的总菜单。",
-          "objective": "补全 double 函数体，使 double(6) 得到 12（不用 global）。",
-          "body": "外卖窗口：原料从窗口推进去，做好的餐盒从窗口递出来（return）。\n\n初学别跑去改厨房门外的总菜单（global）；把结果递出来即可。\n\n本关一行 return 把加倍后的值交给调用方。",
-          "clear_hint": "return n * 2（或等价写法）。"
-        }
-      },
-      "example": {
-        "code": "def triple(n):\n    return n * 3\n\nout = triple(4)\nprint(out)  # 12",
-        "note": "示范 return 传值；练习要补的是 double(6) 得到 12。"
-      },
-      "prompt": "补全函数体，使 double(6) 得到 12（不要用 global）：\ndef double(n):\n    ___\nresult = double(6)\nprint(result)",
-      "hint": "一行 return n * 2 即可。",
-      "options": [],
-      "answers": ["return n * 2", "return n*2", "return n + n", "return n+n", "return (n * 2)"],
-      "checks": [],
-      "pass_feedback": "结果靠 return 带出房间，而不是改门外的全局名。",
-      "fail_prefix": "需要带 return 的表达式："
-    },
-    {
-      "id": "py-03-l4",
-      "type": "code",
-      "title": "代码：预测局部阴影",
-      "coach": "函数里写 n = 2，默认是新建局部标签，不是改外面的 n。",
-      "concept": {
-        "normal": "函数里若对某个名字赋值，默认会新建局部标签，不会自动改外层同名变量。\n\nx = 0\ndef set_x():\n    x = 9\n    return x\n\nprint(set_x())  → 9（局部）\nprint(x)        → 仍是 0（外层）\n\n这叫「局部阴影」：里面的 x 盖住外面的同名，但只在函数内。",
-        "story": {
-          "mission_title": "大楼指示：会议室便签盖不住大厅楼层牌",
-          "scene": "办公楼大厅与 12F 会议室",
-          "npc": "物业调度员",
-          "npc_line": "会议室内临时贴 count=99，散会后大厅指示还是 5。去打印两边。",
-          "objective": "写两行 print：先看 set_x() 的结果，再看外层 x（应为 9 然后 0）。",
-          "body": "大楼大厅挂着「楼层指示 count=5」。某会议室临时贴了自己的 count=99——只在会议室内有效。\n\n散会后，大厅指示仍是 5：里面的赋值默认是新局部标签。\n\n本关换成 x：里面绑到 9，外面仍是 0——两行 print 验明正身。",
-          "clear_hint": "print(set_x()) 再 print(x)。"
-        }
-      },
-      "example": {
-        "code": "count = 5\ndef bump():\n    count = 99\n    return count\n\nprint(bump())  # 99\nprint(count)   # 5",
-        "note": "局部阴影换变量名演示；练习要求对 set_x / x 写两行 print。"
-      },
-      "prompt": "补全两行 print，依次输出调用后的结果与外层 n（应是 9 然后 0）：\nx = 0\ndef set_x():\n    x = 9\n    return x\nprint(set_x())\n# 再写一行 print，显示外层的 x",
-      "hint": "第二行应是 print(x)，此时外层仍是 0。",
-      "options": [],
-      "answers": [],
-      "checks": [
-        {"type": "regex", "pattern": "print\\s*\\(\\s*set_x\\s*\\(\\s*\\)\\s*\\)", "message": "需要 print(set_x())。"},
-        {"type": "regex", "pattern": "print\\s*\\(\\s*x\\s*\\)", "message": "需要再 print(x) 看外层。"},
-        {"type": "min_print_calls", "value": 2, "message": "至少两个 print。"}
-      ],
-      "pass_feedback": "看见了：里面的 x 是新标签，外面的 0 还在。",
-      "fail_prefix": "检查两行打印："
-    },
-    {
-      "id": "py-03-l5",
-      "type": "mcq",
-      "title": "选择：调用结束后外层 n",
-      "coach": "默认赋值 = 局部；真要改全局才写 global（初学不推荐）。",
-      "concept": {
-        "normal": "默认规则再钉一遍：函数里 n = 2 是局部新标签。\n\nn = 1\ndef f():\n    n = 2\n    return n\nf()\n\n调用结束后，外层的 n 仍是 1。\n\n若真要改全局，才写 global n（初学阶段不推荐；优先 return）。",
-        "story": {
-          "mission_title": "操场记分牌：替补席小黑板改不了大牌",
-          "scene": "校运动会操场边线",
-          "npc": "裁判哨长",
-          "npc_line": "替补席写 score=20，哨声一响，操场大牌还是 10。外层 n 呢？",
-          "objective": "选出 f() 调用结束后外层 n 的值。",
-          "body": "操场记分牌 score=10。替补席小黑板上有人写 score=20——那只是替补席自己的记号。\n\n哨声一响，操场记分牌还是 10。默认不会因为房间里赋值就改门外同名牌。\n\n本关：n 外层先是 1，函数里 n=2 是局部——结束后外层仍是 1。",
-          "clear_hint": "默认局部赋值不改外层；答案是 1。"
-        }
-      },
-      "example": {
-        "code": "score = 10\ndef f():\n    score = 20\n    return score\n\nf()\nprint(score)  # 10",
-        "note": "换 score/10/20 演示同一规则；练习题用的是 n=1 / n=2。"
-      },
-      "prompt": "执行后，外层的 n 是多少？\nn = 1\ndef f():\n    n = 2\n    return n\nf()",
-      "hint": "函数里的 n = 2 是局部新标签。",
-      "options": [
-        {"id": "A", "text": "2（函数改掉了外面的 n）"},
-        {"id": "B", "text": "1（外面仍是原来的绑定）"},
-        {"id": "C", "text": "None"},
-        {"id": "D", "text": "报错，无法定义"}
-      ],
-      "answers": ["B"],
-      "checks": [],
-      "pass_feedback": "第 3 章核心练完：你会区分局部/全局，并优先用 return 传值。后面章节骨架诚实未开放。",
-      "fail_prefix": "外层绑定变了吗？"
-    }
-  ]
-}
+{
+  "id": "py-03",
+  "track_id": "python",
+  "title": "第 3 章 · 作用域",
+  "goal": "理解局部与全局：名字在哪些地方可见；默认不要用 global 改外层。",
+  "status": "ready",
+  "lessons": [
+    {
+      "id": "py-03-l1",
+      "type": "mcq",
+      "title": "选择：什么是局部变量",
+      "coach": "函数像一间房间：房间里的标签，出了门通常就找不到。",
+      "concept": {
+        "normal": "作用域回答：一个名字在哪些地方能用。\n\n- 局部变量：在函数内部创建/绑定的名字，通常只在该函数内可见；\n- 全局变量：写在文件顶层（任何 def 外）的名字，函数里一般可以读取；\n- 参数也是局部的。\n\n出了函数再去用函数里的名字，常常会 NameError。\n上一章你会写函数；这一章问：函数里的名字，外面找不找得到？",
+        "story": {
+          "mission_title": "上锁工作室：便利贴出不了门",
+          "scene": "创客空间 · 独立工作室",
+          "npc": "导师 Coach",
+          "npc_line": "工作室里的便利贴，走廊上摸不到。先认清什么叫局部——别在门外瞎摸。",
+          "objective": "选出关于「局部变量」最准确的定义。",
+          "body": "函数像一间上锁的工作室：里面贴的便利贴（局部名）出了门就看不见。\n\n走廊公示栏上的名字（全局）大家都能瞄一眼；但别指望在走廊上摸到工作室里的那张便利贴。\n\n参数也是房间里的标签——客人进门时挂上的临时牌，出了门同样无效。\n\n问：局部变量指什么？",
+          "clear_hint": "局部 = 函数内部创建/绑定，通常只在该函数内可用。"
+        }
+      },
+      "example": {
+        "code": "def shout(word):\n    line = word + \"!\"\n    return line\n\nprint(shout(\"yo\"))\n# print(line)  → NameError：line 只在函数内",
+        "note": "line、word 都是局部；练习用选择题考定义，不要求抄这段。"
+      },
+      "prompt": "下列关于「局部变量」最准确的是？",
+      "hint": "看定义位置与可见范围：函数内 vs 文件顶层。",
+      "options": [
+        {"id": "A", "text": "写在文件顶层、任何函数外的名字"},
+        {"id": "B", "text": "在函数内部创建/绑定的名字，通常只在该函数内可用"},
+        {"id": "C", "text": "Python 内置的名字，如 len"},
+        {"id": "D", "text": "任何带下划线的变量名"}
+      ],
+      "answers": ["B"],
+      "checks": [],
+      "pass_feedback": "局部 = 函数房间内的标签；出了函数默认不可见。",
+      "fail_prefix": "对照「定义在哪儿、哪儿能用」再选："
+    },
+    {
+      "id": "py-03-l2",
+      "type": "short",
+      "title": "简答：为什么外面 print(x) 会炸",
+      "coach": "参数也是局部的。",
+      "concept": {
+        "normal": "def f(x): 里的参数 x，只在函数执行的那间「房间」里有效。\n\n函数结束后，外面再写 print(x)，解释器找不到这个局部名字，于是 NameError。\n\n想把结果带出来：用 return，而不是指望外面直接摸到参数名。",
+        "story": {
+          "mission_title": "门卫交班：大厅再喊证号会报错",
+          "scene": "写字楼侧门值班室",
+          "npc": "门卫老陈",
+          "npc_line": "证号 x 只在值班室认。班一结束，大厅再喊——系统直接报错，别怪设备。",
+          "objective": "一句话说明：函数外 print(x) 为何常 NameError。",
+          "body": "门卫只在值班室里认「访客证号 x」。班一结束，大厅再喊 x——没人认这张证，就会报 NameError。\n\n要带结果出门：把东西 return 出去，别指望大厅直接摸到证号。\n\n用一句话写清原因。",
+          "clear_hint": "点出 x 是局部/只在函数内可见，以及外面找不到（NameError）。"
+        }
+      },
+      "example": {
+        "code": "def bump(k):\n    return k + 10\n\nprint(bump(5))  # 15\n# print(k)      # NameError",
+        "note": "参数 k 出了函数不可见；练习问的是 def f(x) 外面 print(x)。"
+      },
+      "prompt": "为什么写完 def f(x): ... 之后，在函数外面再 print(x) 常常会 NameError？用一句话说明。",
+      "hint": "x 的可见范围停在函数边界；外面找不到这个名字。",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {
+          "type": "keywords_any",
+          "values": [
+            "局部", "函数内", "作用域", "参数", "只在函数", "函数里", "函数内部",
+            "local", "scope", "parameter", "inside"
+          ],
+          "message": "请点出：x 是局部 / 参数 / 只在函数内可见。"
+        },
+        {
+          "type": "keywords_any",
+          "values": [
+            "NameError", "找不到", "不存在", "外面", "出了", "函数外", "不可见", "用不了",
+            "outside", "not found", "cannot", "can't"
+          ],
+          "message": "请点出：出了函数就找不到 / NameError / 不可见。"
+        }
+      ],
+      "pass_feedback": "作用域回答的是「名字在哪儿能用」。",
+      "fail_prefix": "请同时点到「局部/函数内」和「外面找不到」："
+    },
+    {
+      "id": "py-03-l3",
+      "type": "fill",
+      "title": "填空：用 return 把结果带出来",
+      "coach": "初学优先：参数进、return 出，少动全局。",
+      "concept": {
+        "normal": "初学优先路径：参数进、return 出，少用 global 改门外的名字。\n\ndef double(n):\n    return n * 2\n\n调用方用 result = double(6) 接住 12。结果是「带出房间」，不是去改全局。\n这和第 2 章的 return 一脉相承，只是现在你更清楚：为什么不要指望外面直接摸参数。",
+        "story": {
+          "mission_title": "外卖窗口：餐盒递出来，别改总菜单",
+          "scene": "写字楼一层外卖窗口",
+          "npc": "窗口店员 Lin",
+          "npc_line": "原料推进来，餐盒递出去。别跑去改厨房门外的总菜单（那是 global 的事）。",
+          "objective": "补全 double 函数体，使 double(6) 得到 12（不用 global）。",
+          "body": "外卖窗口：原料从窗口推进去，做好的餐盒从窗口递出来（return）。\n\n初学别跑去改厨房门外的总菜单（global）；把结果递出来即可。\n\n本关一行 return 把加倍后的值交给调用方——double(6) 要得到 12。",
+          "clear_hint": "return n * 2（或 return n + n）。"
+        }
+      },
+      "example": {
+        "code": "def triple(n):\n    return n * 3\n\nout = triple(4)\nprint(out)  # 12",
+        "note": "示范 return 传值（三倍）；练习要补的是 double(6) 得到 12。"
+      },
+      "prompt": "补全函数体，使 double(6) 得到 12（不要用 global）：\ndef double(n):\n    ___\nresult = double(6)\nprint(result)",
+      "hint": "一行 return n * 2 即可。不要写 global。",
+      "options": [],
+      "answers": ["return n * 2", "return n*2", "return n + n", "return n+n", "return (n * 2)"],
+      "checks": [],
+      "pass_feedback": "结果靠 return 带出房间，而不是改门外的全局名。",
+      "fail_prefix": "需要带 return 的加倍表达式（如 return n * 2）："
+    },
+    {
+      "id": "py-03-l4",
+      "type": "code",
+      "title": "代码：预测局部阴影",
+      "coach": "函数里写 x = 9，默认是新建局部标签，不是改外面的 x。",
+      "concept": {
+        "normal": "函数里若对某个名字赋值，默认会新建局部标签，不会自动改外层同名变量。\n\nx = 0\ndef set_x():\n    x = 9\n    return x\n\nprint(set_x())  → 9（局部）\nprint(x)        → 仍是 0（外层）\n\n这叫「局部阴影」：里面的 x 盖住外面的同名，但只在函数内。散会后，外面的绑定还在。",
+        "story": {
+          "mission_title": "大楼指示：会议室便签盖不住大厅楼层牌",
+          "scene": "办公楼大厅与 12F 会议室",
+          "npc": "物业调度员",
+          "npc_line": "会议室内临时贴 x=9，散会后大厅指示还是 0。去打印两边验明正身。",
+          "objective": "写两行 print：先看 set_x() 的结果，再看外层 x（应为 9 然后 0）。",
+          "body": "大楼大厅挂着「楼层指示 x=0」。某会议室临时贴了自己的 x=9——只在会议室内有效。\n\n散会后，大厅指示仍是 0：里面的赋值默认是新局部标签，盖不住门外的同名牌。\n\n本关：两行 print——先 print(set_x())，再 print(x)。",
+          "clear_hint": "print(set_x()) 再 print(x)。"
+        }
+      },
+      "example": {
+        "code": "count = 5\ndef bump():\n    count = 99\n    return count\n\nprint(bump())  # 99\nprint(count)   # 5",
+        "note": "局部阴影换变量名演示；练习要求对 set_x / x 写两行 print。"
+      },
+      "prompt": "补全两行 print，依次输出调用后的结果与外层 x（应是 9 然后 0）：\nx = 0\ndef set_x():\n    x = 9\n    return x\n# 在此写两行 print",
+      "hint": "第一行 print(set_x())，第二行 print(x)；外层仍是 0。",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {"type": "regex", "pattern": "print\\s*\\(\\s*set_x\\s*\\(\\s*\\)\\s*\\)", "message": "需要 print(set_x())。"},
+        {"type": "regex", "pattern": "print\\s*\\(\\s*x\\s*\\)", "message": "需要再 print(x) 看外层。"},
+        {"type": "min_print_calls", "value": 2, "message": "至少两个 print：先 set_x()，再外层 x。"}
+      ],
+      "pass_feedback": "看见了：里面的 x 是新标签，外面的 0 还在。",
+      "fail_prefix": "需要 print(set_x()) 与 print(x) 两行："
+    },
+    {
+      "id": "py-03-l5",
+      "type": "mcq",
+      "title": "选择：调用结束后外层 n",
+      "coach": "默认赋值 = 局部；真要改全局才写 global（初学不推荐）。",
+      "concept": {
+        "normal": "默认规则再钉一遍：函数里 n = 2 是局部新标签。\n\nn = 1\ndef f():\n    n = 2\n    return n\nf()\n\n调用结束后，外层的 n 仍是 1。\n\n若真要改全局，才写 global n（初学阶段不推荐；优先 return）。\n这是本章收束：你已能预测「里面赋值」不会偷偷改外面。",
+        "story": {
+          "mission_title": "操场记分牌：替补席小黑板改不了大牌",
+          "scene": "校运动会操场边线",
+          "npc": "裁判哨长",
+          "npc_line": "替补席写 n=2，哨声一响，操场大牌还是 1。外层 n 是多少？",
+          "objective": "选出 f() 调用结束后外层 n 的值。",
+          "body": "操场记分牌 n=1。替补席小黑板上有人写 n=2——那只是替补席自己的记号。\n\n哨声一响（f() 调用结束），操场记分牌还是 1。默认不会因为房间里赋值就改门外同名牌。\n\n（真要改大牌才喊 global——初学别急着学那招。）",
+          "clear_hint": "默认局部赋值不改外层；答案是 1。"
+        }
+      },
+      "example": {
+        "code": "score = 10\ndef f():\n    score = 20\n    return score\n\nf()\nprint(score)  # 10",
+        "note": "换 score/10/20 演示同一规则；练习题用的是 n=1 / n=2。"
+      },
+      "prompt": "执行后，外层的 n 是多少？\nn = 1\ndef f():\n    n = 2\n    return n\nf()",
+      "hint": "函数里的 n = 2 是局部新标签；外面仍是原来的 1。",
+      "options": [
+        {"id": "A", "text": "2（函数改掉了外面的 n）"},
+        {"id": "B", "text": "1（外面仍是原来的绑定）"},
+        {"id": "C", "text": "None"},
+        {"id": "D", "text": "报错，无法定义"}
+      ],
+      "answers": ["B"],
+      "checks": [],
+      "pass_feedback": "第 3 章核心练完：你会区分局部/全局，并优先用 return 传值。后面章节骨架诚实未开放。",
+      "fail_prefix": "外层绑定变了吗？回想上一课的「局部阴影」："
+    }
+  ]
+}

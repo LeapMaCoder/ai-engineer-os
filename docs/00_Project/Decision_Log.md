@@ -82,6 +82,9 @@ tags:
 | D-050 | 2026-07-22 | **故事模式任务简报**：`concept.story` 升为对象（mission/scene/npc/objective/body…）；UI 壳 `story-mission` 与 normal 明显区分；旧字符串兼容包成 `{body}`；无 XP/商店。 | Accepted | Founder |
 | D-051 | 2026-07-22 | **概念模式方案 B**：个人中心默认 `concept_mode_default`（normal\|story）；每次打开/刷新课按默认渲染【学】；课内切换仅临时、不写默认/不写 URL；游客 session+cookie；登录用户 session+DB（账号为准）；无 story 课诚实回退。 | Accepted | Founder |
 | D-052 | 2026-07-22 | **个人中心独立页**：`/profile` 管昵称/时间/默认概念模式/进度/可选账号；`/dashboard` 只保留续学+章列表+摘要联动；`/me` → `/profile`；游客可进、无注册墙。 | Accepted | Founder |
+| D-053 | 2026-07-23 | **打磨 Python 第 1～3 章内容质量**：润色 normal/story/example；收紧填空判定（防子串误伤）；fail 文案更可执行；不开第 4～15 章。 | Accepted | Founder |
+| D-054 | 2026-07-23 | **个人中心信息架构打磨**：`/profile` = 账户与设置（资料/默认模式/进度摘要/账号）；`/dashboard` = 接下来练什么（仅摘要链到 profile）；方案 B 不变。 | Accepted | Founder |
+| D-055 | 2026-07-23 | **整体 UI 微调**：统一间距/标题/按钮主次；课内四分区色条更清晰；去掉静态 panel 满屏 hover；故事壳对比加强；不改产品范围。 | Accepted | Founder |
 
 ---
 

@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Dashboard · LeapMa{% endblock %}
 {% block body %}
-<section class="panel dash-hero">
-  <p class="coach-label">Dashboard · 续学</p>
+<section class="panel dash-hero page-dashboard">
+  <p class="coach-label">Dashboard · 接下来练什么</p>
   <p class="dash-identity muted">
-    你好，{{ display_name }} · 默认模式：{{ concept_mode_label }}
-    <a href="{{ url_for('growth.profile') }}">管理 →</a>
+    {{ display_name }}
+    <span aria-hidden="true">·</span>
+    默认模式 {{ concept_mode_label }}
+    <a href="{{ url_for('growth.profile') }}">个人中心 →</a>
   </p>
   <h1>继续学习</h1>
   <p class="dash-status">{{ status_line }}</p>
@@ -18,7 +20,7 @@
 
 <section class="panel" style="margin-top:1rem">
   <h2>章列表 · 15 章主题</h2>
-  <p class="muted">N/M = 已过课数 / 本章可练课数；骨架章显示「未开放」。</p>
+  <p class="muted">N/M = 已过课数 / 本章可练课数；骨架章显示「未开放」。资料与默认模式请到<a href="{{ url_for('growth.profile') }}">个人中心</a>。</p>
   <ul class="chapter-list">
     {% for row in chapter_rows %}
     <li>
