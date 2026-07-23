@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ lesson.title }}{% endblock %}
 {% block body %}
+{% set init_mode = initial_concept_mode or 'normal' %}
 <nav class="breadcrumb" aria-label="面包屑">
   <a href="{{ url_for('growth.dashboard') }}">Dashboard</a>
   <span class="crumb-sep">/</span>
@@ -11,7 +12,7 @@
   <span class="crumb-current">{{ lesson.title }}</span>
 </nav>
 
-<section class="panel lesson-shell">
+<section class="panel lesson-shell{% if init_mode == 'story' %} is-story-mode{% endif %}">
   <p class="coach-label">{{ chapter.title }}</p>
   <h1>{{ lesson.title }}</h1>
   {% if lesson.coach %}
@@ -25,26 +26,51 @@
 
   {# —— 【学】 —— #}
   <section id="learn" class="lesson-section" aria-labelledby="learn-heading">
-    <h2 id="learn-heading" class="section-heading"><span class="section-tag">学</span> 概念</h2>
+    <h2 id="learn-heading" class="section-heading">
+      <span class="section-tag" id="learn-tag">学</span>
+      <span id="learn-label">{% if init_mode == 'story' %}任务简报{% else %}概念{% endif %}</span>
+    </h2>
 
     <div class="concept-mode-bar" role="group" aria-label="概念模式">
-      <button type="button" class="mode-btn is-active" data-mode="normal" id="mode-normal">正常模式</button>
+      <button type="button" class="mode-btn{% if init_mode == 'normal' %} is-active{% endif %}" data-mode="normal" id="mode-normal">正常模式</button>
       {% if lesson.has_story %}
-      <button type="button" class="mode-btn" data-mode="story" id="mode-story">故事模式</button>
+      <button type="button" class="mode-btn{% if init_mode == 'story' %} is-active{% endif %}" data-mode="story" id="mode-story">故事模式</button>
       {% else %}
       <button type="button" class="mode-btn is-disabled" disabled title="本课暂无故事模式">故事模式</button>
       {% endif %}
     </div>
+    {% if story_mode_fallback %}
+    <p class="muted" role="status" id="story-fallback-note">本课暂无故事稿，已用正常模式展示。</p>
+    {% endif %}
 
-    <div id="concept-normal" class="concept-body box soft" data-concept-panel="normal">{{ lesson.concept.normal }}</div>
+    <div id="concept-normal" class="concept-body box soft{% if init_mode != 'normal' %} is-hidden{% endif %}" data-concept-panel="normal"{% if init_mode != 'normal' %} hidden{% endif %}>{{ lesson.concept.normal }}</div>
     {% if lesson.has_story %}
-    <div id="concept-story" class="concept-body box soft is-hidden" data-concept-panel="story" hidden>{{ lesson.concept.story }}</div>
+    {% set s = lesson.concept.story %}
+    <div id="concept-story" class="story-mission{% if init_mode != 'story' %} is-hidden{% endif %}" data-concept-panel="story"{% if init_mode != 'story' %} hidden{% endif %}>
+      <div class="story-mission-bar">MISSION BRIEF · 任务简报</div>
+      <div class="story-mission-inner">
+        <h3 class="story-mission-title">{{ s.mission_title }}</h3>
+        <p class="story-scene"><span class="story-kicker">场景</span> {{ s.scene }}</p>
+        <div class="story-npc">
+          <span class="story-npc-name">{{ s.npc }}</span>
+          <p class="story-npc-line">「{{ s.npc_line }}」</p>
+        </div>
+        <p class="story-objective"><span class="story-kicker">本关目标</span> {{ s.objective }}</p>
+        <div class="story-body">{{ s.body }}</div>
+        {% if s.clear_hint %}
+        <p class="story-clear-hint"><span class="story-kicker">通关提示</span> {{ s.clear_hint }}</p>
+        {% endif %}
+      </div>
+    </div>
     {% endif %}
   </section>
 
   {# —— 【例】 —— #}
   <section id="example" class="lesson-section" aria-labelledby="example-heading">
-    <h2 id="example-heading" class="section-heading"><span class="section-tag">例</span> 示例</h2>
+    <h2 id="example-heading" class="section-heading">
+      <span class="section-tag" id="example-tag">例</span>
+      <span id="example-label">{% if init_mode == 'story' %}任务示范{% else %}示例{% endif %}</span>
+    </h2>
     {% if lesson.example.note %}
     <p class="example-note">{{ lesson.example.note }}</p>
     {% endif %}
@@ -57,7 +83,10 @@
 
   {# —— 【练】 —— #}
   <section id="practice" class="lesson-section" aria-labelledby="practice-heading">
-    <h2 id="practice-heading" class="section-heading"><span class="section-tag">练</span> 练习</h2>
+    <h2 id="practice-heading" class="section-heading">
+      <span class="section-tag" id="practice-tag">练</span>
+      <span id="practice-label">{% if init_mode == 'story' %}关卡验收{% else %}练习{% endif %}</span>
+    </h2>
     {% if lesson.type %}
     <p class="badge soft-type">题型 · {{ {'mcq':'单选','fill':'填空','short':'简答','code':'代码'}.get(lesson.type, lesson.type) }}</p>
     {% endif %}
@@ -140,10 +169,17 @@
 (function () {
   var buttons = document.querySelectorAll(".mode-btn[data-mode]");
   if (!buttons.length) return;
+  var shell = document.querySelector(".lesson-shell");
   var panels = {
     normal: document.getElementById("concept-normal"),
     story: document.getElementById("concept-story")
   };
+  var labels = {
+    learn: document.getElementById("learn-label"),
+    example: document.getElementById("example-label"),
+    practice: document.getElementById("practice-label")
+  };
+  // Plan B: temporary toggle is client-only — never write URL / session / default.
   function setMode(mode) {
     buttons.forEach(function (btn) {
       btn.classList.toggle("is-active", btn.getAttribute("data-mode") === mode);
@@ -155,25 +191,24 @@
       el.hidden = !on;
       el.classList.toggle("is-hidden", !on);
     });
-    try {
-      var url = new URL(window.location.href);
-      if (mode === "story") url.searchParams.set("mode", "story");
-      else url.searchParams.delete("mode");
-      history.replaceState(null, "", url.pathname + url.search + url.hash);
-    } catch (e) { /* ignore */ }
+    if (shell) shell.classList.toggle("is-story-mode", mode === "story");
+    if (labels.learn) labels.learn.textContent = mode === "story" ? "任务简报" : "概念";
+    if (labels.example) labels.example.textContent = mode === "story" ? "任务示范" : "示例";
+    if (labels.practice) labels.practice.textContent = mode === "story" ? "关卡验收" : "练习";
   }
   buttons.forEach(function (btn) {
     btn.addEventListener("click", function () {
       setMode(btn.getAttribute("data-mode"));
     });
   });
-  var initial = "normal";
+  // Strip legacy ?mode= so refresh/share cannot override default preference.
   try {
-    if (new URLSearchParams(window.location.search).get("mode") === "story" && panels.story) {
-      initial = "story";
+    var url = new URL(window.location.href);
+    if (url.searchParams.has("mode")) {
+      url.searchParams.delete("mode");
+      history.replaceState(null, "", url.pathname + url.search + url.hash);
     }
   } catch (e) { /* ignore */ }
-  setMode(initial);
 })();
 </script>
 {% endblock %}

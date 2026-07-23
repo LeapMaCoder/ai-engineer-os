@@ -29,6 +29,10 @@ tags:
 
 | 日期 | 变化 |
 |------|------|
+| 2026-07-22 | **D-052**：个人中心 `/profile` 独立；Dashboard 仅续学摘要联动；方案 B 默认模式写入点迁到 profile；**未 commit** |
+| 2026-07-22 | **D-051 方案 B**：`concept_mode_default` 默认偏好 + 课内临时切换；刷新/换课回默认；**未 commit** |
+| 2026-07-22 | **D-050**：`concept.story` 升为任务简报对象 + `story-mission` UI 壳；第 1～3 章 ready 课改写；旧字符串兼容；**未 commit** |
+| 2026-07-22 | **内容补全**：第 1～3 章全部 ready 课补齐 `concept.story` + `example`（示例≠练习）；README/D-049 同步 story 必填；**未 commit** |
 | 2026-07-21 | **D-049**：课内先学后练 + `concept.normal`/`story` 钩子；第 1～3 章 ready 课已补讲解；**未 commit** |
 | 2026-07-21 | **D-048**：全站暗色终端风（design tokens）；无复杂游戏经济 UI；**未 commit** |
 | 2026-07-21 | **Multitask C**：Dashboard 对齐 Boot.dev IA + 轻量登录注册；**未 commit** |

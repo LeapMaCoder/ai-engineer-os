@@ -78,7 +78,10 @@ tags:
 | D-046 | 2026-07-21 | **可选账号（非门槛）**：Dashboard 保持游客可用；轻量 username+password 哈希存库；登录后绑定进度/显示名；禁止注册墙。 | Accepted | Founder |
 | D-047 | 2026-07-21 | **Python 15 章主题骨架 + 先打穿 1～3 章**：主题序含 Introduction→…→Quiz；ready 对齐 Obsidian ch01 变量 / ch02 函数 / ch03 作用域；题源=Engineer OS 笔记**改编**（禁抄 Boot.dev 官网）；题型 mcq/fill/short/code；规则判定为主；4～15 skeleton 诚实未开放。 | Accepted | Founder |
 | D-048 | 2026-07-21 | **视觉迁暗色终端风**：采用 Boot.dev-inspired design tokens（primary `#00FF88` 等）；弱化/不做 XP·商店·排行榜·成就墙；金仅作进度点缀；禁止问卷墙与注册门槛不变。 | Accepted | Founder |
-| D-049 | 2026-07-21 | **课内先学后练**：lesson 固定【学】【例】【练】【提交】；内容钩子 `concept.normal`（必填）/`concept.story`（可选）+ `example`；模式切换不影响判定。 | Accepted | Founder |
+| D-049 | 2026-07-21 | **课内先学后练**：lesson 固定【学】【例】【练】【提交】；内容钩子 `concept.normal` + `concept.story`（ready 课均必填）+ `example`（code/note；示例≠练习）；模式切换不影响判定。 | Accepted | Founder |
+| D-050 | 2026-07-22 | **故事模式任务简报**：`concept.story` 升为对象（mission/scene/npc/objective/body…）；UI 壳 `story-mission` 与 normal 明显区分；旧字符串兼容包成 `{body}`；无 XP/商店。 | Accepted | Founder |
+| D-051 | 2026-07-22 | **概念模式方案 B**：个人中心默认 `concept_mode_default`（normal\|story）；每次打开/刷新课按默认渲染【学】；课内切换仅临时、不写默认/不写 URL；游客 session+cookie；登录用户 session+DB（账号为准）；无 story 课诚实回退。 | Accepted | Founder |
+| D-052 | 2026-07-22 | **个人中心独立页**：`/profile` 管昵称/时间/默认概念模式/进度/可选账号；`/dashboard` 只保留续学+章列表+摘要联动；`/me` → `/profile`；游客可进、无注册墙。 | Accepted | Founder |
 
 ---
 

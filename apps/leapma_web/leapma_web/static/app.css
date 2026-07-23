@@ -674,8 +674,137 @@ button:disabled,
 }
 
 .concept-body.is-hidden,
-.concept-body[hidden] {
+.concept-body[hidden],
+.story-mission.is-hidden,
+.story-mission[hidden] {
   display: none;
+}
+
+/* —— 故事模式：任务简报壳（金/绿任务条，非 XP 商店） —— */
+.story-mission {
+  margin: 0;
+  background: #0a0e14;
+  border: 1px solid rgba(212, 160, 23, 0.42);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.story-mission-bar {
+  padding: 0.45rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: linear-gradient(
+    90deg,
+    rgba(212, 160, 23, 0.28),
+    rgba(0, 255, 136, 0.1) 55%,
+    transparent
+  );
+  border-bottom: 1px solid rgba(212, 160, 23, 0.35);
+}
+
+.story-mission-inner {
+  padding: 0.95rem 1rem 1.1rem;
+}
+
+.story-mission-title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.story-kicker {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.08rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg-primary);
+  background: var(--gold);
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.story-scene,
+.story-objective {
+  margin: 0 0 0.65rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.story-npc {
+  margin: 0 0 0.75rem;
+  padding: 0.65rem 0.75rem;
+  background: rgba(0, 255, 136, 0.06);
+  border: 1px dashed rgba(0, 255, 136, 0.35);
+  border-radius: var(--radius-sm);
+}
+
+.story-npc-name {
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.04em;
+}
+
+.story-npc-line {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.story-body {
+  margin: 0.75rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(212, 160, 23, 0.22);
+  white-space: pre-wrap;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.story-clear-hint {
+  margin: 0.85rem 0 0;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  background: rgba(212, 160, 23, 0.08);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.lesson-shell.is-story-mode {
+  border-color: rgba(212, 160, 23, 0.45);
+  box-shadow: 0 0 0 1px rgba(212, 160, 23, 0.12), var(--shadow);
+}
+
+.lesson-shell.is-story-mode .section-tag {
+  background: var(--gold);
+  color: var(--bg-primary);
+}
+
+.lesson-shell.is-story-mode .mode-btn.is-active {
+  background: rgba(212, 160, 23, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.lesson-shell.is-story-mode .jump-practice {
+  color: var(--gold);
 }
 
 .example-note {

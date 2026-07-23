@@ -1,139 +1,183 @@
-{
-  "id": "py-01",
-  "track_id": "python",
-  "title": "第 1 章 · 变量与类型",
-  "goal": "理解名字绑定到值；分清 int / float / str / bool；能写简单赋值与 print。",
-  "status": "ready",
-  "lessons": [
-    {
-      "id": "py-01-l1",
-      "type": "code",
-      "title": "热身：让屏幕开口",
-      "coach": "先用一行 print 确认环境会回话。真正主线是后面的变量与类型。",
-      "concept": {
-        "normal": "程序要跟人说话，最常用的口是 print。\n\n写 print(...) 时：括号里的内容会显示到屏幕上。字符串要用引号包起来，例如 \"Hello\"。\n\n本课先确认：你会让屏幕说出约定好的那一行字。后面几课再学「名字贴到值上」。"
-      },
-      "example": {
-        "code": "print(\"Hello LeapMa\")",
-        "note": "一行调用：print + 括号 + 引号字符串。"
-      },
-      "prompt": "写一行 Python：用 print 输出恰好 Hello LeapMa（含空格与大小写）。",
-      "hint": "形如 print(\"Hello LeapMa\")",
-      "options": [],
-      "answers": [],
-      "checks": [
-        {"type": "contains", "value": "print", "message": "需要用到 print。"},
-        {"type": "contains", "value": "Hello LeapMa", "message": "输出内容需包含 Hello LeapMa。"},
-        {"type": "regex", "pattern": "print\\s*\\(", "message": "print 后面要有括号调用。"}
-      ],
-      "pass_feedback": "好，屏幕会说话了。下面进入本章主线：名字与值。",
-      "fail_prefix": "还差一点："
-    },
-    {
-      "id": "py-01-l2",
-      "type": "mcq",
-      "title": "选择：赋值究竟在做什么",
-      "coach": "把变量想成贴在值上的标签，而不是「装东西的盒子」。",
-      "concept": {
-        "normal": "在 Python 里，变量更像贴纸，不是盒子。\n\n- 值（如 100、\"hi\"）先存在；\n- 名字（如 score）是贴在值上的标签；\n- score = 100 的意思是：把名字 score 绑定到值 100。\n\n等号 = 在这里是「绑定 / 贴标签」，不是数学上的「等于」。\n之后再写 score = 101，是把同一张标签挪到新值上。",
-        "story": "想象仓库货架上摆着一箱苹果，旁边贴了纸条「今日库存」。\n\nscore = 100 就像：把「今日库存」这张纸条贴到「100」那一箱上——不是把 100 塞进叫 score 的铁盒子里锁死。\n\n第二天写 score = 101：你只是把纸条撕下来，贴到另一箱「101」上。旧的 100 还在货架某处，只是没人再叫它「今日库存」了。"
-      },
-      "example": {
-        "code": "score = 100\nprint(score)\nscore = 101\nprint(score)",
-        "note": "两次赋值：标签从 100 挪到 101。"
-      },
-      "prompt": "在 Python 里，写出 score = 100 时，等号 = 最准确的含义是？",
-      "hint": "不是数学上的「等于」。",
-      "options": [
-        {"id": "A", "text": "判断 score 是否等于 100"},
-        {"id": "B", "text": "把名字 score 绑定（贴标签）到值 100 上"},
-        {"id": "C", "text": "创建一个永远不能再改的常量"},
-        {"id": "D", "text": "把 100 永久复制进名叫 score 的盒子里且无法换绑"}
-      ],
-      "answers": ["B"],
-      "checks": [],
-      "pass_feedback": "对：= 是绑定/贴标签。之后 score = 101 是把标签挪到新值上。",
-      "fail_prefix": "再想一想："
-    },
-    {
-      "id": "py-01-l3",
-      "type": "fill",
-      "title": "填空：凑出整数 8",
-      "coach": "左边是名字，右边是值。类型要一致才能做整数加法。",
-      "concept": {
-        "normal": "赋值左边是名字，右边是值。\n\n常见类型先记四个：\n- int：整数，如 3、8\n- float：小数，如 3.14\n- str：文字，如 \"8\"（带引号）\n- bool：True / False\n\n做整数加法时，两边都该是数字类型。\"3\" + \"5\" 是拼接成 \"35\"，不是 8。"
-      },
-      "example": {
-        "code": "left = 3\nright = 5\ntotal = left + right\nprint(total)  # 8",
-        "note": "两个 int 相加得到 int。"
-      },
-      "prompt": "补全空白，使 total 打印为 8（不要用字符串）：\nleft = 3\nright = ___\ntotal = left + right\nprint(total)",
-      "hint": "填一个整数，让 3 + right == 8。",
-      "options": [],
-      "answers": ["5", "right = 5", "right=5"],
-      "checks": [],
-      "pass_feedback": "很好：right 绑到整数 5，加法得到 8。",
-      "fail_prefix": "空白处应是能让 3+right 等于 8 的整数："
-    },
-    {
-      "id": "py-01-l4",
-      "type": "short",
-      "title": "简答：加号的两种面孔",
-      "coach": "同一符号 +，遇到不同类型含义不同。",
-      "concept": {
-        "normal": "同一个 +，类型不同，含义不同：\n\n- 2 + 2 → 4（整数加法）\n- \"2\" + \"2\" → \"22\"（字符串拼接）\n\n类型决定运算符的行为。写代码时先问：两边分别是什么类型？"
-      },
-      "example": {
-        "code": "print(2 + 2)      # 4\nprint(\"2\" + \"2\")  # 22",
-        "note": "对比数字加法与文字拼接。"
-      },
-      "prompt": "用一两句话说明：\"2\" + \"2\" 的结果与 2 + 2 的结果分别是什么？为什么不同？",
-      "hint": "一个是字符串拼接，一个是整数加法。",
-      "options": [],
-      "answers": [],
-      "checks": [
-        {
-          "type": "keywords_any",
-          "values": ["22", "\"22\"", "'22'"],
-          "message": "请提到字符串结果是 22（拼接）。"
-        },
-        {
-          "type": "keywords_any",
-          "values": ["4"],
-          "message": "请提到整数相加得到 4。"
-        },
-        {
-          "type": "keywords_any",
-          "values": ["拼接", "拼", "连接", "字符串", "str", "文字"],
-          "message": "请点出字符串一侧是拼接/连接。"
-        }
-      ],
-      "pass_feedback": "抓住了：类型决定 + 是加法还是拼接。",
-      "fail_prefix": "再补全要点："
-    },
-    {
-      "id": "py-01-l5",
-      "type": "code",
-      "title": "代码：标签挪位后打印谁",
-      "coach": "b = a 时，b 贴的是当时的值；之后改 a 不会拖着旧标签一起走。",
-      "concept": {
-        "normal": "两个名字可以先后贴到同一个值上，但之后各自挪动互不影响。\n\nn = 10\nm = n   → m 也贴到当时的 10\nn = n + 5 → 只把 n 挪到 15；m 仍贴着 10\n\n所以最终 print(n) 与 print(m) 会看到不同结果。"
-      },
-      "example": {
-        "code": "n = 10\nm = n\nn = n + 5\nprint(n)  # 15\nprint(m)  # 10",
-        "note": "m = n 复制的是「当时贴着谁」，不是永远跟着 n 走。"
-      },
-      "prompt": "根据下面逻辑，写出两行 print，依次输出最终的 n 与 m（应看到 15 和 10）：\nn = 10\nm = n\nn = n + 5\n# 在此写两行 print",
-      "hint": "print(n) 然后 print(m)；或一行里两次也可以，但需能看出 15 与 10。",
-      "options": [],
-      "answers": [],
-      "checks": [
-        {"type": "regex", "pattern": "print\\s*\\(\\s*n\\s*\\)", "message": "需要 print(n)。"},
-        {"type": "regex", "pattern": "print\\s*\\(\\s*m\\s*\\)", "message": "需要 print(m)。"},
-        {"type": "min_print_calls", "value": 2, "message": "请至少写两个 print。"}
-      ],
-      "pass_feedback": "第 1 章核心练完：你会绑定名字、区分类型，也理解了重新贴标签。可以进入第 2 章函数。",
-      "fail_prefix": "检查打印："
-    }
-  ]
-}
+{
+  "id": "py-01",
+  "track_id": "python",
+  "title": "第 1 章 · 变量与类型",
+  "goal": "理解名字绑定到值；分清 int / float / str / bool；能写简单赋值与 print。",
+  "status": "ready",
+  "lessons": [
+    {
+      "id": "py-01-l1",
+      "type": "code",
+      "title": "热身：让屏幕开口",
+      "coach": "先用一行 print 确认环境会回话。真正主线是后面的变量与类型。",
+      "concept": {
+        "normal": "程序要跟人说话，最常用的口是 print。\n\n写 print(...) 时：括号里的内容会显示到屏幕上。字符串要用引号包起来，例如 \"Hello\"。\n\n本课先确认：你会让屏幕说出约定好的那一行字。后面几课再学「名字贴到值上」。",
+        "story": {
+          "mission_title": "开机自检：唤醒终端喇叭",
+          "scene": "LeapMa 训练室 · 夜班值班台",
+          "npc": "值班员 Mira",
+          "npc_line": "别急着贴标签。先确认这台喇叭还能喊出约定的那句话。",
+          "objective": "用一行 print 让屏幕输出恰好 Hello LeapMa。",
+          "body": "把终端想成一台会回话的小喇叭。\n\n你喊一句 print(\"……\")，喇叭就把括号里用引号包好的那句话原样念出来。\n\n本关只做一件事：确认喇叭能说话。真正的「名字贴到值上」留给下一关。",
+          "clear_hint": "形如 print(\"Hello LeapMa\")，大小写与空格要对齐。"
+        }
+      },
+      "example": {
+        "code": "print(\"Ready\")\nprint(\"Go!\")",
+        "note": "示范两次 print：引号里的字会原样出现在屏幕上。"
+      },
+      "prompt": "写一行 Python：用 print 输出恰好 Hello LeapMa（含空格与大小写）。",
+      "hint": "形如 print(\"Hello LeapMa\")",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {"type": "contains", "value": "print", "message": "需要用到 print。"},
+        {"type": "contains", "value": "Hello LeapMa", "message": "输出内容需包含 Hello LeapMa。"},
+        {"type": "regex", "pattern": "print\\s*\\(", "message": "print 后面要有括号调用。"}
+      ],
+      "pass_feedback": "好，屏幕会说话了。下面进入本章主线：名字与值。",
+      "fail_prefix": "还差一点："
+    },
+    {
+      "id": "py-01-l2",
+      "type": "mcq",
+      "title": "选择：赋值究竟在做什么",
+      "coach": "把变量想成贴在值上的标签，而不是「装东西的盒子」。",
+      "concept": {
+        "normal": "在 Python 里，变量更像贴纸，不是盒子。\n\n- 值（如 100、\"hi\"）先存在；\n- 名字（如 score）是贴在值上的标签；\n- score = 100 的意思是：把名字 score 绑定到值 100。\n\n等号 = 在这里是「绑定 / 贴标签」，不是数学上的「等于」。\n之后再写 score = 101，是把同一张标签挪到新值上。",
+        "story": {
+          "mission_title": "仓库夜巡：认清「贴签」不是「装盒」",
+          "scene": "冷链仓库 A3 货架",
+          "npc": "仓管阿哲",
+          "npc_line": "别把等号当成数学题。这里是贴签作业，不是锁死铁盒。",
+          "objective": "选出 score = 100 时等号 = 的最准确含义。",
+          "body": "货架上摆着一箱苹果，旁边贴了纸条「今日库存」。\n\nscore = 100 就像：把「今日库存」这张纸条贴到「100」那一箱上——不是把 100 塞进叫 score 的铁盒子里锁死。\n\n第二天写 score = 101：你只是把纸条撕下来，贴到另一箱「101」上。旧的 100 还在货架某处，只是没人再叫它「今日库存」了。",
+          "clear_hint": "想「绑定 / 贴标签」，不是「等于」或「永久装进盒子」。"
+        }
+      },
+      "example": {
+        "code": "lives = 3\nprint(lives)\nlives = 2\nprint(lives)",
+        "note": "两次赋值：标签从 3 挪到 2（换场景，练习问的是 score = 100 的含义）。"
+      },
+      "prompt": "在 Python 里，写出 score = 100 时，等号 = 最准确的含义是？",
+      "hint": "不是数学上的「等于」。",
+      "options": [
+        {"id": "A", "text": "判断 score 是否等于 100"},
+        {"id": "B", "text": "把名字 score 绑定（贴标签）到值 100 上"},
+        {"id": "C", "text": "创建一个永远不能再改的常量"},
+        {"id": "D", "text": "把 100 永久复制进名叫 score 的盒子里且无法换绑"}
+      ],
+      "answers": ["B"],
+      "checks": [],
+      "pass_feedback": "对：= 是绑定/贴标签。之后 score = 101 是把标签挪到新值上。",
+      "fail_prefix": "再想一想："
+    },
+    {
+      "id": "py-01-l3",
+      "type": "fill",
+      "title": "填空：凑出整数 8",
+      "coach": "左边是名字，右边是值。类型要一致才能做整数加法。",
+      "concept": {
+        "normal": "赋值左边是名字，右边是值。\n\n常见类型先记四个：\n- int：整数，如 3、8\n- float：小数，如 3.14\n- str：文字，如 \"8\"（带引号）\n- bool：True / False\n\n做整数加法时，两边都该是数字类型。\"3\" + \"5\" 是拼接成 \"35\"，不是 8。",
+        "story": {
+          "mission_title": "收银台紧急结账：数字价签才能合计",
+          "scene": "社区便利店收银台",
+          "npc": "店员小楠",
+          "npc_line": "价签写成文字就会粘成一串字——结不了账。给我整数。",
+          "objective": "填对 right，使 left + right 打印出整数 8。",
+          "body": "你在收银台扫两件货：一件标价 10，一件标价 2。\n\n两边都是「数字价签」（int）时，合计才是 12。\n若把价签写成文字 \"10\" 和 \"2\"，加号就变成把字贴在一起，变成 \"102\"——结不了账。\n\n本关：左边已是 3，你要补一个整数 right，让合计变成 8。",
+          "clear_hint": "填 5（或 right = 5）；不要用带引号的 \"5\"。"
+        }
+      },
+      "example": {
+        "code": "price = 10\ntip = 2\npay = price + tip\nprint(pay)  # 12",
+        "note": "示范两个 int 相加；练习要你填 right 凑出 8，数字与变量名都不同。"
+      },
+      "prompt": "补全空白，使 total 打印为 8（不要用字符串）：\nleft = 3\nright = ___\ntotal = left + right\nprint(total)",
+      "hint": "填一个整数，让 3 + right == 8。",
+      "options": [],
+      "answers": ["5", "right = 5", "right=5"],
+      "checks": [],
+      "pass_feedback": "很好：right 绑到整数 5，加法得到 8。",
+      "fail_prefix": "空白处应是能让 3+right 等于 8 的整数："
+    },
+    {
+      "id": "py-01-l4",
+      "type": "short",
+      "title": "简答：加号的两种面孔",
+      "coach": "同一符号 +，遇到不同类型含义不同。",
+      "concept": {
+        "normal": "同一个 +，类型不同，含义不同：\n\n- 2 + 2 → 4（整数加法）\n- \"2\" + \"2\" → \"22\"（字符串拼接）\n\n类型决定运算符的行为。写代码时先问：两边分别是什么类型？",
+        "story": {
+          "mission_title": "厨房事故报告：同一把 + 刀切错材料",
+          "scene": "夜市小吃摊后厨",
+          "npc": "主厨老周",
+          "npc_line": "刀没坏，是砧板上放错了料。先分清数字和字条。",
+          "objective": "用一两句话说明 \"2\"+\"2\" 与 2+2 的结果为何不同。",
+          "body": "厨房里同一把「+」刀：切数字材料时是算总数，切文字材料时是把字条首尾粘起来。\n\n7 + 7 得到 14；\"7\" + \"7\" 得到 \"77\"。\n\n本关要你写清：引号里的 \"2\" 是字条，没引号的 2 是数字——所以结果一个是 \"22\"，一个是 4。",
+          "clear_hint": "点出拼接 vs 加法，并写出 22 与 4。"
+        }
+      },
+      "example": {
+        "code": "print(7 + 7)      # 14\nprint(\"7\" + \"7\")  # 77",
+        "note": "用 7 演示加法 vs 拼接；练习问的是 \"2\" + \"2\" 与 2 + 2。"
+      },
+      "prompt": "用一两句话说明：\"2\" + \"2\" 的结果与 2 + 2 的结果分别是什么？为什么不同？",
+      "hint": "一个是字符串拼接，一个是整数加法。",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {
+          "type": "keywords_any",
+          "values": ["22", "\"22\"", "'22'"],
+          "message": "请提到字符串结果是 22（拼接）。"
+        },
+        {
+          "type": "keywords_any",
+          "values": ["4"],
+          "message": "请提到整数相加得到 4。"
+        },
+        {
+          "type": "keywords_any",
+          "values": ["拼接", "拼", "连接", "字符串", "str", "文字"],
+          "message": "请点出字符串一侧是拼接/连接。"
+        }
+      ],
+      "pass_feedback": "抓住了：类型决定 + 是加法还是拼接。",
+      "fail_prefix": "再补全要点："
+    },
+    {
+      "id": "py-01-l5",
+      "type": "code",
+      "title": "代码：标签挪位后打印谁",
+      "coach": "b = a 时，b 贴的是当时的值；之后改 a 不会拖着旧标签一起走。",
+      "concept": {
+        "normal": "两个名字可以先后贴到同一个值上，但之后各自挪动互不影响。\n\nn = 10\nm = n   → m 也贴到当时的 10\nn = n + 5 → 只把 n 挪到 15；m 仍贴着 10\n\n所以最终 print(n) 与 print(m) 会看到不同结果。",
+        "story": {
+          "mission_title": "访客中心：两张证，只给 Alice 换房",
+          "scene": "科技园访客中心前台",
+          "npc": "前台 Ada",
+          "npc_line": "Bob 的证不会跟着 Alice 自动改。你要打印出两人最终各自指向谁。",
+          "objective": "按逻辑写出两行 print，依次输出最终的 n 与 m（15 再 10）。",
+          "body": "两张访客证：先给 Alice 办证贴到「房间 4」，再复印一张给 Bob——Bob 也指向当时的 4。\n\n之后只给 Alice 换到「房间 5」：Bob 的证仍写着 4，不会跟着 Alice 跑。\n\n本关换成 n/m：n 先是 10，m 抄当时的 n，再把 n 挪到 15——分别打印两人最终房间号。",
+          "clear_hint": "至少 print(n) 与 print(m)；顺序要对。"
+        }
+      },
+      "example": {
+        "code": "p = 4\nq = p\np = p + 1\nprint(p)  # 5\nprint(q)  # 4",
+        "note": "示范「先共享再各自挪」；练习用的是 n/m 与 +5，数据不同。"
+      },
+      "prompt": "根据下面逻辑，写出两行 print，依次输出最终的 n 与 m（应看到 15 和 10）：\nn = 10\nm = n\nn = n + 5\n# 在此写两行 print",
+      "hint": "print(n) 然后 print(m)；或一行里两次也可以，但需能看出 15 与 10。",
+      "options": [],
+      "answers": [],
+      "checks": [
+        {"type": "regex", "pattern": "print\\s*\\(\\s*n\\s*\\)", "message": "需要 print(n)。"},
+        {"type": "regex", "pattern": "print\\s*\\(\\s*m\\s*\\)", "message": "需要 print(m)。"},
+        {"type": "min_print_calls", "value": 2, "message": "请至少写两个 print。"}
+      ],
+      "pass_feedback": "第 1 章核心练完：你会绑定名字、区分类型，也理解了重新贴标签。可以进入第 2 章函数。",
+      "fail_prefix": "检查打印："
+    }
+  ]
+}

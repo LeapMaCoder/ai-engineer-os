@@ -2,7 +2,11 @@
 {% block title %}Dashboard · LeapMa{% endblock %}
 {% block body %}
 <section class="panel dash-hero">
-  <p class="coach-label">{% if logged_in %}个人中心 · 已登录{% else %}个人中心 · 游客可用{% endif %}</p>
+  <p class="coach-label">Dashboard · 续学</p>
+  <p class="dash-identity muted">
+    你好，{{ display_name }} · 默认模式：{{ concept_mode_label }}
+    <a href="{{ url_for('growth.profile') }}">管理 →</a>
+  </p>
   <h1>继续学习</h1>
   <p class="dash-status">{{ status_line }}</p>
   {% if continue_lesson %}
@@ -10,39 +14,6 @@
   {% endif %}
   <a class="btn btn-continue" href="{{ continue_url }}">{{ continue_title }}</a>
   <p class="dash-tip" role="note"><span class="dash-tip-label">教练 Tip</span> {{ coach_tip }}</p>
-</section>
-
-<section class="dash-grid two" style="margin-top:1rem">
-  <div class="panel">
-    <h2>身份</h2>
-    <p class="muted">{% if logged_in %}账号{% else %}Guest ID（会话）{% endif %}</p>
-    <p class="stat" style="font-size:1rem;word-break:break-all">
-      {% if logged_in and username %}{{ username }}{% else %}{{ guest_id_short }}{% endif %}
-    </p>
-    <form method="post" action="{{ url_for('growth.dashboard_name') }}">
-      <label for="display_name">显示名（可改，非问卷）</label>
-      <input id="display_name" type="text" name="display_name" value="{{ display_name }}" maxlength="32" placeholder="例如：阿码">
-      <button type="submit">保存显示名</button>
-    </form>
-    {% if not logged_in %}
-    <p class="muted" style="margin-top:1rem">注册可选——不挡 Dashboard。想跨设备保留进度再登录。</p>
-    <p class="btn-row">
-      <a class="btn secondary" href="{{ url_for('growth.login') }}">登录</a>
-      <a class="btn ghost" href="{{ url_for('growth.register') }}">注册</a>
-    </p>
-    {% else %}
-    <form method="post" action="{{ url_for('growth.logout') }}" style="margin-top:1rem">
-      <button type="submit" class="ghost">退出登录</button>
-    </form>
-    {% endif %}
-  </div>
-
-  <div class="panel">
-    <h2>当前课程</h2>
-    <p class="coach-line">Python 赛道</p>
-    <p class="dash-status-inline">{{ status_line }}</p>
-    <p class="muted">进度用能力 + 数字表示；未开放章不假装完成。</p>
-  </div>
 </section>
 
 <section class="panel" style="margin-top:1rem">

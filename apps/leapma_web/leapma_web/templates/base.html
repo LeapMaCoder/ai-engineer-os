@@ -14,6 +14,7 @@
     <a class="brand" href="{{ url_for('growth.home') }}">LeapMa</a>
     <nav class="nav" aria-label="主导航">
       <a href="{{ url_for('growth.dashboard') }}" class="{% if request.endpoint == 'growth.dashboard' %}is-active{% endif %}">Dashboard</a>
+      <a href="{{ url_for('growth.profile') }}" class="{% if request.endpoint and request.endpoint.startswith('growth.profile') %}is-active{% endif %}">个人中心</a>
       <a href="{{ url_for('growth.track_home') }}" class="{% if request.endpoint and 'track' in request.endpoint %}is-active{% endif %}">开始练</a>
       {% if logged_in %}
       <form class="nav-auth" method="post" action="{{ url_for('growth.logout') }}">

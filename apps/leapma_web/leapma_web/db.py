@@ -129,7 +129,8 @@ CREATE TABLE IF NOT EXISTS users (
   username TEXT UNIQUE,
   email TEXT,
   password_hash TEXT,
-  display_name TEXT
+  display_name TEXT,
+  concept_mode_default TEXT
 );
 CREATE TABLE IF NOT EXISTS growth_sessions (
   id TEXT PRIMARY KEY,
@@ -173,7 +174,8 @@ _MYSQL_DDL = [
   username VARCHAR(64) NULL UNIQUE,
   email VARCHAR(255) NULL,
   password_hash VARCHAR(255) NULL,
-  display_name VARCHAR(64) NULL
+  display_name VARCHAR(64) NULL,
+  concept_mode_default VARCHAR(16) NULL
 ) ENGINE=InnoDB""",
     """CREATE TABLE IF NOT EXISTS growth_sessions (
   id VARCHAR(36) PRIMARY KEY,
@@ -214,6 +216,7 @@ _AUTH_COLUMNS = (
     ("email", "TEXT", "VARCHAR(255) NULL"),
     ("password_hash", "TEXT", "VARCHAR(255) NULL"),
     ("display_name", "TEXT", "VARCHAR(64) NULL"),
+    ("concept_mode_default", "TEXT", "VARCHAR(16) NULL"),
 )
 
 
@@ -480,10 +483,15 @@ class UserRecord:
     email: Optional[str]
     password_hash: Optional[str]
     display_name: Optional[str]
+    concept_mode_default: Optional[str]
+    created_at: Optional[str] = None
 
 
 def _row_to_user(row: Any) -> UserRecord:
     d = dict(row)
+    created = d.get("created_at")
+    if created is not None and not isinstance(created, str):
+        created = str(created)
     return UserRecord(
         id=d["id"],
         is_paid=bool(d.get("is_paid")),
@@ -491,6 +499,8 @@ def _row_to_user(row: Any) -> UserRecord:
         email=d.get("email"),
         password_hash=d.get("password_hash"),
         display_name=d.get("display_name"),
+        concept_mode_default=d.get("concept_mode_default"),
+        created_at=created,
     )
 
 
@@ -573,6 +583,27 @@ def set_user_display_name(user_id: str, display_name: str | None) -> None:
                 cur.execute(
                     "UPDATE users SET display_name = %s WHERE id = %s",
                     (name, user_id),
+                )
+            conn.commit()
+
+
+def set_user_concept_mode_default(user_id: str, mode: str | None) -> None:
+    """Persist account default concept mode: ``normal`` | ``story`` (or NULL)."""
+    m = (mode or "").strip().lower() or None
+    if m not in (None, "normal", "story"):
+        m = "normal"
+    with _connect() as conn:
+        if _backend == "sqlite":
+            conn.execute(
+                "UPDATE users SET concept_mode_default = ? WHERE id = ?",
+                (m, user_id),
+            )
+            conn.commit()
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "UPDATE users SET concept_mode_default = %s WHERE id = %s",
+                    (m, user_id),
                 )
             conn.commit()
 

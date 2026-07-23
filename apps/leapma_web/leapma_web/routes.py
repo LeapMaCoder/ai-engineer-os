@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import re
 
-from datetime import date
+from datetime import date, datetime
 
 from flask import (
     Blueprint,
     current_app,
     flash,
+    make_response,
     redirect,
     render_template,
     request,
@@ -63,6 +64,10 @@ COACH_TIPS = [
     "进度用「会不会」衡量，不看虚荣百分比。",
 ]
 
+_VALID_CONCEPT_MODES = frozenset({"normal", "story"})
+_CONCEPT_MODE_COOKIE = "concept_mode_default"
+_CONCEPT_MODE_COOKIE_MAX_AGE = 365 * 24 * 3600
+
 
 def _uid() -> str:
     if "user_id" not in session:
@@ -72,6 +77,53 @@ def _uid() -> str:
 
 def _is_logged_in() -> bool:
     return bool(session.get("logged_in"))
+
+
+def _normalize_concept_mode(raw: str | None) -> str:
+    m = (raw or "").strip().lower()
+    return m if m in _VALID_CONCEPT_MODES else "normal"
+
+
+def _get_concept_mode_default() -> str:
+    """Resolve default concept mode (Plan B). Account wins when logged in."""
+    if _is_logged_in():
+        if "concept_mode_default" in session:
+            return _normalize_concept_mode(session.get("concept_mode_default"))
+        user = db.get_user(_uid())
+        if user and user.concept_mode_default:
+            mode = _normalize_concept_mode(user.concept_mode_default)
+            session["concept_mode_default"] = mode
+            return mode
+        return "normal"
+    if "concept_mode_default" in session:
+        return _normalize_concept_mode(session.get("concept_mode_default"))
+    cookie = request.cookies.get(_CONCEPT_MODE_COOKIE)
+    if cookie:
+        mode = _normalize_concept_mode(cookie)
+        session["concept_mode_default"] = mode
+        return mode
+    return "normal"
+
+
+def _attach_concept_mode_cookie(resp, mode: str):
+    """Persist guest default preference in a cookie (optional but recommended)."""
+    resp.set_cookie(
+        _CONCEPT_MODE_COOKIE,
+        mode,
+        max_age=_CONCEPT_MODE_COOKIE_MAX_AGE,
+        samesite="Lax",
+        httponly=False,
+    )
+    return resp
+
+
+def _set_concept_mode_default(mode: str) -> str:
+    """Write default preference only (never called from in-lesson toggle)."""
+    mode = _normalize_concept_mode(mode)
+    session["concept_mode_default"] = mode
+    if _is_logged_in():
+        db.set_user_concept_mode_default(_uid(), mode)
+    return mode
 
 
 def _coach_tip(user_id: str) -> str:
@@ -376,22 +428,32 @@ def _current_status_line(user_id: str) -> str:
     return "第1章 0/5 · 会用变量与类型（尚未开始）"
 
 
-@bp.get("/dashboard")
-@bp.get("/me")
-def dashboard():
-    uid = _uid()
-    logged_in = _is_logged_in()
-    user = db.get_user(uid) if logged_in else None
+def _resolve_display_name(user: db.UserRecord | None) -> str:
     display_name = (session.get("display_name") or "").strip()
     if not display_name and user and user.display_name:
         display_name = user.display_name
         session["display_name"] = display_name
-    if not display_name:
-        display_name = "游客"
+    return display_name or "游客"
 
-    chapter_rows = []
+
+def _ensure_guest_first_seen(user: db.UserRecord | None) -> str:
+    """Guest first-seen: session, else users.created_at from guest row."""
+    existing = (session.get("guest_first_seen") or "").strip()
+    if existing:
+        return existing
+    stamp = ""
+    if user and user.created_at:
+        stamp = str(user.created_at)[:19]
+    if not stamp:
+        stamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    session["guest_first_seen"] = stamp
+    return stamp
+
+
+def _chapter_rows(user_id: str) -> list[dict]:
+    rows = []
     for meta in content.list_chapters():
-        n_pass, total = _chapter_progress(uid, meta["id"], meta["status"])
+        n_pass, total = _chapter_progress(user_id, meta["id"], meta["status"])
         cap = CHAPTER_CAPABILITY.get(meta["id"], "")
         if meta["status"] != "ready":
             nm_label = "未开放"
@@ -402,7 +464,7 @@ def dashboard():
         else:
             nm_label = f"{n_pass}/{total}"
             status_text = cap
-        chapter_rows.append(
+        rows.append(
             {
                 "id": meta["id"],
                 "title": meta["title"],
@@ -415,32 +477,115 @@ def dashboard():
                 "url": url_for("growth.chapter_view", chapter_id=meta["id"]),
             }
         )
+    return rows
+
+
+def _ready_chapter_summaries(user_id: str, limit: int = 3) -> list[str]:
+    """第 1～N 章 N/M 摘要（仅 ready）。"""
+    out: list[str] = []
+    for meta in content.list_chapters():
+        if len(out) >= limit:
+            break
+        if meta["status"] != "ready":
+            continue
+        n, total = _chapter_progress(user_id, meta["id"], meta["status"])
+        out.append(f"第{_chapter_num(meta['id'])}章 {n}/{total}")
+    return out
+
+
+@bp.get("/dashboard")
+def dashboard():
+    """续学 + 章列表；个人信息仅摘要，完整设置在 /profile。"""
+    uid = _uid()
+    logged_in = _is_logged_in()
+    user = db.get_user(uid) if logged_in else None
+    display_name = _resolve_display_name(user)
+    mode = _get_concept_mode_default()
+    mode_label = "故事" if mode == "story" else "正常"
     continue_url, continue_title, continue_lesson = _continue_target(uid)
-    status_line = _current_status_line(uid)
     return render_template(
         "dashboard.html",
-        guest_id_short=uid[:8],
         display_name=display_name,
         logged_in=logged_in,
-        username=(user.username if user else None),
-        chapter_rows=chapter_rows,
+        concept_mode_default=mode,
+        concept_mode_label=mode_label,
+        chapter_rows=_chapter_rows(uid),
         continue_url=continue_url,
         continue_title=continue_title,
         continue_lesson=continue_lesson,
-        status_line=status_line,
+        status_line=_current_status_line(uid),
         coach_tip=_coach_tip(uid),
     )
 
 
-@bp.post("/dashboard/name")
-def dashboard_name():
+@bp.get("/me")
+def me_redirect():
+    """兼容旧入口：曾等同 Dashboard，现指向个人中心。"""
+    return redirect(url_for("growth.profile"), code=302)
+
+
+@bp.get("/profile")
+def profile():
+    """个人中心：昵称、时间、默认概念模式、进度、可选账号。"""
+    uid = _uid()
+    logged_in = _is_logged_in()
+    user = db.get_user(uid)
+    display_name = _resolve_display_name(user if logged_in else None)
+    if logged_in and user and user.created_at:
+        joined_at = str(user.created_at)[:19]
+        joined_label = "注册时间"
+    else:
+        joined_at = _ensure_guest_first_seen(user)
+        joined_label = "首次进入时间"
+    continue_url, continue_title, continue_lesson = _continue_target(uid)
+    return render_template(
+        "profile.html",
+        guest_id_short=uid[:8],
+        display_name=display_name,
+        logged_in=logged_in,
+        username=(user.username if user and logged_in else None),
+        joined_at=joined_at,
+        joined_label=joined_label,
+        concept_mode_default=_get_concept_mode_default(),
+        track_name="Python 赛道",
+        status_line=_current_status_line(uid),
+        chapter_summaries=_ready_chapter_summaries(uid, 3),
+        continue_url=continue_url,
+        continue_title=continue_title,
+        continue_lesson=continue_lesson,
+    )
+
+
+@bp.post("/profile/name")
+def profile_name():
     uid = _uid()
     name = (request.form.get("display_name") or "").strip()[:32]
     session["display_name"] = name
     if _is_logged_in():
         db.set_user_display_name(uid, name or None)
     flash("显示名已更新。" if name else "已恢复为「游客」。")
-    return redirect(url_for("growth.dashboard"))
+    return redirect(url_for("growth.profile"))
+
+
+@bp.post("/profile/concept-mode")
+def profile_concept_mode():
+    """方案 B 唯一写入点：保存默认概念模式。课内切换不得调用。"""
+    mode = _set_concept_mode_default(request.form.get("concept_mode_default"))
+    label = "故事" if mode == "story" else "正常"
+    flash(f"默认概念模式已设为「{label}」。课内切换不会改动此项。")
+    resp = make_response(redirect(url_for("growth.profile")))
+    return _attach_concept_mode_cookie(resp, mode)
+
+
+# 旧路径兼容：表单已迁到 /profile，POST 仍生效并跳转个人中心
+@bp.post("/dashboard/name")
+def dashboard_name():
+    return profile_name()
+
+
+@bp.post("/dashboard/concept-mode")
+def dashboard_concept_mode():
+    return profile_concept_mode()
 
 
 def _bind_account(account_id: str, *, display_name: str | None = None) -> None:
@@ -456,6 +601,14 @@ def _bind_account(account_id: str, *, display_name: str | None = None) -> None:
         user = db.get_user(account_id)
         if user and user.display_name:
             session["display_name"] = user.display_name
+    # Account preference wins over guest session/cookie.
+    user = db.get_user(account_id)
+    if user and user.concept_mode_default:
+        session["concept_mode_default"] = _normalize_concept_mode(
+            user.concept_mode_default
+        )
+    else:
+        session["concept_mode_default"] = "normal"
 
 
 @bp.route("/register", methods=["GET", "POST"])
@@ -511,6 +664,7 @@ def logout():
     # Keep a fresh guest identity so Dashboard stays usable without wall.
     session["user_id"] = db.create_user(is_paid=False)
     session.pop("growth_session_id", None)
+    session.pop("guest_first_seen", None)
     flash("已退出。你仍可游客身份继续练。")
     return redirect(url_for("growth.dashboard"))
 
@@ -643,6 +797,14 @@ def lesson_play(chapter_id: str, lesson_id: str):
         if not locked_next and not skeleton_next:
             next_url = url_for("growth.lesson_play", chapter_id=nch, lesson_id=nl)
 
+    # Plan B: first paint always from default; ignore ?mode= deep links.
+    concept_mode_default = _get_concept_mode_default()
+    initial_concept_mode = concept_mode_default
+    story_mode_fallback = False
+    if initial_concept_mode == "story" and not lesson.get("has_story"):
+        initial_concept_mode = "normal"
+        story_mode_fallback = True
+
     return render_template(
         "lesson.html",
         chapter=ch,
@@ -652,4 +814,7 @@ def lesson_play(chapter_id: str, lesson_id: str):
         attempt_text=request.form.get("attempt_text", "") if request.method == "POST" else "",
         prev_url=prev_url,
         next_url=next_url,
+        concept_mode_default=concept_mode_default,
+        initial_concept_mode=initial_concept_mode,
+        story_mode_fallback=story_mode_fallback,
     )

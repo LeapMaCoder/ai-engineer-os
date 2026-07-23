@@ -46,6 +46,55 @@ def load_chapter(chapter_id: str) -> dict[str, Any]:
     return raw
 
 
+def _normalize_story(story_raw: Any, lesson_title: str) -> dict[str, str] | None:
+    """Normalize ``concept.story``: legacy string → object; fill missing fields.
+
+    Ready shape::
+        {mission_title, scene, npc, npc_line, objective, body, clear_hint?}
+    """
+    if story_raw is None:
+        return None
+    if isinstance(story_raw, str):
+        body = story_raw.strip()
+        if not body:
+            return None
+        raw: dict[str, Any] = {"body": body}
+    elif isinstance(story_raw, dict):
+        keys = (
+            "mission_title",
+            "scene",
+            "npc",
+            "npc_line",
+            "objective",
+            "body",
+            "clear_hint",
+        )
+        if not any(str(story_raw.get(k) or "").strip() for k in keys):
+            return None
+        raw = story_raw
+    else:
+        return None
+
+    title = (lesson_title or "").strip() or "任务简报"
+
+    def pick(key: str, default: str) -> str:
+        val = raw.get(key)
+        if val is None:
+            return default
+        text = str(val).strip()
+        return text if text else default
+
+    return {
+        "mission_title": pick("mission_title", title),
+        "scene": pick("scene", "训练终端"),
+        "npc": pick("npc", "Coach"),
+        "npc_line": pick("npc_line", "读完简报，完成下方验收。"),
+        "objective": pick("objective", "完成本关练习并通过判定。"),
+        "body": pick("body", ""),
+        "clear_hint": pick("clear_hint", ""),
+    }
+
+
 def normalize_lesson(raw: dict[str, Any]) -> dict[str, Any]:
     """Normalize concept / example / exercises into a stable lesson shape.
 
@@ -53,6 +102,7 @@ def normalize_lesson(raw: dict[str, Any]) -> dict[str, Any]:
     - flat exercise fields (type/prompt/…) on the lesson (legacy)
     - nested ``exercises[]`` (first item promoted when flat fields missing)
     - ``concept`` as str or ``{normal, story?}``
+    - ``story`` as str (→ ``{body}`` + defaults) or mission object
     - ``example`` as str or ``{code, note?}``
     """
     lesson = dict(raw)
@@ -66,13 +116,13 @@ def normalize_lesson(raw: dict[str, Any]) -> dict[str, Any]:
             if empty and key in ex0:
                 lesson[key] = ex0[key]
 
+    title = (lesson.get("title") or "").strip()
     concept = lesson.get("concept")
     if isinstance(concept, str):
         lesson["concept"] = {"normal": concept.strip(), "story": None}
     elif isinstance(concept, dict):
         normal = (concept.get("normal") or "").strip()
-        story_raw = concept.get("story")
-        story = (story_raw or "").strip() or None
+        story = _normalize_story(concept.get("story"), title)
         lesson["concept"] = {"normal": normal, "story": story}
     else:
         # Legacy: coach as thin concept fallback (UI still shows 【学】)
