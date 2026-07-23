@@ -4,7 +4,7 @@ type: product
 status: draft
 owner: ""
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 tags:
   - prd
   - acceptance
@@ -18,10 +18,9 @@ quality_pass: "2026-07-21-focus-review"
 
 > 验收：**用户完成了什么价值闭环**，不是页面/控件是否存在。  
 > 禁止 UI/线框/交互描述。  
-> 对齐核心 **4** 条 User Story / **4** 条 Must AC。  
-> 禁止 UI/线框/交互描述。
+> 对齐核心 **5** 条 User Story / **5** 条 Must AC。
 
-**Must 确认：** Acceptance Criteria = **4**（AC-01…AC-04）
+**Must 确认：** Acceptance Criteria = **5**（AC-01…AC-05）
 
 ---
 
@@ -69,11 +68,25 @@ quality_pass: "2026-07-21-focus-review"
 | 字段 | 内容 |
 |------|------|
 | 价值闭环 | 用户从「怀疑要先付钱才有用」→「免费也能完成定向→反馈→进展」 |
-| 准则 | Given 用户未付费，When 走完 US-01～US-03 的最小路径，Then 主价值闭环全部可完成；不出现因未付费而无法获得下一步或可信反馈或进展感知的情况。 |
+| 准则 | Given 用户未付费，When 走完 US-01～US-03（及课内 US-05 最小路径）的最小路径，Then 主价值闭环全部可完成；不出现因未付费而无法获得下一步或可信反馈或进展感知的情况。 |
 | 用户问题 | 原则 9 / 信任 |
 | Growth Loop | GL-1…GL-8 最小路径 |
 | 成功指标 | Retention；Monetization Signal 基础 |
 | 优先级 | Must |
+
+---
+
+## AC-05 用户经情境引导先建模再通过验收（US-05）
+
+| 字段 | 内容 |
+|------|------|
+| 价值闭环 | 用户从「一上来裸做题/听不懂教材腔」→「在情境中建立心智模型后再验收」 |
+| 准则 | Given 用户进入 ready 单课，When 完成【学】（正常或故事呈现）再进入验收题并提交，Then 用户能先获得与本课知识点一致的心智模型，再完成可判定练习；概念模式不影响判定对错；不出现联赛/XP 商店/排行等经济系统冒充学习。细则与可测子项见 [[features/SPEC-GL-002_NPC_Guided_Lesson]]（AC-GL2-01…05）。 |
+| 用户问题 | SP-2 / 坚持（先懂再练） |
+| Growth Loop | **GL-4 + GL-5** |
+| 成功指标 | Learning；Activation；Q-A8 |
+| 优先级 | Must |
+| 决策 | D-056 |
 
 ---
 
@@ -93,12 +106,13 @@ quality_pass: "2026-07-21-focus-review"
 | AC-02 | 行动 + 可信反馈 | GL-4/5 | Activation / Learning |
 | AC-03 | 进展可见并续环 | GL-6/7/8 | Retention / Learning |
 | AC-04 | 免费跑通最小环 | 整环 | Retention |
+| AC-05 | 情境建模再验收 | GL-4/5 | Learning |
 
 ## Founder Review
 
-- [ ] 4 条 AC 是否都是价值语言？  
-- [ ] 是否误含 UI 描述？  
+- [ ] 5 条 AC 是否都是价值语言？  
+- [ ] AC-05 是否误含 UI 描述？  
 
 ## 相关文档
 
-- [[User_Stories]] · [[MVP_Core_Problem]] · [[Phase3_PRD_Review_Report]]
+- [[User_Stories]] · [[MVP_Core_Problem]] · [[features/SPEC-GL-002_NPC_Guided_Lesson]] · [[Phase3_PRD_Review_Report]]

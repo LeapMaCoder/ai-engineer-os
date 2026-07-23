@@ -84,9 +84,10 @@ tags:
 |------|------|
 | [[04_Specifications/README]] | Spec 在 SDD 中的角色 |
 | [[Spec_Template]] | Feature Spec 执行模板 |
-| [[Feature_Index]] | 索引（SPEC-GL-001 = **Approved**） |
+| [[Feature_Index]] | 索引（SPEC-GL-001 / **SPEC-GL-002** = **Approved**） |
 | [[Spec_Status]] | Draft→Review→Approved→Implemented |
-| [[features/SPEC-GL-001_First_Growth_Experience]] | **First Growth Experience（Approved）** |
+| [[features/SPEC-GL-001_First_Growth_Experience]] | **First Growth Experience（Approved）** — 首次闭环 |
+| [[features/SPEC-GL-002_NPC_Guided_Lesson]] | **NPC Guided Lesson（Approved）** — 单课如何学（D-056） |
 
 ## 5. 架构 `05_Architecture/` · ADR `06_ADR/`
 

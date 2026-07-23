@@ -4,7 +4,7 @@ type: product
 status: draft
 owner: ""
 created: 2026-07-21
-updated: 2026-07-21
+updated: 2026-07-23
 tags:
   - prd
   - user-stories
@@ -16,17 +16,18 @@ quality_pass: "2026-07-21-focus-review"
 
 # User Stories — MVP 核心故事（收敛版）
 
-> **MVP 核心 User Story = 4 条（Must）。** 其余进 Later。  
+> **MVP 核心 User Story = 5 条（Must）。** 其余进 Later。  
 > 每条含：用户 · 场景 · 问题 · 期望结果 · GL · 成功指标。  
 > 禁止 Feature / UI 语言。
 
-对齐 Primary Problem：[[MVP_Core_Problem]]
+对齐 Primary Problem：[[MVP_Core_Problem]]  
+课内教学契约：[[features/SPEC-GL-002_NPC_Guided_Lesson]]（D-056）
 
-**Must 确认：** User Stories = **4**（US-01…US-04）
+**Must 确认：** User Stories = **5**（US-01…US-05）
 
 ---
 
-## Must — 核心 4 条
+## Must — 核心 5 条
 
 ### US-01 明确下一步
 
@@ -84,19 +85,36 @@ quality_pass: "2026-07-21-focus-review"
 
 ---
 
+### US-05 情境引导建立心智模型再验收
+
+| 字段 | 内容 |
+|------|------|
+| 用户 | 同上 |
+| 场景 | 进入单课学习（含故事/正常概念呈现） |
+| 问题 | 一上来裸做题或纯教材腔，难以建立可迁移心智模型，易误伤与放弃 |
+| 期望结果 | 固定 NPC / 情境以困境引出概念与易错点，用户先建模再完成验收题；判定仍诚实可信（可与 US-02 同一次行动叠加） |
+| Growth Loop | **GL-4 + GL-5（主）**（单课教学形态） |
+| 成功指标 | Learning；Activation；回访意愿（Q-A8） |
+| 证据 | **Hypothesis**（D-056）；细则 [[features/SPEC-GL-002_NPC_Guided_Lesson]] |
+| 优先级 | Must |
+
+---
+
 ## 核心闭环（推荐）
 
 ```mermaid
 flowchart LR
-  US01[US-01 下一步] --> US02[US-02 行动+反馈]
+  US01[US-01 下一步] --> US05[US-05 情境建模]
+  US05 --> US02[US-02 行动+反馈]
   US02 --> US03[US-03 进展可见/再来]
   US04[US-04 免费整环] -.-> US01
+  US04 -.-> US05
   US04 -.-> US02
   US04 -.-> US03
 ```
 
 **推荐 MVP 价值闭环：**  
-定向（下一步）→ 行动 + 可信反馈 → 进展可见并续环；且全程免费可跑通。
+定向（下一步）→ **情境建模（先懂）** → 行动 + 可信反馈 → 进展可见并续环；且全程免费可跑通。
 
 ---
 
@@ -109,6 +127,7 @@ flowchart LR
 | 独立「下一目标管理系统」 | 并入 US-03 最小续环即可 |
 | 增强价值 / WTP 说明（原 US-10） | 非主问题；有信号后再做 |
 | 复杂个性化引擎 | 验证主问题后再加深 GL-3 |
+| 跨课长剧情 / 好感度 | Hard No / D-056 禁止 |
 
 可保留为后备故事 ID（不进入 Must 验收）：
 
@@ -128,9 +147,9 @@ flowchart LR
 
 ## Founder Review
 
-- [ ] 核心 4 条是否仍过多/过少？  
-- [ ] US-01 是否应再拆，或保持「定向合一」？  
+- [ ] 核心 5 条是否仍过多/过少？  
+- [ ] US-05 与 US-02 边界是否清晰（建模 vs 判定）？  
 
 ## 相关文档
 
-- [[MVP_Core_Problem]] · [[Acceptance_Criteria]] · [[Phase3_PRD_Review_Report]]
+- [[MVP_Core_Problem]] · [[Acceptance_Criteria]] · [[features/SPEC-GL-002_NPC_Guided_Lesson]] · [[Phase3_PRD_Review_Report]]

@@ -31,6 +31,8 @@ updated: 2026-07-21
 ## Status
 
 **Approved** — 产品行为契约已定稿。  
+**分工：** 本 Spec = **首次成长闭环**（定向→行动→反馈→进展，US-01…04 / AC-01…04）。  
+**单课如何学（NPC 引导 / 先建模再练）** 见 [[features/SPEC-GL-002_NPC_Guided_Lesson]]（US-05 / AC-05，D-056）；**不削弱**本 Spec 原有 AC。  
 **实现门禁：** 禁止直接写业务代码；须先完成最小 Architecture 笔记/ADR，再实现。改行为须先改本 Spec。
 
 ## Problem Reference
@@ -237,3 +239,4 @@ flowchart LR
 | 2026-07-21 | OQ-001…005 定稿（Strategic 默认）；Status → **Approved** | Execution Agent |
 | 2026-07-21 | 方案 1 去问卷化：BR-011…013；Flow/OQ-001 更新；**不削弱** AC | Execution Agent |
 | 2026-07-21 | 交叉引用原则 10 No Questionnaire Wall（D-041）；AC 未改 | Execution Agent |
+| 2026-07-23 | 分工说明：单课 NPC 引导见 SPEC-GL-002；**不削弱**本 Spec AC-01…04 | Execution Agent |

@@ -13,14 +13,15 @@ tags:
 
 # Current State — 当前状态
 
-快照：`2026-07-21`
+快照：`2026-07-23`
 
 ## 1. 产品状态
 
 | 项 | 状态 |
 |----|------|
 | 初期赛道 | **Python**（D-042） |
-| 章节 | py-01 **ready**；py-02/03 **skeleton**（D-044） |
+| 章节 | py-01～03 **ready**；py-04～15 skeleton（D-044/047） |
+| 课内教学 | 先学后练 + NPC/story 任务简报（D-049～051）；契约 **SPEC-GL-002 / D-056** |
 | 反馈 | 规则判定优先；LLM Later（D-043） |
 | 代码 | `apps/leapma_web` + `content/python/` |
 | 主存 | MySQL `leapma`（凭据仅在本地 `.env`） |
@@ -29,6 +30,7 @@ tags:
 
 | 日期 | 变化 |
 |------|------|
+| 2026-07-23 | **D-056 文档债**：Decision/Open Q-A8 / SPEC-GL-002 Approved / US-05·AC-05 / Vision·Principles 叙事型坚持对齐；**仅文档，未改 apps；未 commit** |
 | 2026-07-23 | **D-055**：整体 UI 微调（间距/课内分区/移动端）；保持 D-048 令牌；**未 commit** |
 | 2026-07-23 | **D-054**：打磨 `/profile` 账户与设置分区；Dashboard 强化「接下来练什么」；**未 commit** |
 | 2026-07-23 | **D-053**：打磨 Python 第 1～3 章（讲解/故事/示例≠练习/判定收紧）；不开新章；**未 commit** |

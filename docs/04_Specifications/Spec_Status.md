@@ -46,5 +46,5 @@ stateDiagram-v2
 PRD Approved ──► Spec Draft → Review → Approved ──► Architecture/ADR ──► Code → Test
 ```
 
-当前：**SPEC-GL-001 = Approved**（见 [[features/SPEC-GL-001_First_Growth_Experience]]）。  
-实现前须 Architecture / 必要 ADR；禁止无 Arch 的业务编码。
+当前：**SPEC-GL-001** 与 **SPEC-GL-002** = **Approved**（见 [[Feature_Index]]）。  
+实现前须 Architecture / 必要 ADR；禁止无 Arch 的业务编码。GL-002 可复用 GL-001 Arch。

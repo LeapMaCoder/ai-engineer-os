@@ -7,7 +7,7 @@ LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品
 - AI 导师
 - 动态学习路径
 - 知识图谱
-- 游戏化成长系统
+- **叙事型坚持**（情境 / 固定 NPC 引导有效练习；非联赛/XP 商店/排行）
 
 ## 从这里开始
 
@@ -20,9 +20,9 @@ LeapMa **不是**传统课程平台，而是帮助程序员持续成长的产品
 
 ## 当前阶段
 
-**Phase 5 — Python 15 章骨架**（第 1～3 章可玩；4～15 skeleton；规则反馈）
+**Phase 5 — 视觉 + 游客 Dashboard + Python 15 章骨架**（第 1～3 章可玩；4～15 skeleton；规则反馈；**D-056 / SPEC-GL-002** NPC 引导文档契约已对齐）
 
-详情：[leapma_web README](apps/leapma_web/README.md) · [Python_Track_Outline](docs/03_Product/MVP/Python_Track_Outline.md)
+详情：[leapma_web README](apps/leapma_web/README.md) · [Python_Track_Outline](docs/03_Product/MVP/Python_Track_Outline.md) · [SPEC-GL-002](docs/04_Specifications/features/SPEC-GL-002_NPC_Guided_Lesson.md)
 
 **Agent 不 commit。**
 

@@ -54,7 +54,7 @@ Vision → Product → Specification → Architecture → Code → Test
 | [[Spec_Template]] | **写 Feature Spec 用此模板**（LeapMa 执行模板） |
 | [[Feature_Index]] | Feature Spec 索引与状态 |
 | [[Spec_Status]] | 状态机与门禁规则 |
-| `features/` | Feature Spec 正文（如 [[features/SPEC-GL-001_First_Growth_Experience]]） |
+| `features/` | Feature Spec 正文（[[features/SPEC-GL-001_First_Growth_Experience]] · [[features/SPEC-GL-002_NPC_Guided_Lesson]]） |
 | `docs/templates/Specification_Template.md` | 通用 SDD 草稿模板（Obsidian/历史） |
 
 ### 双模板关系（避免双真源）
@@ -68,6 +68,6 @@ Vision → Product → Specification → Architecture → Code → Test
 
 ## 当前阶段
 
-**Phase 4** — Spec 基建就绪；**SPEC-GL-001 First Growth Experience = Approved**。
+**Phase 5** — 垂直切片进行中；**SPEC-GL-001 / SPEC-GL-002 = Approved**（D-056 文档债已对齐）。
 
-下一步：Architecture。仍禁止无 Arch 的业务代码；本任务不 commit。
+下一步：内容与试用验证 Q-A8；跨课剧情若需要另开 Arch。Agent 不 commit。

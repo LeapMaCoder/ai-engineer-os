@@ -37,6 +37,18 @@ tags:
 
 内容目录：`apps/leapma_web/content/python/`
 
+## 叙事 / NPC 约定（D-056）
+
+| 约定 | 说明 |
+|------|------|
+| NPC 池 | 全站固定角色 **≤ 4**；可轮换出场，**不**做好感度 |
+| 每课主 NPC | `concept.story.npc` 指向池中一名；困境引出心智模型 |
+| 章幕名 | 可选轻钩子（文案），非经济系统 |
+| 引导链 | 困境 → 概念 → 例 → 练（验收）；先学后练（D-049） |
+| 禁止 | 联赛 / XP 商店 / 排行 / 长分叉视觉小说 |
+
+细则：[[features/SPEC-GL-002_NPC_Guided_Lesson]]。
+
 ## 题源对齐（Obsidian → LeapMa）
 
 | LeapMa | Obsidian 主源 | 题型混合 |
