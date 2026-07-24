@@ -13,13 +13,13 @@
       "concept": {
         "normal": "函数 = 起了名字的可复用代码块：定义一次，调用多次。\n\n- def name(...): 只是登记这份代码，不会立刻跑函数体；\n- name(...) 带括号调用时，才真正执行；\n- return 把结果交回调用方；print 只把字打到屏幕。\n\n本课先分清：定义 ≠ 立刻执行。上一章你会贴标签；这一章开始把一组步骤打包成可复用名字。",
         "story": {
-          "mission_title": "后厨登记：菜谱上墙 ≠ 立刻开火",
-          "scene": "街角面馆开放厨房",
-          "npc": "面馆老板娘",
-          "npc_line": "卡片钉上墙只是登记。没人点名，炉子不会自己烧——别把登记当成出餐。",
+          "mission_title": "菜谱上墙：登记 ≠ 开火",
+          "scene": "跃迁站 · 回响稽核台旁开放厨房",
+          "npc": "回响",
+          "npc_line": "卡片钉上墙只是登记。没人点名，炉子不会自己烧。",
           "objective": "选出关于 def 最准确的一句。",
-          "body": "把函数想成厨房墙上的菜谱卡片。\n\ndef greasy_noodles(): ... 是把菜谱钉到墙上——还没开火，锅是冷的。\n\n只有喊一声 greasy_noodles()（点这道菜），炉子才开始按步骤做。\n\nreturn 是把做好的那盘端回餐桌；print 只是在厨房门口喊一句「好了」，桌上不一定端得到。\n\n问：def 本身做了什么？",
-          "clear_hint": "定义是登记；带括号调用才会执行函数体。"
+          "body": "回响盯着菜谱墙：def 是登记可复用步骤；带括号调用才执行。\n\nreturn 是装箱交回；print 只是门口喊一声——喊过≠交货。",
+          "clear_hint": "定义是登记；调用才执行。"
         }
       },
       "example": {
@@ -29,12 +29,26 @@
       "prompt": "关于 def，哪一句最准确？",
       "hint": "定义 ≠ 立刻执行函数体。想「登记 vs 开火」。",
       "options": [
-        {"id": "A", "text": "一写完 def，函数体就会立刻跑一遍"},
-        {"id": "B", "text": "def 只是登记可复用代码块；调用 name(...) 时才执行函数体"},
-        {"id": "C", "text": "def 与调用必须写在同一行"},
-        {"id": "D", "text": "没有 return 的函数不能用 def 定义"}
+        {
+          "id": "A",
+          "text": "一写完 def，函数体就会立刻跑一遍"
+        },
+        {
+          "id": "B",
+          "text": "def 只是登记可复用代码块；调用 name(...) 时才执行函数体"
+        },
+        {
+          "id": "C",
+          "text": "def 与调用必须写在同一行"
+        },
+        {
+          "id": "D",
+          "text": "没有 return 的函数不能用 def 定义"
+        }
       ],
-      "answers": ["B"],
+      "answers": [
+        "B"
+      ],
       "checks": [],
       "pass_feedback": "对：def 是登记；调用带括号才会执行。",
       "fail_prefix": "想想：钉菜谱时炉子会不会自己着火？"
@@ -47,13 +61,13 @@
       "concept": {
         "normal": "参数（parameter）是定义时的空位名字；实参（argument）是调用时塞进去的具体值。\n\ndef add(a, b): 里的 a、b 是参数。\nadd(3, 4) 里的 3、4 是实参。\n\n空位标签 vs 塞进去的值——别把两个词对调。参数会接到实参的值，再在函数体里使用。",
         "story": {
-          "mission_title": "点单台纠错：空位标签 ≠ 客人点的货",
-          "scene": "快餐店点单窗口",
-          "npc": "点单员 Rui",
-          "npc_line": "「主食」「配菜」是空位名；客人说的「米饭、青菜」才是塞进去的货。术语别对调。",
+          "mission_title": "点单纠错：空位标签 ≠ 塞进去的货",
+          "scene": "跃迁站 · 补给点单窗",
+          "npc": "回响",
+          "npc_line": "「主食」「配菜」是空位名；客人点的才是实参。别对调。",
           "objective": "分清 add(a, b) 与 add(3, 4) 里谁是参数、谁是实参。",
-          "body": "点单台有两个空格：「主食」「配菜」——这是参数（空位标签）。\n\n客人说「米饭、青菜」——这是实参（塞进空位的具体值）。\n\n空位名字 ≠ 客人点的那份实物。今晚系统把术语对调了，订单全乱——你来纠正。",
-          "clear_hint": "a、b 是参数；3、4 是实参。"
+          "body": "回响稽核点单：a、b 是参数（空位）；3、4 是实参（塞进去的值）。\n空位名字 ≠ 客人点的货。",
+          "clear_hint": "a、b 参数；3、4 实参。"
         }
       },
       "example": {
@@ -63,12 +77,26 @@
       "prompt": "在 def add(a, b): 与调用 add(3, 4) 中，说法正确的是？",
       "hint": "a、b 是定义时的名字；3、4 是调用时的值。",
       "options": [
-        {"id": "A", "text": "a、b 是实参；3、4 是参数"},
-        {"id": "B", "text": "a、b 是参数；3、4 是实参"},
-        {"id": "C", "text": "四个都是参数"},
-        {"id": "D", "text": "四个都是实参"}
+        {
+          "id": "A",
+          "text": "a、b 是实参；3、4 是参数"
+        },
+        {
+          "id": "B",
+          "text": "a、b 是参数；3、4 是实参"
+        },
+        {
+          "id": "C",
+          "text": "四个都是参数"
+        },
+        {
+          "id": "D",
+          "text": "四个都是实参"
+        }
       ],
-      "answers": ["B"],
+      "answers": [
+        "B"
+      ],
       "checks": [],
       "pass_feedback": "参数是空位标签，实参是塞进去的具体值。",
       "fail_prefix": "把「空位名」和「塞进去的值」对调一下再选："
@@ -81,13 +109,13 @@
       "concept": {
         "normal": "想让调用方拿到计算结果，用 return。\n\nreturn 会立刻结束函数，并把值交回去，例如：\nx = square(3)  # 若 return n*n，则 x 为 9\n\n若只 print 不 return，调用方往往拿到 None——屏幕上也许有字，变量里却是空的。",
         "story": {
-          "mission_title": "流水线交付：装箱送回上一站",
-          "scene": "零件加工车间工位 7",
-          "npc": "班组长 Ken",
+          "mission_title": "流水线：装箱送回才算交货",
+          "scene": "跃迁站 · 工位 7 加工线",
+          "npc": "回响",
           "npc_line": "门口喊一声不算交货。装箱贴单送回上一站——那才是 return。",
           "objective": "补全 return 表达式，使 square(3) 得到 9。",
-          "body": "车间流水线：原料 n 进门，加工完要「装箱送回上一站」——这就是 return。\n\n若只在车间门口喊一声数字（print），上一站手里仍是空的（常是 None）。\n\n本关：写对平方表达式（n 乘自己，或 n 的 2 次方），让调用方真正拿到 9。",
-          "clear_hint": "n * n 或 n ** 2（不要只写 print）。"
+          "body": "原料 n 进门。只 print 是假交货（上一站常拿到 None）。\n写对平方表达式，让调用方真正拿到 9。",
+          "clear_hint": "n * n 或 n ** 2。"
         }
       },
       "example": {
@@ -97,7 +125,12 @@
       "prompt": "补全 return 后面的表达式，使 square(3) 得到 9：\ndef square(n):\n    return ___\nprint(square(3))",
       "hint": "n * n 或 n ** 2。不要只写 n。",
       "options": [],
-      "answers": ["n * n", "n*n", "n ** 2", "n**2"],
+      "answers": [
+        "n * n",
+        "n*n",
+        "n ** 2",
+        "n**2"
+      ],
       "checks": [],
       "pass_feedback": "调用方拿到了 9——这是 return 的功劳。",
       "fail_prefix": "return 后应是 n 的平方（如 n * n）。只写 n 或只 print 都不算交货："
@@ -110,13 +143,13 @@
       "concept": {
         "normal": "return：把值交回程序（调用方可以接着用）。\nprint：把文字显示给人看（屏幕有输出，变量未必拿到值）。\n\n两者可以同时出现，但职责不同。初学优先想清楚：这次是要「给人看」还是「给程序用」。",
         "story": {
-          "mission_title": "快递站对照：交到手里 vs 贴公告栏",
-          "scene": "社区快递驿站",
-          "npc": "驿站站长",
-          "npc_line": "一种是把盒子交到收件人手上；一种是只在墙上贴纸条。别混成同一种「交付」。",
+          "mission_title": "对照：交到手里 vs 贴公告栏",
+          "scene": "跃迁站 · 驿站交接区",
+          "npc": "回响",
+          "npc_line": "一种是盒子交到手里；一种是墙上贴纸条。别混。",
           "objective": "用一两句话写出 return 与 print 的关键差别。",
-          "body": "两种交付：\n- return：把快递盒交到收件人手里，对方可以拆开继续用；\n- print：只在公告栏贴一张纸条给人看，收件人手上未必有货（常拿到 None）。\n\n本关用你自己的话点清：谁给程序用，谁给人看。",
-          "clear_hint": "提到调用方能否接收，或 print 后常是 None。"
+          "body": "return：交到调用方手里，可以继续用。\nprint：给人看，变量未必拿到值（常是 None）。\n回响要你点清：谁给程序，谁给人看。",
+          "clear_hint": "提到调用方能否接收，或 None。"
         }
       },
       "example": {
@@ -130,17 +163,38 @@
       "checks": [
         {
           "type": "keywords_any",
-          "values": ["return", "返回", "交回", "交给", "传回"],
+          "values": [
+            "return",
+            "返回",
+            "交回",
+            "交给",
+            "传回"
+          ],
           "message": "请提到 return / 返回给调用方。"
         },
         {
           "type": "keywords_any",
-          "values": ["print", "打印", "屏幕", "显示", "输出"],
+          "values": [
+            "print",
+            "打印",
+            "屏幕",
+            "显示",
+            "输出"
+          ],
           "message": "请提到 print / 显示到屏幕。"
         },
         {
           "type": "keywords_any",
-          "values": ["调用", "程序", "变量", "None", "给人", "接收", "拿到", "继续用"],
+          "values": [
+            "调用",
+            "程序",
+            "变量",
+            "None",
+            "给人",
+            "接收",
+            "拿到",
+            "继续用"
+          ],
           "message": "请点出差别：给程序用 vs 给人看，或提到 None。"
         }
       ],
@@ -155,12 +209,12 @@
       "concept": {
         "normal": "综合小练习：一个参数，拼接字符串，用 return 交回。\n\ndef greeting(name):\n    return \"hi \" + name\n\n调用 greeting(\"Ada\") 应得到 hi Ada（hi 与名字之间有一个空格）。\n这是把第 1 章的字符串与本章的 def/return 接到一起。",
         "story": {
-          "mission_title": "前台接待脚本：拼欢迎词并交回系统",
-          "scene": "联合办公楼一层前台",
-          "npc": "接待员 Nova",
-          "npc_line": "客人报名字，你拼欢迎词交回系统——别只在喇叭里喊一声就算完事。",
+          "mission_title": "跃收束：拼欢迎词并交回系统",
+          "scene": "跃迁站 · 一层前台",
+          "npc": "跃",
+          "npc_line": "先说你以为发生了什么。客人报名，你是只喊一声，还是交回系统？",
           "objective": "定义 greeting(name)，return \"hi \" + name。",
-          "body": "前台接待脚本：客人报上名字，你拼一句欢迎词交回前台系统——不是只在喇叭里喊一声。\n\n格式固定：hi + 空格 + 名字。例如 greeting(\"Ada\") 得到 hi Ada。\n\n参数进、拼接、return 出——完成本章最后一关。",
+          "body": "跃收束本章：参数进、拼接、return 出。\n\ngreeting(\"Ada\") 应得到 hi Ada。别只 print 假装交货。",
           "clear_hint": "def greeting(name): return \"hi \" + name"
         }
       },
@@ -173,14 +227,26 @@
       "options": [],
       "answers": [],
       "checks": [
-        {"type": "regex", "pattern": "def\\s+greeting\\s*\\(\\s*name\\s*\\)", "message": "需要 def greeting(name)。"},
-        {"type": "contains", "value": "return", "message": "需要 return 把结果交回。"},
+        {
+          "type": "regex",
+          "pattern": "def\\s+greeting\\s*\\(\\s*name\\s*\\)",
+          "message": "需要 def greeting(name)。"
+        },
+        {
+          "type": "contains",
+          "value": "return",
+          "message": "需要 return 把结果交回。"
+        },
         {
           "type": "regex",
           "pattern": "return\\s+([\"']hi [\"']\\s*\\+|\\w+\\s*\\+\\s*[\"']hi [\"']|[\"']hi )",
           "message": "返回值应含 \"hi \"（带空格）并与 name 拼接。"
         },
-        {"type": "contains", "value": "name", "message": "要用到参数 name。"}
+        {
+          "type": "contains",
+          "value": "name",
+          "message": "要用到参数 name。"
+        }
       ],
       "pass_feedback": "第 2 章核心练完：你会定义、调用，并分清 return / print。下一章看作用域。",
       "fail_prefix": "检查：def greeting(name) + return \"hi \" + name："

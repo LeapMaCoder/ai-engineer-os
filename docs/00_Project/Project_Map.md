@@ -74,7 +74,7 @@ flowchart LR
 | `02_Research/` | 用户/竞品/市场/访谈 | 活跃（持续验证） |
 | `03_Product/` | MVP 定稿 / PRD Complete | ✅ |
 | `04_Specifications/` | Spec 体系；SPEC-GL-001 / **SPEC-GL-002** **Approved** | ✅ |
-| `05_Architecture/` | SPEC-GL-001 最小架构 **Approved** | ✅ |
+| `05_Architecture/` | SPEC-GL-001 最小架构 **Approved**；[[MySQL_Comment_Convention]]（D-058） | ✅ |
 | `06_ADR/` | ADR-0001/0002/0003 **Accepted** | ✅ |
 | `apps/leapma_web/` | 垂直切片实现 | **Phase 5 🔄** |
 | `07_Sprint/` | Sprint | 空 |

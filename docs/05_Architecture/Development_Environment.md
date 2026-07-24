@@ -31,3 +31,8 @@ tags:
 1. 选型写 ADR（Proposed → Founder Review → Accepted）。  
 2. 优先：单人可维护、Docker Compose 友好、服务 SPEC-GL-001 最小环。  
 3. 见 [[SPEC-GL-001_Architecture]] · [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] · [[ADR-0002_Primary_Store_for_SPEC-GL-001]]。
+
+## MySQL 注释规范（D-058）
+
+LeapMa MySQL **所有表、所有字段必须有中文 COMMENT**。  
+**主真源：** [[MySQL_Comment_Convention]]（勿在此重复写细则，避免双真源）。

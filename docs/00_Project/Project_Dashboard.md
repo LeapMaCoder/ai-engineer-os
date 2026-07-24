@@ -22,14 +22,14 @@ tags:
 | 项 | 值 |
 |----|-----|
 | **阶段** | **Phase 5 — 视觉 + 游客 Dashboard + Python 15 章骨架** |
-| **体验** | D-048 暗色终端；D-049～051 先学后练 + story 任务简报 + 概念模式方案 B；**D-056** NPC 引导（文档契约 SPEC-GL-002）；Python 1～3 ready，4～15 skeleton |
+| **体验** | D-048 暗色终端；D-049～051 先学后练 + story；**D-057** 跃迁站四 NPC（墨狸/回响/闸/跃）；**D-056/GL-002**；**D-058** MySQL 中文 COMMENT；Python 1～3 ready |
 
 ---
 
 ## 2. 当前目标
 
 1. 走通 Python **第 1～3 章**混合题型 + Dashboard / profile 分工  
-2. 对齐 **D-056 / SPEC-GL-002 / US-05 / AC-05**（叙事型坚持，非经济游戏）  
+2. 对齐 **D-056 / D-057 / SPEC-GL-002**（四 NPC 叙事型坚持）与 **D-058**（MySQL COMMENT）  
 3. 试用验证 **Q-A8**（normal vs story）  
 4. **不自动 commit**  
 

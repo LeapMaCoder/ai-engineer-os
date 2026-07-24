@@ -86,6 +86,8 @@ tags:
 | D-054 | 2026-07-23 | **个人中心信息架构打磨**：`/profile` = 账户与设置（资料/默认模式/进度摘要/账号）；`/dashboard` = 接下来练什么（仅摘要链到 profile）；方案 B 不变。 | Accepted | Founder |
 | D-055 | 2026-07-23 | **整体 UI 微调**：统一间距/标题/按钮主次；课内四分区色条更清晰；去掉静态 panel 满屏 hover；故事壳对比加强；不改产品范围。 | Accepted | Founder |
 | D-056 | 2026-07-23 | **NPC 引导式学习（叙事坚持）**：课内以固定 NPC 用困境引出心智模型→例→练（验收题）；允许任务/关卡隐喻与章幕名轻钩子；**禁止**联赛/XP 商店/排行/好感度养成/视觉小说长分叉。愿景「游戏化」澄清为**叙事型坚持**，非经济系统。承接 D-049～051；产品契约见 [[features/SPEC-GL-002_NPC_Guided_Lesson]]。 | Accepted | Founder |
+| D-057 | 2026-07-23 | **锁定跃迁站 4 NPC**：墨狸（绑定/类型/print）、回响（print vs return）、闸（作用域/NameError）、跃（元教练收束）。ready 课 `story.npc` 必须 ∈ 此四显示名；禁止池外具名角色。承接 D-056 / SPEC-GL-002；内容见 `npcs.json` + [[Python_Track_Outline]]。 | Accepted | Founder |
+| D-058 | 2026-07-23 | **MySQL 全表全字段中文 COMMENT**：新建/变更 DDL 必须写表与列 COMMENT；真源 `schema/*.sql`，`db.py` 运行时 DDL/ALTER 同等带 COMMENT；已有库用可重复迁移补全。规范见 [[MySQL_Comment_Convention]]。SQLite 无 COMMENT 能力，规范针对 MySQL 主存。 | Accepted | Founder |
 
 ---
 

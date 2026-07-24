@@ -35,6 +35,7 @@ Vision → Product → Specification → Architecture → Code → Test
 |------|------|
 | [[SPEC-GL-001_Architecture]] | First Growth Experience 最小架构（**Approved**） |
 | [[Development_Environment]] | Founder 已有环境（≠ 强制技术栈） |
+| [[MySQL_Comment_Convention]] | MySQL 全表全字段中文 COMMENT（D-058） |
 | `docs/06_ADR/` | ADR-0001/0002 **Accepted** |
 
 ## 规则

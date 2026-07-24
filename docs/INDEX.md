@@ -96,6 +96,7 @@ tags:
 | [[05_Architecture/README]] | 架构目录职责 |
 | [[SPEC-GL-001_Architecture]] | First Growth Experience 最小架构（**Approved**） |
 | [[Development_Environment]] | 已有环境（≠ 强制栈） |
+| [[MySQL_Comment_Convention]] | MySQL 中文 COMMENT 规范（D-058） |
 | [[06_ADR/README]] | ADR 索引 |
 | [[ADR-0001_Runtime_Stack_for_SPEC-GL-001]] | 运行时（**Accepted**：Python） |
 | [[ADR-0002_Primary_Store_for_SPEC-GL-001]] | 主存（**Accepted**：MySQL） |

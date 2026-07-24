@@ -1,0 +1,41 @@
+{
+  "world": {
+    "id": "leap_station",
+    "name": "跃迁站 Leap Station",
+    "blurb": "赛博夜港训练站。工位可换，说话人只能是站内四名固定 NPC。"
+  },
+  "npcs": [
+    {
+      "id": "ink",
+      "display_name": "墨狸",
+      "role": "贴签专员",
+      "specialty": "绑定 / 类型 / print 热身",
+      "blurb": "爪子沾墨，专管名字贴到值上。",
+      "catchphrase": "先认签，再乱动爪。"
+    },
+    {
+      "id": "echo",
+      "display_name": "回响",
+      "role": "交付稽核",
+      "specialty": "print vs return、调用交付",
+      "blurb": "听见不算数，装箱交回才算交货。",
+      "catchphrase": "喊过≠交货。"
+    },
+    {
+      "id": "gate",
+      "display_name": "闸",
+      "role": "门禁",
+      "specialty": "作用域 / NameError",
+      "blurb": "房间里的名字，出了门就不存在。",
+      "catchphrase": "出了门，名字就不在。"
+    },
+    {
+      "id": "leap",
+      "display_name": "跃",
+      "role": "元教练",
+      "specialty": "收束、跨课钩子、苏格拉底追问",
+      "blurb": "不替你答题，只逼你先说清「你以为发生了什么」。",
+      "catchphrase": "先说你以为发生了什么。"
+    }
+  ]
+}

@@ -29,7 +29,8 @@ superseded_by: ""
 **MySQL 作为 Primary Store。**
 
 - Redis：**不**作为主存；首切片**非必须**（会话缓存/限流 Later）。  
-- 本 ADR **不**批准具体 DDL/ORM；表结构属实现任务（须 Founder 授权编码后）。
+- 本 ADR **不**批准具体 DDL/ORM；表结构属实现任务（须 Founder 授权编码后）。  
+- **D-058：** MySQL 表/字段须中文 COMMENT；规范见 [[MySQL_Comment_Convention]]。
 ## 后果
 
 ### 正面

@@ -35,7 +35,8 @@ LEAPMA_LLM_PROVIDER=mock
 FLASK_SECRET_KEY=dev-change-me
 ```
 
-也可手工执行：`schema/001_init.sql`、`schema/002_track_progress.sql`。
+也可手工执行：`schema/001_init.sql`、`schema/002_track_progress.sql`、`003_concept_mode_default.sql`。  
+已有库补中文 COMMENT：`schema/004_column_comments.sql`（D-058；规范见仓库 `docs/05_Architecture/MySQL_Comment_Convention.md`）。
 
 ## 启动
 

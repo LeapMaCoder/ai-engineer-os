@@ -87,8 +87,8 @@ def _normalize_story(story_raw: Any, lesson_title: str) -> dict[str, str] | None
     return {
         "mission_title": pick("mission_title", title),
         "scene": pick("scene", "训练终端"),
-        "npc": pick("npc", "Coach"),
-        "npc_line": pick("npc_line", "读完简报，完成下方验收。"),
+        "npc": pick("npc", "跃"),
+        "npc_line": pick("npc_line", "先说你以为发生了什么。"),
         "objective": pick("objective", "完成本关练习并通过判定。"),
         "body": pick("body", ""),
         "clear_hint": pick("clear_hint", ""),
